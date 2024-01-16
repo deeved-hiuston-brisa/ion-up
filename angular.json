@@ -3,5 +3,35 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "ion": {
+      "projectType": "library",
+      "root": "projects/ion",
+      "sourceRoot": "projects/ion/src",
+      "prefix": "ion",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ion/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ion/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ion/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ion/tsconfig.spec.json",
+            "polyfills": ["zone.js", "zone.js/testing"]
+          }
+        }
+      }
+    }
   }
 }
