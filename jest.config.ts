@@ -7,7 +7,6 @@ import type { Config } from 'jest';
 
 const config: Config = {
   preset: 'jest-preset-angular',
-  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -139,7 +138,7 @@ const config: Config = {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // setupFilesAfterEnv: [],
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,
@@ -178,7 +177,8 @@ const config: Config = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.(ts|js|html)$': 'jest-preset-angular',
+    '^.+\\.(ts|js)$': 'jest-preset-angular',
+    '^.+\\.html$': '<rootDir>/jest-transformer-html.js',
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
