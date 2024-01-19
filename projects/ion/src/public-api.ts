@@ -3,4 +3,5 @@
  */
 
 // export * from './lib/ion.component';
-export * from './lib/icon/index';
+export * from './lib/icon';
+export * from './lib/button';

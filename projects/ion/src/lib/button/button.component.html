@@ -1,0 +1,13 @@
+<button
+  [disabled]="disabled"
+  [ngClass]="'ion-btn-' + type + ' ' + 'ion-btn-' + size"
+  [class.ion-btn-danger]="!disabled && danger"
+>
+  @if (icon && !icon.rightPosition) {
+  <ion-icon [type]="icon.type"></ion-icon>
+  }
+  {{ label }}
+  @if (icon && icon.rightPosition) {
+  <ion-icon [type]="icon.type"></ion-icon>
+  }
+</button>
