@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
-
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
-import { IconType, IonIconComponent } from '../icon';
+import { IonIconComponent } from '../icon';
+import { Icon, Size, Type } from './types';
 
 @Component({
   standalone: true,
@@ -12,14 +12,10 @@ import { IconType, IonIconComponent } from '../icon';
 })
 export class IonButtonComponent {
   @Input() label!: string;
-  @Input() type: 'primary' | 'secondary' | 'ghost' | 'dashed' = 'primary';
+  @Input() type: Type = 'primary';
   @Input() danger = false;
   @Input() disabled = false;
-  @Input() loading = false;
-  @Input() shape: 'normal' | 'square' | 'circle' = 'normal';
-  @Input() size: 'sm' | 'md' | 'lg' | 'xl' = 'md';
-  @Input() icon?: {
-    type: IconType;
-    rightPosition?: boolean;
-  };
+  @Input() size: Size = 'md';
+  @Input() icon?: Icon;
+  @Output() ionOnClick: EventEmitter<null> = new EventEmitter();
 }
