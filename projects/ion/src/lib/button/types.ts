@@ -2,11 +2,11 @@ import { EventEmitter } from '@angular/core';
 import { IconType } from '../icon';
 
 /**
- * @typedef {'primary' | 'secondary' | 'ghost' | 'dashed'} ButtonType - Tipo do botão.
- * @typedef {'sm' | 'md' | 'lg' | 'xl'} ButtonSize - Tamanho do botão.
- * @typedef {Object} IconType - Tipo de ícone.
- * @property {string} type - Tipo de ícone.
- * @property {boolean} [rightPosition] - Posição do ícone à direita do texto.
+ * @typedef {'primary' | 'secondary' | 'ghost' | 'dashed'} ButtonType - Button type.
+ * @typedef {'sm' | 'md' | 'lg' | 'xl'} ButtonSize - Button size.
+ * @typedef {Object} IconType - Object Icon type.
+ * @property {string} type - icon type.
+ * @property {boolean} [rightPosition] - Icon position to the right of the text.
  */
 
 export type Type = 'primary' | 'secondary' | 'ghost' | 'dashed';
@@ -18,50 +18,50 @@ export type Icon = {
 
 export interface IonButtonProps {
   /**
-   * Rótulo do botão.
+   * Button label.
    * @type {string}
    */
   label: string;
 
   /**
-   * Tipo do botão. Pode ser 'primary', 'secondary', 'ghost' ou 'dashed'.
+   * Button type. Can be 'primary', 'secondary', 'ghost' or 'dashed'.
    * @type {ButtonType}
    * @default 'primary'
    */
   type?: Type;
 
   /**
-   * Indica se o botão representa um perigo.
+   * Indicates whether the button represents a danger.
    * @type {boolean}
    * @default false
    */
   danger?: boolean;
 
   /**
-   * Indica se o botão está desativado.
+   * Indicates whether the button is disabled.
    * @type {boolean}
    * @default false
    */
   disabled?: boolean;
 
   /**
-   * Tamanho do botão. Pode ser 'sm', 'md', 'lg' ou 'xl'.
+   * Button size. Can be 'sm', 'md', 'lg' or 'xl'.
    * @type {ButtonSize}
    * @default 'md'
    */
   size?: Size;
 
   /**
-   * Configurações do ícone associado ao botão.
+   * Settings for the icon associated with the button.
    * @type {{ type: IconType; rightPosition?: boolean }}
    */
   icon?: Icon;
 
   /**
-   * Evento acionado quando o botão é clicado.
+   * Event triggered when button is clicked.
    * @event IonButtonComponent#ionOnClick
    * @type {EventEmitter<null>}
-   * @description Este evento é emitido quando o botão é clicado. A emissão não inclui dados adicionais.
+   * @description This event is emitted when the button is clicked. The issuance does not include additional data.
    */
   ionOnClick?: EventEmitter<null>;
 }

@@ -29,14 +29,14 @@ describe('IonButtonComponent', () => {
     expect(button.textContent).toContain(textButton);
   });
 
-  it.each(types)('should correctly render button types.', async (type) => {
+  it.each(types)('should correctly render button %s types.', async (type) => {
     expect(await sut({ label: defaultName, type })).toHaveClass(
       `ion-btn-${type}`
     );
   });
 
   it.each(types)(
-    'should correctly render button types with the danger property.',
+    'should correctly render button %s types with the danger property.',
     async (type) => {
       expect(await sut({ label: defaultName, type, danger: true })).toHaveClass(
         `ion-btn-danger`
@@ -44,7 +44,7 @@ describe('IonButtonComponent', () => {
     }
   );
 
-  it.each(sizes)('should correctly render button sizes.', async (size) => {
+  it.each(sizes)('should correctly render button %s sizes.', async (size) => {
     expect(await sut({ label: defaultName, size })).toHaveClass(
       `ion-btn-${size}`
     );
@@ -78,7 +78,7 @@ describe('IonButtonComponent', () => {
     expect(clickEvent).toHaveBeenCalled();
   });
 
-  it('should not trigger an event when the button is disabled.', async () => {
+  it('should not trigger an event when and the button is disabled.', async () => {
     const clickEvent = jest.fn();
     const button = await sut({
       label: defaultName,
