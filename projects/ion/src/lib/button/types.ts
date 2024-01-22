@@ -3,7 +3,6 @@ import { IconType } from '../icon';
 
 /**
  * @typedef {'primary' | 'secondary' | 'ghost' | 'dashed'} ButtonType - Tipo do botão.
- * @typedef {'normal' | 'square' | 'circle'} ButtonShape - Formato do botão.
  * @typedef {'sm' | 'md' | 'lg' | 'xl'} ButtonSize - Tamanho do botão.
  * @typedef {Object} IconType - Tipo de ícone.
  * @property {string} type - Tipo de ícone.
