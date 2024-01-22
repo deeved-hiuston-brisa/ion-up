@@ -63,10 +63,7 @@ describe('IonButtonComponent', () => {
       label: 'Delete',
       icon: { type: 'trash', rightPosition: true },
     });
-    const children = button.children;
-    expect(children.length).toBe(2);
-    expect(children[0].tagName.toLocaleLowerCase()).toBe('span');
-    expect(children[1].tagName.toLocaleLowerCase()).toBe('ion-icon');
+    expect(button).toHaveClass('ion-btn-inverter');
   });
 
   it('should trigger an event when the button is clicked.', async () => {

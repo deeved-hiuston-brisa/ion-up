@@ -212,4 +212,8 @@ button {
     @include button-parameters(48px, 12px, 24px, 16px, 24px);
     @include set-icon-size(18px);
   }
+
+  &.ion-btn-inverter {
+    flex-direction: row-reverse;
+  }
 }
