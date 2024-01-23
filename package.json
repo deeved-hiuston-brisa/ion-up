@@ -4,15 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build ion",
+    "build": "ng build workspace",
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "prettier": "npx prettier --write .",
     "test": "jest --verbose",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch",
-    "storybook": "ng run ion:storybook"
+    "test:watch": "jest --watch"
   },
   "private": true,
   "dependencies": {
@@ -37,12 +36,6 @@
     "@angular-eslint/template-parser": "17.2.1",
     "@angular/cli": "^17.0.10",
     "@angular/compiler-cli": "^17.0.0",
-    "@storybook/addon-essentials": "^7.6.8",
-    "@storybook/addon-interactions": "^7.6.8",
-    "@storybook/addon-links": "^7.6.8",
-    "@storybook/angular": "^7.6.8",
-    "@storybook/blocks": "^7.6.8",
-    "@storybook/test": "^7.6.8",
     "@testing-library/angular": "^15.1.0",
     "@types/jest": "^29.5.11",
     "@typescript-eslint/eslint-plugin": "6.19.0",
@@ -55,9 +48,6 @@
     "ng-packagr": "^17.0.0",
     "prettier": "^3.2.4",
     "prettier-eslint": "^16.3.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "storybook": "^7.6.8",
     "ts-node": "^10.9.2",
     "typescript": "~5.2.2"
   }

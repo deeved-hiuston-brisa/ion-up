@@ -3,72 +3,31 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ion": {
-      "projectType": "library",
-      "root": "projects/ion",
-      "sourceRoot": "projects/ion/src",
-      "prefix": "ion",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/ion/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ion/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/ion/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "storybook": {
-          "builder": "@storybook/angular:start-storybook",
-          "options": {
-            "configDir": "projects/ion/.storybook",
-            "browserTarget": "ion:build",
-            "compodoc": false,
-            "port": 6006
-          }
-        },
-        "build-storybook": {
-          "builder": "@storybook/angular:build-storybook",
-          "options": {
-            "configDir": "projects/ion/.storybook",
-            "browserTarget": "ion:build",
-            "compodoc": false,
-            "outputDir": "dist/storybook/ion"
-          }
-        }
-      }
-    },
-    "ion-test": {
+    "workspace": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/ion-test",
-      "sourceRoot": "projects/ion-test/src",
+      "root": "projects/workspace",
+      "sourceRoot": "projects/workspace/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ion-test",
-            "index": "projects/ion-test/src/index.html",
-            "browser": "projects/ion-test/src/main.ts",
+            "outputPath": "dist/workspace",
+            "index": "projects/workspace/src/index.html",
+            "browser": "projects/workspace/src/main.ts",
             "polyfills": ["zone.js"],
-            "tsConfig": "projects/ion-test/tsconfig.app.json",
+            "tsConfig": "projects/workspace/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/ion-test/src/favicon.ico",
-              "projects/ion-test/src/assets"
+              "projects/workspace/src/favicon.ico",
+              "projects/workspace/src/assets"
             ],
-            "styles": ["projects/ion-test/src/styles.scss"],
+            "styles": ["projects/workspace/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -99,10 +58,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ion-test:build:production"
+              "buildTarget": "workspace:build:production"
             },
             "development": {
-              "buildTarget": "ion-test:build:development"
+              "buildTarget": "workspace:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -110,7 +69,16 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "ion-test:build"
+            "buildTarget": "workspace:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/workspace/**/*.ts",
+              "projects/workspace/**/*.html"
+            ]
           }
         }
       }
