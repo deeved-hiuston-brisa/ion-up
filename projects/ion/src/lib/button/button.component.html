@@ -1,0 +1,13 @@
+<button
+  [attr.data-testid]="'ion-button-' + label"
+  [disabled]="disabled"
+  [ngClass]="'ion-btn-' + type + ' ' + 'ion-btn-' + size"
+  [class.ion-btn-danger]="!disabled && danger"
+  [class.ion-btn-inverter]="icon && icon.type && icon.rightPosition"
+  (click)="!disabled && ionOnClick.emit()"
+>
+  @if (icon && icon.type) {
+  <ion-icon [type]="icon.type"></ion-icon>
+  }
+  <span>{{ label }}</span>
+</button>
