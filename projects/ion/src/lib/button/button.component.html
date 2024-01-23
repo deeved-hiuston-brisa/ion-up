@@ -5,14 +5,14 @@
   [class.ion-btn-danger]="!disabled && danger"
   [class.ion-btn-inverter]="icon && icon.type && icon.rightPosition"
   [class.ion-btn-loading]="!disabled && loading"
-  (click)="!disabled && !loading && ionOnClick.emit()"
->
-  @if(!disabled && loading) {
-  <span class="ion-btn-loading__spinner"></span>
-  <span>Loading</span>
-  } @else { @if (icon && icon.type) {
-  <ion-icon [type]="icon.type"></ion-icon>
-  }
-  <span>{{ label }}</span>
+  (click)="!disabled && !loading && ionOnClick.emit()">
+  @if (!disabled && loading) {
+    <span class="ion-btn-loading__spinner"></span>
+    <span>Loading</span>
+  } @else {
+    @if (icon && icon.type) {
+      <ion-icon [type]="icon.type"></ion-icon>
+    }
+    <span>{{ label }}</span>
   }
 </button>

@@ -29,7 +29,7 @@ describe('IonButtonComponent', () => {
     expect(button.textContent).toContain(textButton);
   });
 
-  it.each(types)('should correctly render button %s types.', async (type) => {
+  it.each(types)('should correctly render button %s types.', async type => {
     expect(await sut({ label: defaultName, type })).toHaveClass(
       `ion-btn-${type}`
     );
@@ -37,14 +37,14 @@ describe('IonButtonComponent', () => {
 
   it.each(types)(
     'should correctly render button %s types with the danger property.',
-    async (type) => {
+    async type => {
       expect(await sut({ label: defaultName, type, danger: true })).toHaveClass(
         `ion-btn-danger`
       );
     }
   );
 
-  it.each(sizes)('should correctly render button %s sizes.', async (size) => {
+  it.each(sizes)('should correctly render button %s sizes.', async size => {
     expect(await sut({ label: defaultName, size })).toHaveClass(
       `ion-btn-${size}`
     );
