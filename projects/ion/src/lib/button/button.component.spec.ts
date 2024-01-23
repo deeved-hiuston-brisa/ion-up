@@ -66,6 +66,25 @@ describe('IonButtonComponent', () => {
     expect(button).toHaveClass('ion-btn-inverter');
   });
 
+  it('should render a button disabled.', async () => {
+    const button = await sut({
+      label: 'Play',
+      disabled: true,
+      icon: { type: 'play' },
+    });
+    expect(button).toBeDisabled();
+  });
+
+  it('should render a button loading.', async () => {
+    const button = await sut({
+      label: 'Play',
+      loading: true,
+      icon: { type: 'play' },
+    });
+    expect(button).toHaveClass('ion-btn-loading');
+    expect(button).toHaveTextContent('Loading');
+  });
+
   it('should trigger an event when the button is clicked.', async () => {
     const clickEvent = jest.fn();
     const button = await sut({
@@ -83,6 +102,19 @@ describe('IonButtonComponent', () => {
     const button = await sut({
       label: defaultName,
       disabled: true,
+      ionOnClick: {
+        emit: clickEvent,
+      } as SafeAny,
+    });
+    fireEvent.click(button);
+    expect(clickEvent).not.toHaveBeenCalled();
+  });
+
+  it('should not trigger an event when the button is loading.', async () => {
+    const clickEvent = jest.fn();
+    const button = await sut({
+      label: defaultName,
+      loading: true,
       ionOnClick: {
         emit: clickEvent,
       } as SafeAny,

@@ -41,14 +41,19 @@ const meta: Meta<IonButtonComponent> = {
       description: 'Indica se o botão está desativado.',
       defaultValue: { summary: false },
     },
+    loading: {
+      description:
+        'Indica que o botão está em espera. Ou seja, esperando algum processo terminar para que possa está pronto para uso.',
+      defaultValue: { summary: false },
+    },
     icon: {
       description:
         'Recebe um objeto que configura o ícone associado ao botão. `type` define o tipo de ícone a ser rederizado. `rightPosition` indica se o ícone deve ser renderizado a direita da label.',
     },
     ionOnClick: {
+      action: { handles: 'click' },
       description:
         'Emite um evento quando o botão é clicado. Caso o botão esteja desabilitado, nenhum evento será disparado.',
-      action: 'Clicked!',
     },
   },
 };
@@ -60,12 +65,12 @@ export const Default: Story = {
     label: 'Play',
     danger: false,
     disabled: false,
+    loading: false,
     size: 'md',
     type: 'dashed',
     icon: {
       type: 'play',
       rightPosition: false,
     },
-    ionOnClick: EventEmitter<null>,
   } as IonButtonComponent,
 };
