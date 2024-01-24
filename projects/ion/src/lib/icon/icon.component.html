@@ -5,8 +5,7 @@
     width: outerContainerStyle.size,
     height: outerContainerStyle.size
   }"
-  data-testid="outside-container"
->
+  data-testid="outside-container">
   <div
     [class.highlighted]="highlight === 'double'"
     [ngStyle]="{
@@ -14,8 +13,7 @@
       width: innerContainerStyle.size,
       height: innerContainerStyle.size
     }"
-    data-testid="inner-container"
-  >
+    data-testid="inner-container">
     <svg
       [attr.height]="size + 'px'"
       [attr.width]="size + 'px'"
@@ -23,7 +21,6 @@
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
       [id]="'ion-icon-' + type"
-      #svgElement
-    ></svg>
+      #svgElement></svg>
   </div>
 </div>
