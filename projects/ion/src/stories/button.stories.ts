@@ -21,7 +21,7 @@ const meta: Meta<IonButtonComponent> = {
         type: 'select',
       },
       options: ['primary', 'secondary', 'ghost', 'dashed'],
-      default: { summary: 'primary' },
+      defaultValue: { summary: 'primary' },
       description:
         'Tipo do botão. Pode ser `primary`, `secondary`, `ghost` ou `dashed`.',
     },
@@ -46,6 +46,15 @@ const meta: Meta<IonButtonComponent> = {
         'Indica que o botão está em espera. Ou seja, esperando algum processo terminar para que possa está pronto para uso.',
       defaultValue: { summary: false },
     },
+    shape: {
+      control: {
+        type: 'select',
+      },
+      options: ['normal', 'circle', 'square'],
+
+      defaultValue: { summary: 'normal' },
+      description: '',
+    },
     icon: {
       description:
         'Recebe um objeto que configura o ícone associado ao botão. `type` define o tipo de ícone a ser rederizado. `rightPosition` indica se o ícone deve ser renderizado a direita da label.',
@@ -67,7 +76,8 @@ export const Default: Story = {
     disabled: false,
     loading: false,
     size: 'md',
-    type: 'dashed',
+    type: 'primary',
+    shape: 'normal',
     icon: {
       type: 'play',
       rightPosition: false,

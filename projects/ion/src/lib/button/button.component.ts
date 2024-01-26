@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
 import { IonIconComponent } from '../icon';
-import { Icon, Size, Type } from './types';
+import { Icon, Size, Type, Shape } from './types';
 
 @Component({
   standalone: true,
@@ -18,5 +18,6 @@ export class IonButtonComponent {
   @Input() loading = false;
   @Input() size: Size = 'md';
   @Input() icon?: Icon;
+  @Input() shape?: Shape = 'normal';
   @Output() ionOnClick: EventEmitter<null> = new EventEmitter();
 }

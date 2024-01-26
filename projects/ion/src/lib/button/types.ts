@@ -11,6 +11,7 @@ import { IconType } from '../icon';
 
 export type Type = 'primary' | 'secondary' | 'ghost' | 'dashed';
 export type Size = 'sm' | 'md' | 'lg' | 'xl';
+export type Shape = 'normal' | 'circle' | 'square';
 export type Icon = {
   type: IconType;
   rightPosition?: boolean;
@@ -63,6 +64,11 @@ export interface IonButtonProps {
    * @type {{ type: IconType; rightPosition?: boolean }}
    */
   icon?: Icon;
+
+  /**
+   *
+   */
+  shape?: Shape;
 
   /**
    * Event triggered when button is clicked.

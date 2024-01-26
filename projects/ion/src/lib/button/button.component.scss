@@ -250,6 +250,33 @@ button {
   &.ion-btn-sm {
     @include button-parameters(24px, 4px, 12px, 12px, 16px);
     @include set-icon-size(12px);
+
+    &.ion-btn-square,
+    &.ion-btn-circle {
+      height: 24px;
+      width: 24px;
+      padding: 4px 12px;
+    }
+
+    &.ion-btn-circle {
+      border-radius: 50%;
+    }
+  }
+
+  &.ion-btn-md {
+    @include button-parameters(32px, 6px, 16px, 14px, 20px);
+    @include set-icon-size(16px);
+
+    &.ion-btn-square,
+    &.ion-btn-circle {
+      height: 32px;
+      width: 32px;
+      padding: 0px 16px;
+    }
+
+    &.ion-btn-circle {
+      border-radius: 50%;
+    }
   }
 
   &.ion-btn-lg {
