@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 
 import { IonIconComponent } from '../lib/icon/icon.component';
-import { Highlight, IonIconProps, iconsPaths } from '../public-api';
+import type { IonIconProps } from '../lib/icon';
+import { Highlight, iconsPaths } from '../lib/icon';
 
 const meta: Meta<IonIconComponent> = {
   title: 'Ion/Design Tokens/Icons',
