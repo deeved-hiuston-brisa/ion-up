@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": ["*.js", "*.mdx", "dist/*", "coverage/", "projects/ion-test/"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -16,7 +16,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
+            "prefix": "ion",
             "style": "camelCase"
           }
         ],
@@ -24,7 +24,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "app",
+            "prefix": "ion",
             "style": "kebab-case"
           }
         ]

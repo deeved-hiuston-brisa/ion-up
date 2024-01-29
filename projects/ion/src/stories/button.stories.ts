@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 
 import { IonButtonComponent } from '../lib/button';
-import { EventEmitter } from '@angular/core';
 
 const meta: Meta<IonButtonComponent> = {
   title: 'Ion/Navigation/Button',
