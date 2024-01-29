@@ -14,6 +14,8 @@ const types: Array<IonButtonProps['type']> = [
 
 const sizes: Array<IonButtonProps['size']> = ['lg', 'md', 'sm', 'xl'];
 
+const shapes: Array<IonButtonProps['shape']> = ['normal', 'circle', 'square'];
+
 const sut = async (customProps: IonButtonProps): Promise<HTMLElement> => {
   await render(IonButtonComponent, {
     componentProperties: customProps,
@@ -83,6 +85,12 @@ describe('IonButtonComponent', () => {
     });
     expect(button).toHaveClass('ion-btn-loading');
     expect(button).toHaveTextContent('Loading');
+  });
+
+  it.each(shapes)('should correctly render button %s shape.', async shape => {
+    expect(await sut({ label: defaultName, shape })).toHaveClass(
+      `ion-btn-${shape}`
+    );
   });
 
   it('should trigger an event when the button is clicked.', async () => {
