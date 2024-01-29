@@ -10,7 +10,9 @@
   (click)="!disabled && !loading && ionOnClick.emit()">
   @if (!disabled && loading) {
     <span class="ion-btn-loading__spinner"></span>
-    <span>Loading</span>
+    @if (shape === 'normal') {
+      <span>Loading</span>
+    }
   } @else {
     @if (icon && icon.type) {
       <ion-icon [type]="icon.type"></ion-icon>

@@ -257,10 +257,6 @@ button {
       width: 24px;
       padding: 4px 12px;
     }
-
-    &.ion-btn-circle {
-      border-radius: 50%;
-    }
   }
 
   &.ion-btn-md {
@@ -273,23 +269,42 @@ button {
       width: 32px;
       padding: 0px 16px;
     }
-
-    &.ion-btn-circle {
-      border-radius: 50%;
-    }
   }
 
   &.ion-btn-lg {
     @include button-parameters(40px, 8px, 20px, 16px, 24px);
     @include set-icon-size(18px);
+
+    &.ion-btn-square,
+    &.ion-btn-circle {
+      height: 40px;
+      width: 40px;
+      padding: 0px 20px;
+    }
   }
 
   &.ion-btn-xl {
     @include button-parameters(48px, 12px, 24px, 16px, 24px);
     @include set-icon-size(18px);
+
+    &.ion-btn-square,
+    &.ion-btn-circle {
+      height: 48px;
+      width: 48px;
+      padding: 0px 24px;
+    }
   }
 
   &.ion-btn-inverter {
     flex-direction: row-reverse;
+  }
+
+  &.ion-btn-circle {
+    border-radius: 50%;
+  }
+
+  &.ion-btn-loading.ion-btn-circle,
+  &.ion-btn-loading.ion-btn-square {
+    padding: 0;
   }
 }
