@@ -52,7 +52,7 @@ const meta: Meta<IonButtonComponent> = {
       options: ['normal', 'circle', 'square'],
 
       defaultValue: { summary: 'normal' },
-      description: '',
+      description: 'Altera a forma do botão.',
     },
     icon: {
       description:
