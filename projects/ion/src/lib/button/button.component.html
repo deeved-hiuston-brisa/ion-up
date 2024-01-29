@@ -7,7 +7,7 @@
   [class.ion-btn-danger]="!disabled && danger"
   [class.ion-btn-inverter]="icon && icon.type && icon.rightPosition"
   [class.ion-btn-loading]="!disabled && loading"
-  (click)="!disabled && !loading && ionOnClick?.emit()">
+  (click)="handleButtonClick()">
   @if (!disabled && loading) {
     <span class="ion-btn-loading__spinner"></span>
     @if (shape === 'normal') {

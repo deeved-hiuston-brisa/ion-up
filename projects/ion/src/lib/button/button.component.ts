@@ -20,4 +20,10 @@ export class IonButtonComponent {
   @Input() icon?: IonButtonProps['icon'];
   @Input() shape?: IonButtonProps['shape'] = 'normal';
   @Output() ionOnClick: IonButtonProps['ionOnClick'] = new EventEmitter();
+
+  public handleButtonClick(): void {
+    if (!this.disabled && !this.loading) {
+      this.ionOnClick?.emit();
+    }
+  }
 }

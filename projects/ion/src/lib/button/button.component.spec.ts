@@ -14,7 +14,7 @@ const types: Array<IonButtonProps['type']> = [
 
 const sizes: Array<IonButtonProps['size']> = ['lg', 'md', 'sm', 'xl'];
 
-const shapes: Array<IonButtonProps['shape']> = ['normal', 'circle', 'square'];
+const shapes: Array<IonButtonProps['shape']> = ['normal', 'circle', 'rounded'];
 
 const sut = async (customProps: IonButtonProps): Promise<HTMLElement> => {
   await render(IonButtonComponent, {

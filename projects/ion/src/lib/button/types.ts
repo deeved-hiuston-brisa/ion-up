@@ -3,7 +3,7 @@ import { IconType } from '../icon';
 
 export type Type = 'primary' | 'secondary' | 'ghost' | 'dashed';
 export type Size = 'sm' | 'md' | 'lg' | 'xl';
-export type Shape = 'normal' | 'circle' | 'square';
+export type Shape = 'normal' | 'circle' | 'rounded';
 export type Icon = {
   type: IconType;
   rightPosition?: boolean;
@@ -83,7 +83,7 @@ export interface IonButtonProps {
   /**
    * Button shape
    * @param shape - Allows the button to change its shape.
-   * @type {`normal` | `circle` | `square`}
+   * @type {`normal` | `circle` | `rounded`}
    * @default `normal`
    * @example
    * <ion-button shape = `normal` />
