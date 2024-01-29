@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
 import { IonIconComponent } from '../icon';
-import { Icon, Size, Type, Shape } from './types';
+import { IonButtonProps } from './types';
 
 @Component({
   standalone: true,
@@ -11,13 +11,13 @@ import { Icon, Size, Type, Shape } from './types';
   styleUrls: ['./button.component.scss'],
 })
 export class IonButtonComponent {
-  @Input() label!: string;
-  @Input() type: Type = 'primary';
-  @Input() danger = false;
-  @Input() disabled = false;
-  @Input() loading = false;
-  @Input() size: Size = 'md';
-  @Input() icon?: Icon;
-  @Input() shape?: Shape = 'normal';
-  @Output() ionOnClick: EventEmitter<null> = new EventEmitter();
+  @Input() label!: IonButtonProps['label'];
+  @Input() type: IonButtonProps['type'] = 'primary';
+  @Input() danger: IonButtonProps['danger'] = false;
+  @Input() disabled: IonButtonProps['disabled'] = false;
+  @Input() loading: IonButtonProps['loading'] = false;
+  @Input() size: IonButtonProps['size'] = 'md';
+  @Input() icon?: IonButtonProps['icon'];
+  @Input() shape?: IonButtonProps['shape'] = 'normal';
+  @Output() ionOnClick: IonButtonProps['ionOnClick'] = new EventEmitter();
 }
