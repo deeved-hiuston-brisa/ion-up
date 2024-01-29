@@ -6,8 +6,9 @@
     "start": "ng serve",
     "build": "ng build ion",
     "watch": "ng build --watch --configuration development",
-    "lint": "ng lint",
+    "lint": "eslint .",
     "lint:fix": "ng lint --fix",
+    "lint-staged": "lint-staged",
     "prettier": "npx prettier --write .",
     "test": "jest --verbose",
     "test:coverage": "jest --coverage",
@@ -15,6 +16,9 @@
     "storybook": "ng run ion:storybook"
   },
   "private": true,
+  "engines": {
+    "node": "20.10.0"
+  },
   "dependencies": {
     "@angular/animations": "^17.0.0",
     "@angular/common": "^17.0.0",
