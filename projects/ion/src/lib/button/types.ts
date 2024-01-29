@@ -66,7 +66,9 @@ export interface IonButtonProps {
   icon?: Icon;
 
   /**
-   *
+   * Allows the button to change its shape. The options to choose from are `normal`, `circle` and `square`.
+   * @type {Shape}
+   * @default 'normal'
    */
   shape?: Shape;
 
