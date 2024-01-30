@@ -50,7 +50,8 @@ const meta: Meta<IonTagComponent> = {
     },
     color: {
       control: { type: 'color' },
-      description: 'Que pode passar uma cor customizada para a `tag`',
+      description:
+        'O parâmetro `color` pode passar uma cor customizada para a `tag`',
     },
   },
 };
