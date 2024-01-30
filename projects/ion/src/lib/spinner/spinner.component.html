@@ -1,4 +1,4 @@
-<span [class.spinner-container]="text.length > 0">
+<span [class.spinner-container]="text && text.length">
   <span
     class="ion-spinner"
     data-testid="ion-spinner"
@@ -6,7 +6,7 @@
     [style.width.px]="size"
     [style.height.px]="size"
     [style.border-left-color]="customColor"></span>
-  @if (text.length > 0) {
+  @if (text && text.length) {
     <span
       data-testid="ion-spinner-text"
       [attr.class]="'ion-spinner__text ion-spinner__text--' + textSize"
