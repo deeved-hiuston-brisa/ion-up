@@ -1,0 +1,37 @@
+@import '../../styles/index.scss';
+
+@mixin theme-badge($bgColor, $fontColor) {
+  span {
+    background-color: $bgColor;
+    color: $fontColor;
+  }
+}
+
+:host {
+  display: inline-flex;
+  text-align: center;
+
+  span {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 16px;
+    padding: spacing(0) spacing(0.5);
+    border-radius: 50px;
+    min-width: 8px;
+    box-sizing: content-box;
+  }
+
+  &[data-type='primary'] {
+    @include theme-badge($primary-color, $neutral-1);
+  }
+  &[data-type='secondary'] {
+    @include theme-badge($secondary-color, $primary-color);
+  }
+  &[data-type='neutral'] {
+    @include theme-badge($neutral-4, $neutral-8);
+  }
+  &[data-type='negative'] {
+    @include theme-badge($negative-color, $positive-1);
+  }
+}
