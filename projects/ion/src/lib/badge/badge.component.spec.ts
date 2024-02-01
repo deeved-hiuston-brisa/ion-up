@@ -45,7 +45,7 @@ describe('IonBadgeComponent', () => {
     );
   });
 
-  it('should throw an error when the label property is not configured', async () => {
+  it('should throw an error when the label property is empty', async () => {
     try {
       await render(IonBadgeComponent, {
         componentProperties: { label: ' ' },
