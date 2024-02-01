@@ -87,6 +87,32 @@ With SCSS we would have an css syntax like this:
 }
 ```
 
+- It is important to remember that an alement can't be inside another, what we can do in this situation is to treat this inner element as a "son" of the block, or use a 2 classes scheme:
+
+```html
+<ul class="list">
+  <li class="list__item">
+    <h2 class="list__title">My publication</h2>
+  </li>
+</ul>
+```
+or
+```html
+<ul class="list">
+  <li class="list__item publication">
+    <h2 class="publication__title">My publication</h2>
+  </li>
+</ul>
+```
+
+- It can occur a situation where you have a element that is part of a specific state of the block, in this case you just follow the same pattern, with a class for the modifier and one for the the conditional element itself:
+
+```html
+<button class="btn btn--loading">
+  <div class="btn__spinner"></div>
+</button>
+```
+
 ## References
 
 To a deep dive, with more explanation on the pattern, check:
