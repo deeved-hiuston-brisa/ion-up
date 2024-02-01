@@ -1,5 +1,9 @@
 @import '../../styles/index.scss';
 
+:host {
+  display: inline-flex;
+}
+
 @mixin set-colors($background, $color) {
   background-color: $background;
   color: $color;
