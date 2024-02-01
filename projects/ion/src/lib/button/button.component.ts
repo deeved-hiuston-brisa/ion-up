@@ -15,6 +15,7 @@ export class IonButtonComponent {
   @Input() type: Type = 'primary';
   @Input() danger = false;
   @Input() disabled = false;
+  @Input() loading = false;
   @Input() size: Size = 'md';
   @Input() icon?: Icon;
   @Output() ionOnClick: EventEmitter<null> = new EventEmitter();

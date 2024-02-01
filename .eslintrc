@@ -1,54 +1,51 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@angular-eslint/recommended",
-    "plugin:prettier/recommended",
-    "plugin:css/recommended"
-  ],
-  "plugins": ["css"],
-  "env": {
-    "es2021": true,
-    "browser": true
-  },
-  "rules": {
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/explicit-function-return-type": "warn",
-    "@typescript-eslint/member-ordering": [
-      "warn",
-      {
-        "default": {
-          "memberTypes": [
-            "public-decorated-field",
-            "protected-decorated-field",
-            "private-decorated-field",
-            "public-static-field",
-            "protected-static-field",
-            "private-static-field",
-            "public-instance-field",
-            "public-abstract-field",
-            "protected-instance-field",
-            "protected-abstract-field",
-            "private-instance-field",
-            "private-abstract-field",
-            "static-field",
-            "public-field",
-            "instance-field",
-            "protected-field",
-            "private-field",
-            "abstract-field",
-            "constructor",
-            "public-static-method",
-            "protected-static-method",
-            "private-static-method",
-            "public-method",
-            "protected-method",
-            "private-method"
-          ]
-        }
+  "root": true,
+  "ignorePatterns": ["*.js", "*.mdx", "dist/*", "coverage/", "projects/ion-test/"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "ion",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "ion",
+            "style": "kebab-case"
+          }
+        ]
       }
-    ],
-    "no-console": 1
-  },
-  "ignorePatterns": ["*.js", "*.mdx", "dist/*"]
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "parser": "angular"
+          }
+        ]
+      }
+    }
+  ]
 }

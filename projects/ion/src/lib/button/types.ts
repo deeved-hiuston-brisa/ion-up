@@ -45,6 +45,13 @@ export interface IonButtonProps {
   disabled?: boolean;
 
   /**
+   * Indicates that the button is on hold. In other words, waiting for some process to finish so that it can be ready for use.
+   * @type {boolean}
+   * @default false
+   */
+  loading?: boolean;
+
+  /**
    * Button size. Can be 'sm', 'md', 'lg' or 'xl'.
    * @type {ButtonSize}
    * @default 'md'

@@ -1,6 +1,11 @@
 # IonUp
 
+<a href="https://codeclimate.com/github/Brisanet/ion-plus/maintainability"><img src="https://api.codeclimate.com/v1/badges/193c2285550e3150ca4c/maintainability" /></a>
+<a href="https://codeclimate.com/github/Brisanet/ion-plus/test_coverage"><img src="https://api.codeclimate.com/v1/badges/193c2285550e3150ca4c/test_coverage" /></a>
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.10.
+
+To run this project, you will need to use [node v.20.10.0](https://nodejs.org/en/)
 
 ## Development server
 
