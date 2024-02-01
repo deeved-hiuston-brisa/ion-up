@@ -22,7 +22,7 @@ export class IonBadgeComponent implements OnInit {
   @Input({ transform: handleLabel, required: true })
   label!: IonBadgeProps['label'];
 
-  private rederer = inject(Renderer2);
+  private renderer = inject(Renderer2);
   private element = inject(ElementRef);
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class IonBadgeComponent implements OnInit {
       throw new Error(`Label can't be empty!`);
     }
 
-    this.rederer.setAttribute(
+    this.renderer.setAttribute(
       this.element.nativeElement,
       'data-testid',
       `ion-badge-${this.label}`
