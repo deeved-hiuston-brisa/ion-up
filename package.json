@@ -13,7 +13,9 @@
     "test": "jest --verbose",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "storybook": "ng run ion:storybook"
+    "storybook": "ng run ion:storybook",
+    "build-storybook": "ng run ion:build-storybook",
+    "chromatic": "chromatic --project-token=CHROMATIC_PROJECT_TOKEN --exit-once-uploaded"
   },
   "private": true,
   "engines": {
@@ -51,6 +53,7 @@
     "@types/jest": "^29.5.11",
     "@typescript-eslint/eslint-plugin": "6.19.0",
     "@typescript-eslint/parser": "6.19.0",
+    "chromatic": "^10.6.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
