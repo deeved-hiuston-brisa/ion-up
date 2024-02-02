@@ -1,9 +1,11 @@
 /**
- * @typedef {'primary' | 'secondary' | 'danger'} IonSpinnerColor - Spinner color.
  * @typedef {'sm' | 'md' | 'lg'} IonSpinnerTextSize - Spinner text size.
  */
-
 export type IonSpinnerTextSize = 'sm' | 'md' | 'lg';
+
+/**
+ * @typedef {'primary' | 'secondary' | 'danger'} IonSpinnerColor - Spinner color.
+ */
 export type IonSpinnerColor = 'primary' | 'secondary' | 'danger';
 
 export interface IonSpinnerProps {
