@@ -12,7 +12,7 @@ export interface IonSpinnerProps {
   /**
    * Spinner size. Can be any number.
    * @type {number}
-   * @default 'md'
+   * @default 24
    * */
   size?: number;
 
