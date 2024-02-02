@@ -1,0 +1,26 @@
+<div
+  [class]="'notification-container ' + fadeIn"
+  data-testid="ion-notification"
+  (mouseenter)="mouseEnter()"
+  (mouseleave)="mouseLeave()"
+  #notificationRef>
+  <section class="notification-inner">
+    <ion-icon
+      data-testid="notification-icon"
+      [class]="'default-icon ' + type + '-icon'"
+      [type]="icon" />
+    <div class="notification-text">
+      <strong class="notification-title">
+        {{ title }}
+      </strong>
+      <p class="notification-message">{{ message }}</p>
+    </div>
+  </section>
+
+  <ion-icon
+    data-testid="btn-remove"
+    type="close"
+    size="16"
+    class="close-icon"
+    (click)="closeNotification()" />
+</div>
