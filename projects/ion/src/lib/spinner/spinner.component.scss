@@ -10,6 +10,10 @@
   border-left-color: $color;
 }
 
+:host {
+  display: inline-flex;
+}
+
 .spinner-container {
   display: flex;
   flex-direction: column;
