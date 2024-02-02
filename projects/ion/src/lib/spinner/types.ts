@@ -38,7 +38,7 @@ export interface IonSpinnerProps {
   /**
    * Spinner text size. Can be 'sm', 'md' or 'lg'.
    * @type {IonSpinnerTextSize}
-   * @default 'md'
+   * @default 'sm'
    * */
   textSize?: IonSpinnerTextSize;
 }
