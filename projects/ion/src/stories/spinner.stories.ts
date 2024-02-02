@@ -14,11 +14,10 @@ const meta: Meta<IonSpinnerComponent> = {
   argTypes: {
     size: {
       control: {
-        type: 'select',
+        type: 'number',
       },
-      options: [24, 48, 72],
       defaultValue: { summary: 24 },
-      description: 'Tamanho do spinner. Pode ser `24`, `48` ou `72`.',
+      description: 'Tamanho do spinner. Pode ser um número.',
     },
     color: {
       control: {
@@ -39,10 +38,9 @@ const meta: Meta<IonSpinnerComponent> = {
       control: {
         type: 'select',
       },
-      options: ['sm', 'md', 'lg', 'xl'],
+      options: ['sm', 'md', 'lg'],
       defaultValue: { summary: 'sm' },
-      description:
-        'Tamanho do texto do spinner. Pode ser `sm`, `md`, `lg` ou `xl`.',
+      description: 'Tamanho do texto do spinner. Pode ser `sm`, `md` ou `lg`.',
     },
   },
 };
@@ -53,8 +51,45 @@ export const Default: Story = {
   args: {
     size: 24,
     color: 'primary',
+    textSize: 'sm',
+  } as IonSpinnerComponent,
+};
+
+export const Secondary: Story = {
+  args: {
+    size: 24,
+    color: 'secondary',
     customColor: '',
     text: '',
+    textSize: 'sm',
+  } as IonSpinnerComponent,
+};
+
+export const Danger: Story = {
+  args: {
+    size: 24,
+    color: 'danger',
+    customColor: '',
+    text: '',
+    textSize: 'sm',
+  } as IonSpinnerComponent,
+};
+
+export const CustomColor: Story = {
+  args: {
+    size: 24,
+    customColor: 'purple',
+    text: '',
+    textSize: 'sm',
+  } as IonSpinnerComponent,
+};
+
+export const Text: Story = {
+  args: {
+    size: 24,
+    color: 'primary',
+    customColor: '',
+    text: 'Carregando...',
     textSize: 'sm',
   } as IonSpinnerComponent,
 };

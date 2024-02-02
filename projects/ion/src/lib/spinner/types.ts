@@ -8,8 +8,8 @@ export type IonSpinnerColor = 'primary' | 'secondary' | 'danger';
 
 export interface IonSpinnerProps {
   /**
-   * Spinner size. Can be 'sm', 'md' or 'lg'.
-   * @type {IonSpinnerTextSize}
+   * Spinner size. Can be any number.
+   * @type {number}
    * @default 'md'
    * */
   size?: number;
