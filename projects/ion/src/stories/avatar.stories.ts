@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 
 import { AvatarType, IonAvatarComponent } from '../lib/avatar';
+import { DefaultImageDirective } from '../lib/avatar/defaultImage.directive';
 
 const meta: Meta<IonAvatarComponent> = {
   title: 'Ion/Data Display/Avatar',
@@ -9,6 +10,9 @@ const meta: Meta<IonAvatarComponent> = {
   render: (args: IonAvatarComponent) => ({
     props: {
       ...args,
+    },
+    moduleMetadata: {
+      imports: [DefaultImageDirective],
     },
   }),
   argTypes: {
@@ -21,8 +25,8 @@ const meta: Meta<IonAvatarComponent> = {
       description: 'Tipo do avatar. Obrigatório.',
     },
     size: {
-      control: 'text',
-      options: ['sm', 'md', 'lg', 'xl'],
+      control: 'select',
+      options: ['sm', 'md', 'lg', 'xs'],
       defaultValue: { summary: 'md' },
       description: 'Tamanho do botão. Pode ser `sm`, `md`, `lg` ou `xl`.',
     },
@@ -35,9 +39,14 @@ const meta: Meta<IonAvatarComponent> = {
       control: 'text',
       description: 'Caso seja do tipo `photo`, a imagem a ser exibida.',
     },
+    icon: {
+      control: 'text',
+      description: 'Caso seja do tipo `icon`, o icon a ser exibido.',
+    },
     onErrorImage: {
       control: 'text',
-      description: 'Caso a imagem não seja carregada, a imagem a ser exibida.',
+      description:
+        'Caso seja do tipo `photo` e a imagem não ser exibida é mostrado uma imagem default.',
     },
   },
 };
@@ -66,7 +75,7 @@ export const Icon: Story = {
   args: {
     type: AvatarType.icon,
     size: 'md',
-    icon: 'person',
+    icon: 'union',
   },
 };
 
@@ -75,6 +84,7 @@ export const ErrorImage: Story = {
     type: AvatarType.photo,
     size: 'md',
     image:
-      'https://hips.hearstapps.com/hmg-prod/images/is-anakin-skywalker-in-ahsoka-hayden-christensen-star-wars-news-64e37d3227aec.png?crop=0.468xw:0.827xh;0.532xw,0.0510xh&resize=1200:*',
+      'https://hips..com/hmg-prod/images/is-anakin-skywalker-in-ahsoka-hayden-christensen-star-wars-news-64e37d3227aec.png?crop=0.468xw:0.827xh;0.532xw,0.0510xh&resize=1200:*',
+    onErrorImage: require('./assets/default.svg'),
   },
 };
