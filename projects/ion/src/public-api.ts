@@ -8,3 +8,4 @@ export * from './lib/button';
 export * from './lib/icon';
 export * from './lib/tab';
 export * from './lib/tag';
+export * from './lib/spinner';
