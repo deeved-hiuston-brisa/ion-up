@@ -1,8 +1,5 @@
 @if (!(type === 'text' && direction === 'horizontal')) {
-  <hr
-    data-testid="hr"
-    [style.margin]="margin ? '0' : ''"
-    [class]="'ion-divider--' + direction" />
+  <hr data-testid="hr" [class]="'ion-divider--' + direction" />
 } @else {
   <div data-testid="hr" class="ion-divider__text">
     <hr />

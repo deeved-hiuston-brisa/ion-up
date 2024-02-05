@@ -1,7 +1,10 @@
 /* tslint:disable:no-unused-variable */
+import { ComponentFixture } from '@angular/core/testing';
 import { render, screen } from '@testing-library/angular';
+
 import { IonDividerComponent } from './divider.component';
-import { IonDividerProps, DirectionType } from './types';
+import { IonDividerProps } from './types';
+import { DirectionType } from '../utils/commonTypes';
 
 const ClassType = {
   text: 'ion-divider__text',
@@ -14,17 +17,20 @@ const defaultDivider: IonDividerProps = {
   direction: 'horizontal',
 };
 
-const sut = async (customProps?: IonDividerProps): Promise<HTMLElement> => {
-  await render(IonDividerComponent, {
+const sut = async (
+  customProps?: IonDividerProps
+): Promise<ComponentFixture<IonDividerComponent>> => {
+  const { fixture } = await render(IonDividerComponent, {
     componentProperties: customProps || { ...defaultDivider },
   });
-  return screen.getByTestId('ion-divider');
+
+  return fixture;
 };
 
 describe('IonDividerComponent', () => {
   it('should render divider with default', async () => {
     const divider = await sut({});
-    expect(divider).toHaveAttribute('data-type', 'solid');
+    expect(divider.nativeElement).toHaveAttribute('data-type', 'solid');
     expect(screen.getByTestId('hr')).toHaveClass(ClassType.horizontal);
   });
 
@@ -45,7 +51,7 @@ describe('IonDividerComponent', () => {
         direction,
         type: 'dashed',
       });
-      expect(divider).toHaveAttribute('data-type', 'dashed');
+      expect(divider.nativeElement).toHaveAttribute('data-type', 'dashed');
       expect(screen.getByTestId('hr')).toHaveClass(ClassType[direction]);
     }
   );

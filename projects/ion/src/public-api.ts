@@ -9,3 +9,4 @@ export * from './lib/badge';
 export * from './lib/divider';
 export * from './lib/tag';
 export * from './lib/spinner';
+export * from './lib/utils/commonTypes';

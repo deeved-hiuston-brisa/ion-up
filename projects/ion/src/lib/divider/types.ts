@@ -1,4 +1,4 @@
-export type DirectionType = 'horizontal' | 'vertical';
+import { DirectionType } from '../utils/commonTypes';
 
 /**
  * @typedef {'solid' | 'dashed' | 'text'}  DividerType - The type of the divider
@@ -25,11 +25,4 @@ export interface IonDividerProps {
    * @default 'solid'
    * */
   type?: DividerType;
-
-  /**
-   * Add margin to the divider.
-   * @type {boolean}
-   * @default false
-   * */
-  margin?: boolean;
 }

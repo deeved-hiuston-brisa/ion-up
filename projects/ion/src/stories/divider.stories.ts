@@ -13,6 +13,9 @@ const meta: Meta<IonDividerComponent> = {
   }),
   argTypes: {
     label: {
+      control: {
+        type: 'text',
+      },
       description: 'Texto do divider.',
     },
     direction: {
@@ -31,9 +34,6 @@ const meta: Meta<IonDividerComponent> = {
       defaultValue: { summary: 'solid' },
       description: 'Tipo do divider. Pode ser `solid`, `dashed` ou `text`.',
     },
-    margin: {
-      description: 'Adiciona margem ao divider.',
-    },
   },
 };
 
@@ -44,7 +44,6 @@ export const Default: Story = {
     label: 'Divider',
     direction: 'horizontal',
     type: 'solid',
-    margin: false,
   } as IonDividerComponent,
 };
 
@@ -53,7 +52,6 @@ export const Vertical: Story = {
     label: 'Divider',
     direction: 'vertical',
     type: 'solid',
-    margin: false,
   } as IonDividerComponent,
 };
 
@@ -62,7 +60,6 @@ export const Dashed: Story = {
     label: 'Divider',
     direction: 'horizontal',
     type: 'dashed',
-    margin: false,
   } as IonDividerComponent,
 };
 
@@ -71,24 +68,5 @@ export const Text: Story = {
     label: 'Divider',
     direction: 'horizontal',
     type: 'text',
-    margin: false,
-  } as IonDividerComponent,
-};
-
-export const WithMargin: Story = {
-  args: {
-    label: 'Divider',
-    direction: 'horizontal',
-    type: 'solid',
-    margin: true,
-  } as IonDividerComponent,
-};
-
-export const VerticalWithMargin: Story = {
-  args: {
-    label: 'Divider',
-    direction: 'vertical',
-    type: 'solid',
-    margin: true,
   } as IonDividerComponent,
 };
