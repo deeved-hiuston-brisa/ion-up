@@ -88,7 +88,7 @@ describe('IonNotificationComponent', () => {
 
   it.each(['title', 'message'])(
     'should remove %s notification of screen',
-    async title => {
+    async () => {
       await sut();
       const btnRemove = screen.getByTestId('btn-remove');
       fireEvent.click(btnRemove);

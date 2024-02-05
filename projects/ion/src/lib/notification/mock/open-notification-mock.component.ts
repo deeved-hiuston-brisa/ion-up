@@ -4,7 +4,7 @@ import { IonNotificationService } from './../service/notification.service';
 
 @Component({
   standalone: true,
-  selector: 'open-notification-button',
+  selector: 'ion-open-notification-button',
   imports: [IonButtonComponent],
   providers: [IonNotificationService],
   template: `
@@ -48,7 +48,7 @@ import { IonNotificationService } from './../service/notification.service';
     `,
   ],
 })
-export class OpenNotificationButtonComponent {
+export class IonOpenNotificationButtonComponent {
   constructor(private ionNotificationService: IonNotificationService) {}
 
   notificationSuccess(): void {

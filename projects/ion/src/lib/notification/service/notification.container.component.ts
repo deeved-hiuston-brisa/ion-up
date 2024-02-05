@@ -3,7 +3,7 @@ import { IonNotificationComponent } from '../component/notification.component';
 
 @Component({
   standalone: true,
-  selector: 'notification-container',
+  selector: 'ion-notification-container',
   template: '',
   styleUrls: ['notification.container.scss'],
 })
