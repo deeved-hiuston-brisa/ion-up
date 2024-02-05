@@ -1,10 +1,5 @@
-import {
-  moduleMetadata,
-  componentWrapperDecorator,
-  type Meta,
-  StoryObj,
-} from '@storybook/angular';
-import { IonAlertComponent } from '../lib/alert';
+import type { Meta, StoryObj } from '@storybook/angular';
+import type { IonAlertComponent } from '../lib/alert';
 import { AlertCustomBodyComponent } from '../lib/alert/mocks/alert-custom-body.component';
 
 const meta: Meta<IonAlertComponent> = {
