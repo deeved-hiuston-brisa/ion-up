@@ -15,7 +15,7 @@ import { DefaultImageDirective } from './defaultImage.directive';
 })
 export class IonAvatarComponent implements OnInit {
   @Input() type!: IonAvatarProps['type'];
-  @Input() size: IonAvatarProps['size'] = 'md';
+  @Input() size?: IonAvatarProps['size'] = 'md';
   @Input() value?: IonAvatarProps['value'];
   @Input() image?: IonAvatarProps['image'];
   @Input() onErrorImage?: IonAvatarProps['onErrorImage'];

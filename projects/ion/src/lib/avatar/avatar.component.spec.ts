@@ -20,10 +20,10 @@ describe('Avatar', () => {
   describe('Basics', () => {
     const sizes: AvatarSize[] = ['lg', 'md', 'sm', 'xs'];
     it.each(sizes)('should have size-%s class', async (size: AvatarSize) => {
-      expect(await sut({ size })).toHaveClass(`size-${size}`);
+      expect(await sut({ size })).toHaveClass(`ion-avatar-${size}`);
     });
     it('should have default size-md when no size is passed', async () => {
-      expect(await sut()).toHaveClass('size-md');
+      expect(await sut()).toHaveClass('ion-avatar-md');
     });
   });
   describe('Initials', () => {

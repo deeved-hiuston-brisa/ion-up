@@ -1,7 +1,7 @@
 import { Directive, HostBinding, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: 'img[default]',
+  selector: 'img[default]', // eslint-disable-line
   standalone: true,
 })
 export class DefaultImageDirective {
