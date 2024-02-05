@@ -13,6 +13,13 @@ import { IonIconComponent } from '../../icon';
 import { setTimer } from '../../utils/setTimer';
 import { IonNotificationProps } from './types';
 
+const STATUS_ICONS = {
+  success: 'check-solid',
+  info: 'info-solid',
+  warning: 'exclamation-solid',
+  negative: 'close-solid',
+};
+
 @Component({
   standalone: true,
   selector: 'ion-notification',
@@ -32,6 +39,7 @@ export class IonNotificationComponent implements OnInit {
   @Output() ionOnClose = new EventEmitter<void>();
 
   private timer$!: Subscription;
+  public iconClass!: string;
 
   public timeByWords(message: string = ''): number {
     const wordsBySecond = 3;
@@ -76,20 +84,27 @@ export class IonNotificationComponent implements OnInit {
       return;
     }
     if (!this.type) {
-      this.icon = 'check-solid';
+      this.icon = STATUS_ICONS.success;
       return;
     }
-    const icons = {
-      success: 'check-solid',
-      info: 'info-solid',
-      warning: 'exclamation-solid',
-      negative: 'close-solid',
-    };
-    this.icon = icons[this.type];
+    this.icon = STATUS_ICONS[this.type];
+  }
+
+  public treatIconClass(): void {
+    let hasStatusIcon = false;
+    Object.values(STATUS_ICONS).forEach(statusIcon => {
+      if (this.icon === statusIcon) {
+        hasStatusIcon = true;
+      }
+    });
+    this.iconClass = !hasStatusIcon
+      ? 'default-icon'
+      : `default-icon ${this.type}-icon`;
   }
 
   public ngOnInit(): void {
     this.setIcon();
+    this.treatIconClass();
     this.closeAuto();
   }
 }

@@ -5,7 +5,8 @@ import { IonNotificationService } from './../service/notification.service';
 @Component({
   standalone: true,
   selector: 'open-notification-button',
-  imports: [IonButtonComponent, IonNotificationService],
+  imports: [IonButtonComponent],
+  providers: [IonNotificationService],
   template: `
     <div style="display: flex; flex-direction: column; gap: 2rem;">
       <ion-button
