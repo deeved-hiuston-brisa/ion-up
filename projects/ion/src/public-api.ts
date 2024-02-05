@@ -5,6 +5,7 @@
 // export * from './lib/ion.component';
 export * from './lib/icon';
 export * from './lib/button';
-export * from './lib/tag';
 export * from './lib/badge';
 export * from './lib/alert';
+export * from './lib/tag';
+export * from './lib/spinner';
