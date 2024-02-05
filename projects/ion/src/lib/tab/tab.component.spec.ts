@@ -1,3 +1,4 @@
+import { ComponentFixture } from '@angular/core/testing';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { IonTabComponent } from './tab.component';
 import { IonTabProps } from './types';
@@ -11,12 +12,15 @@ const directions: Array<IonTabProps['direction']> = [
 ];
 const sizes: Array<IonTabProps['tabSize']> = ['sm', 'md', 'lg'];
 
-const sut = async (customProps?: IonTabProps): Promise<void> => {
-  await render(IonTabComponent, {
+const sut = async (
+  customProps?: IonTabProps
+): Promise<ComponentFixture<IonTabComponent>> => {
+  const { fixture } = await render(IonTabComponent, {
     componentProperties: customProps || {
       label: defaultName,
     },
   });
+  return fixture;
 };
 
 describe('IonTabComponent', () => {
@@ -31,24 +35,24 @@ describe('IonTabComponent', () => {
   it.each(sizes)(
     'should render with correct size %s',
     async (size: IonTabProps['tabSize']) => {
-      await sut({ label: 'Tab', tabSize: size });
-      expect(screen.getByText('Tab')).toHaveClass('tab-' + size);
+      const render = await sut({ label: 'Tab', tabSize: size });
+      expect(render.nativeElement).toHaveAttribute('data-size', size);
     }
   );
 
   it.each(directions)(
     'should render with correct border direction %s',
     async (direction: IonTabProps['direction']) => {
-      await sut({ label: 'Tab', direction });
-      expect(screen.getByText('Tab')).toHaveClass('border-' + direction);
+      const render = await sut({ label: 'Tab', direction });
+      expect(render.nativeElement).toHaveAttribute('data-direction', direction);
     }
   );
 
-  it('should click on tab', async () => {
+  it('should select tab on click', async () => {
     await sut();
     const myTab = screen.getByText(defaultName);
     fireEvent.click(myTab);
-    expect(myTab).toHaveClass('tab-selected');
+    expect(myTab).toHaveClass('ion-tab--selected');
   });
 
   it('should render tab without disabled by default', async () => {

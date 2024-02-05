@@ -1,5 +1,5 @@
 import { CommonModule, NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { IonBadgeComponent } from '../badge';
 import { IonIconComponent } from '../icon';
 import { IonTabProps } from './types';
@@ -13,10 +13,14 @@ import { IonTabProps } from './types';
 })
 export class IonTabComponent {
   @Input() label!: IonTabProps['label'];
-  @Input() tabSize?: IonTabProps['tabSize'] = 'sm';
+  @HostBinding('[attr.data-size]')
+  @Input()
+  tabSize?: IonTabProps['tabSize'] = 'sm';
   @Input() disabled?: IonTabProps['disabled'] = false;
   @Input() selected?: IonTabProps['selected'] = false;
-  @Input() direction?: IonTabProps['direction'] = 'bottom';
+  @HostBinding('[attr.data-direction]')
+  @Input()
+  direction?: IonTabProps['direction'] = 'bottom';
   @Input() iconType?: IonTabProps['iconType'];
   @Input() badge?: IonTabProps['badge'];
 

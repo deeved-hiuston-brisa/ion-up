@@ -1,5 +1,7 @@
 @import '../../styles/index.scss';
 
+$border-style: 2px solid $neutral-3;
+
 @mixin tab-colors($color, $background, $border) {
   color: $color;
   background-color: $background;
@@ -7,7 +9,7 @@
 }
 
 @mixin icon-color($color) {
-  .tab-icon {
+  .icon-tab__icon {
     ::ng-deep svg {
       fill: $color;
     }
@@ -15,7 +17,7 @@
 }
 
 @mixin icon-size($size) {
-  .tab-icon {
+  .icon-tab__icon {
     ::ng-deep svg {
       display: flex;
       justify-content: center;
@@ -34,11 +36,20 @@
   position: relative;
 }
 
-.tab {
+@mixin tab-size($padding, $fontSize, $lineHeight, $gap) {
+  .ion-tab {
+    padding: $padding;
+    font-size: $fontSize;
+    line-height: $lineHeight;
+    @include icon-size($lineHeight);
+    gap: spacing($gap);
+  }
+}
+
+.ion-tab {
   font-style: normal;
   font-weight: 600;
   color: $neutral-7;
-
   border: none;
   background-color: $neutral-1;
   cursor: pointer;
@@ -64,70 +75,51 @@
     cursor: not-allowed;
     @include icon-color($neutral-5);
   }
-}
 
-.tab-selected {
-  font-style: normal;
-  font-weight: 600;
-  border: none;
-  @include tab-colors($primary-color, $neutral-1, $primary-color);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  @include icon-color($primary-color);
-
-  &:hover {
-    @include tab-colors($primary-5, $primary-1, $primary-3);
-    @include icon-color($primary-5);
-  }
-  &:focus-visible {
-    @include tab-focus();
-  }
-  &:active {
-    @include tab-colors($primary-7, $primary-2, $primary-5);
-    outline: none;
-    @include icon-color($primary-7);
-  }
-  &:disabled {
-    @include tab-colors($neutral-5, $neutral-3, $neutral-5);
-    cursor: not-allowed;
-    @include icon-color($neutral-5);
+  &--selected {
+    @include tab-colors($primary-color, $neutral-1, $primary-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    @include icon-color($primary-color);
   }
 }
 
-.tab-sm {
-  padding: 8px 16px;
-  font-size: 12px;
-  line-height: 16px;
-  @include icon-size(16px);
-  gap: spacing(1);
-}
-.tab-md {
-  padding: 10px 24px;
-  font-size: 14px;
-  line-height: 20px;
-  @include icon-size(20px);
-  gap: spacing(1.5);
-}
-.tab-lg {
-  padding: 12px 32px;
-  font-size: 16px;
-  line-height: 24px;
-  @include icon-size(24px);
-  gap: spacing(2);
-}
+:host {
+  &[data-size] {
+    &[data-size='sm'] {
+      @include tab-size(8px 16px, 12px, 16px, 1);
+    }
+    &[data-size='md'] {
+      @include tab-size(10px 24px, 14px, 20px, 1.5);
+    }
+    &[data-size='lg'] {
+      @include tab-size(12px 32px, 16px, 24px, 2);
+    }
+  }
 
-.border-bottom {
-  border-bottom: 2px solid $neutral-3;
-  border-radius: 6px 6px 0px 0px;
-}
-.border-top {
-  border-top: 2px solid $neutral-3;
-  border-radius: 0px 0px 6px 6px;
-}
-.border-right {
-  border-right: 2px solid $neutral-3;
-}
-.border-left {
-  border-left: 2px solid $neutral-3;
+  &[data-direction] {
+    &[data-direction='bottom'] {
+      .ion-tab {
+        border-bottom: $border-style;
+        border-radius: 6px 6px 0px 0px;
+      }
+    }
+    &[data-direction='top'] {
+      .ion-tab {
+        border-top: $border-style;
+        border-radius: 0px 0px 6px 6px;
+      }
+    }
+    &[data-direction='right'] {
+      .ion-tab {
+        border-right: $border-style;
+      }
+    }
+    &[data-direction='left'] {
+      .ion-tab {
+        border-left: $border-style;
+      }
+    }
+  }
 }

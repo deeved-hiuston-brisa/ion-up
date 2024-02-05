@@ -1,19 +1,15 @@
 <button
   [attr.data-testid]="'ion-tab-' + label"
-  [disabled]="disabled"
+  class="ion-tab"
   [ngClass]="{
-    tab: !selected,
-    'tab-selected': selected,
-    'tab-sm': tabSize === 'sm',
-    'tab-md': tabSize === 'md',
-    'tab-lg': tabSize === 'lg'
+    'ion-tab--selected': selected
   }"
-  [class]="'border-' + direction"
+  [disabled]="disabled"
   (click)="handleClick()">
   @if (iconType) {
-    <ion-icon [type]="iconType" class="tab-icon"></ion-icon>
+    <ion-icon [type]="iconType" class="icon-tab__icon"></ion-icon>
   }
-  {{ label || 'Configure uma label ' }}
+  {{ label || 'Configure uma label' }}
   @if (badge) {
     <ion-badge [label]="badge" type="primary"></ion-badge>
   }
