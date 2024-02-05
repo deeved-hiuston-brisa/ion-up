@@ -4,11 +4,9 @@ import { IonDividerComponent } from './divider.component';
 import { IonDividerProps, DirectionType } from './types';
 
 const ClassType = {
-  solid: 'ion-divider-solid',
-  dashed: 'ion-divider-dashed',
-  text: 'ion-divider-text',
-  vertical: 'ion-divider-vertical',
-  horizontal: 'ion-divider-horizontal',
+  text: 'ion-divider__text',
+  vertical: 'ion-divider--vertical',
+  horizontal: 'ion-divider--horizontal',
 };
 
 const defaultDivider: IonDividerProps = {
@@ -20,23 +18,23 @@ const sut = async (customProps?: IonDividerProps): Promise<HTMLElement> => {
   await render(IonDividerComponent, {
     componentProperties: customProps || { ...defaultDivider },
   });
-  return screen.findByTestId('hr');
+  return screen.getByTestId('ion-divider');
 };
 
 describe('IonDividerComponent', () => {
   it('should render divider with default', async () => {
     const divider = await sut({});
-    expect(divider).toHaveClass(ClassType.solid);
-    expect(divider).toHaveClass(ClassType.horizontal);
+    expect(divider).toHaveAttribute('data-type', 'solid');
+    expect(screen.getByTestId('hr')).toHaveClass(ClassType.horizontal);
   });
 
   it.each(['vertical', 'horizontal'] as DirectionType[])(
     'should render $s divider',
     async direction => {
-      const divider = await sut({
+      await sut({
         direction,
       });
-      expect(divider).toHaveClass(ClassType[direction]);
+      expect(screen.getByTestId('hr')).toHaveClass(ClassType[direction]);
     }
   );
 
@@ -47,18 +45,21 @@ describe('IonDividerComponent', () => {
         direction,
         type: 'dashed',
       });
-      expect(divider).toHaveClass(ClassType[direction]);
-      expect(divider).toHaveClass(ClassType.dashed);
+      expect(divider).toHaveAttribute('data-type', 'dashed');
+      expect(screen.getByTestId('hr')).toHaveClass(ClassType[direction]);
     }
   );
 
   it('should render vertical divider and not show text', async () => {
-    const divider = await sut({
+    await sut({
       direction: 'vertical',
       type: 'text',
       label: 'Label',
     });
-    expect(divider).not.toHaveAttribute('data-content', 'Label');
+    expect(screen.getByTestId('hr')).not.toHaveAttribute(
+      'data-content',
+      'Label'
+    );
   });
 
   it('should render divider with Label', async () => {
@@ -72,10 +73,13 @@ describe('IonDividerComponent', () => {
   });
 
   it('should render horizontal divider dashed and not show text', async () => {
-    const divider = await sut({
+    await sut({
       type: 'dashed',
       label: 'Label',
     });
-    expect(divider).not.toHaveAttribute('data-content', 'Label');
+    expect(screen.getByTestId('hr')).not.toHaveAttribute(
+      'data-content',
+      'Label'
+    );
   });
 });

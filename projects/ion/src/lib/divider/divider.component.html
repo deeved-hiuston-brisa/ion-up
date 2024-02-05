@@ -2,13 +2,9 @@
   <hr
     data-testid="hr"
     [style.margin]="margin ? '0' : ''"
-    [class]="
-      'ion-divider-' +
-      direction +
-      (type === 'text' ? '' : ' ion-divider-' + type)
-    " />
+    [class]="'ion-divider--' + direction" />
 } @else {
-  <div data-testid="hr" class="ion-divider-text">
+  <div data-testid="hr" class="ion-divider__text">
     <hr />
     <span>{{ label }}</span>
     <hr />
