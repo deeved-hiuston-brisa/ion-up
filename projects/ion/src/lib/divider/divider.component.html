@@ -7,9 +7,7 @@
       direction +
       (type === 'text' ? '' : ' ion-divider-' + type)
     " />
-}
-
-@if (type === 'text' && direction === 'horizontal') {
+} @else {
   <div data-testid="hr" class="ion-divider-text">
     <hr />
     <span>{{ label }}</span>
