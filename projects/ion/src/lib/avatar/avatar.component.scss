@@ -51,25 +51,25 @@ $avatar-secondary-color: $primary-2;
   }
 }
 
-.ion-avatar-xs {
+.ion-avatar--xs {
   @include circle(16px);
   @include icon-size(12px);
   font-size: 10px;
 }
 
-.ion-avatar-sm {
+.ion-avatar--sm {
   @include circle(24px);
   @include icon-size(16px);
   font-size: 12px;
 }
 
-.ion-avatar-md {
+.ion-avatar--md {
   @include circle(32px);
   @include icon-size(20px);
   font-size: 14px;
 }
 
-.ion-avatar-lg {
+.ion-avatar--lg {
   @include circle(40px);
   @include icon-size(24px);
   font-size: 16px;
