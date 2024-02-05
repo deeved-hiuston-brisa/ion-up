@@ -83,11 +83,7 @@ export class IonNotificationComponent implements OnInit {
     if (this.icon) {
       return;
     }
-    if (!this.type) {
-      this.icon = STATUS_ICONS.success;
-      return;
-    }
-    this.icon = STATUS_ICONS[this.type];
+    this.icon = STATUS_ICONS[this.type as keyof typeof STATUS_ICONS];
   }
 
   public treatIconClass(): void {

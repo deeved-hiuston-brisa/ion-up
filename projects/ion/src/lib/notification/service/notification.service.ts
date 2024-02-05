@@ -1,11 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import {
   ApplicationRef,
+  ComponentFactoryResolver,
   ComponentRef,
   Inject,
   Injectable,
   Injector,
-  ViewContainerRef,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { StatusType } from '../../utils/statusTypes';
@@ -30,7 +30,7 @@ export class IonNotificationService {
 
   constructor(
     @Inject(DOCUMENT) private document: SafeAny,
-    private viewContainerRef: ViewContainerRef,
+    private componentFactoryResolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
     private injector: Injector
   ) {}
@@ -118,10 +118,9 @@ export class IonNotificationService {
   }
 
   private createNotificationContainer(): void {
-    const containerRef = this.viewContainerRef.createComponent(
-      IonNotificationContainerComponent,
-      { injector: this.injector }
-    );
+    const containerRef = this.componentFactoryResolver
+      .resolveComponentFactory(IonNotificationContainerComponent)
+      .create(this.injector);
 
     this.notificationContainerComponentRef = containerRef;
 
@@ -129,9 +128,9 @@ export class IonNotificationService {
   }
 
   private createNotificationInstance(): ComponentRef<IonNotificationComponent> {
-    return this.viewContainerRef.createComponent(IonNotificationComponent, {
-      injector: this.injector,
-    });
+    return this.componentFactoryResolver
+      .resolveComponentFactory(IonNotificationComponent)
+      .create(this.injector);
   }
 
   private showNotification(

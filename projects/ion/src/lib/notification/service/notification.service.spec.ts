@@ -1,6 +1,7 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { fireEvent, screen } from '@testing-library/angular';
+import { IonNotificationConfigOptions } from '../component';
 import { IonNotificationComponent } from '../component/notification.component';
 import { IonNotificationContainerComponent } from './notification.container.component';
 import { IonNotificationService } from './notification.service';
@@ -11,46 +12,45 @@ const NOTIFICATION_ICONS = {
   warning: 'warning-icon',
   negative: 'negative-icon',
 };
-
 const NOTIFICATION_TYPES = Object.keys(NOTIFICATION_ICONS);
-
 const DEFAULT_NOTIFICATION_OPTIONS = {
   title: 'Titulo Padrão',
   message: 'Mensagem Padrão',
 };
 
 @Component({
+  standalone: true,
   template: '<div></div>',
+  imports: [IonNotificationContainerComponent, IonNotificationComponent],
 })
 class ContainerRefTestComponent {}
-
-@NgModule({
-  declarations: [
-    ContainerRefTestComponent,
-    IonNotificationContainerComponent,
-    IonNotificationComponent,
-  ],
-})
-class TestModule {}
 
 jest.setTimeout(1000);
 
 describe('NotificationService', () => {
   let notificationService: IonNotificationService;
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [TestModule],
-    }).compileComponents();
-
-    notificationService = TestBed.get(IonNotificationService);
-  });
-
-  it('should remove a notification', () => {
+  const renderNotification = (
+    options: IonNotificationConfigOptions = {},
+    closeEventCall?: () => void
+  ) => {
     notificationService.success(
       DEFAULT_NOTIFICATION_OPTIONS.title,
       DEFAULT_NOTIFICATION_OPTIONS.message,
-      { fixed: true }
+      options,
+      closeEventCall
     );
+  };
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [ContainerRefTestComponent],
+    }).compileComponents();
+
+    notificationService = TestBed.inject(IonNotificationService);
+  });
+
+  it('should remove a notification', () => {
+    renderNotification({ fixed: true });
     const removeNotification = screen.getByTestId('btn-remove');
     fireEvent.click(removeNotification);
     const elements = document.getElementsByTagName('ion-notification');
@@ -59,28 +59,21 @@ describe('NotificationService', () => {
 
   it('should emit event when a notification is closed', () => {
     const closeEvent = jest.fn();
-    notificationService.success(
-      DEFAULT_NOTIFICATION_OPTIONS.title,
-      DEFAULT_NOTIFICATION_OPTIONS.message,
-      { fixed: true },
-      closeEvent
-    );
+    renderNotification({ fixed: true }, closeEvent);
     const removeNotification = screen.getByTestId('btn-remove');
     fireEvent.click(removeNotification);
     expect(closeEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should create a notification', () => {
-    notificationService.success(
-      DEFAULT_NOTIFICATION_OPTIONS.title,
-      DEFAULT_NOTIFICATION_OPTIONS.message
-    );
+    renderNotification();
     expect(screen.getByTestId('ion-notification')).toBeTruthy();
   });
 
   it.each(Object.keys(DEFAULT_NOTIFICATION_OPTIONS))(
     'should render a notification with default %s',
     key => {
+      renderNotification();
       expect(
         screen.getByText(
           DEFAULT_NOTIFICATION_OPTIONS[
@@ -94,12 +87,6 @@ describe('NotificationService', () => {
 
 describe('NotificationService -> notification types', () => {
   let notificationService: IonNotificationService;
-
-  let currentIndex = 1;
-
-  let notificationsOnScreen = 5;
-
-  const indexToRemove = [1, 2, 0];
 
   const NOTIFICATIONS_CALLS = {
     success: (): void => {
@@ -126,31 +113,32 @@ describe('NotificationService -> notification types', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TestModule],
+      imports: [ContainerRefTestComponent],
     }).compileComponents();
 
-    notificationService = TestBed.get(IonNotificationService);
+    notificationService = TestBed.inject(IonNotificationService);
   });
 
   it.each(NOTIFICATION_TYPES)('should create %s notification', async type => {
     NOTIFICATIONS_CALLS[type as keyof typeof NOTIFICATION_ICONS]();
-    const iconType = screen.getAllByTestId('notification-icon');
-    expect(iconType[currentIndex]).toHaveClass(
+    expect(screen.getByTestId('notification-icon')).toHaveClass(
       NOTIFICATION_ICONS[type as keyof typeof NOTIFICATION_ICONS]
     );
-    currentIndex += 1;
   });
 
-  it.each(indexToRemove)(
-    'should remove multiple notifications',
-    async index => {
-      const elements = document.getElementsByTagName('ion-notification');
-      const removeNotification = screen.getAllByTestId('btn-remove');
-      fireEvent.click(removeNotification[index]);
-      notificationsOnScreen -= 1;
-      expect(elements).toHaveLength(notificationsOnScreen);
-    }
-  );
+  it('should remove multiple notifications', async () => {
+    const indexesToRemove = [1, 2, 0];
+    Object.keys(NOTIFICATIONS_CALLS).forEach(type => {
+      NOTIFICATIONS_CALLS[type as keyof typeof NOTIFICATION_ICONS]();
+    });
+    const elements = document.getElementsByTagName('ion-notification');
+    const numberOfElements = elements.length;
+    const closeButton = screen.getAllByTestId('btn-remove');
+    indexesToRemove.forEach(item => {
+      fireEvent.click(closeButton[item]);
+    });
+    expect(elements).toHaveLength(numberOfElements - indexesToRemove.length);
+  });
 
   it.each(NOTIFICATION_TYPES)(
     'should add ionOnClose subscription when %s notification is created',
