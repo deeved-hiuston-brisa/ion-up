@@ -7,7 +7,7 @@ import {
   Renderer2,
   inject,
 } from '@angular/core';
-import { IonBadgeProps } from './type';
+import { IonBadgeProps } from './types';
 
 @Component({
   selector: 'ion-badge',
