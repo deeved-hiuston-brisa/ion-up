@@ -1,6 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { fireEvent, render, screen } from '@testing-library/angular';
-import { StatusType } from '../../utils/statusTypes';
+import { StatusType, statusColor } from '../../utils/statusTypes';
 import { IonNotificationComponent } from './notification.component';
 import { IonNotificationProps } from './types';
 
@@ -53,10 +53,10 @@ describe('IonNotificationComponent', () => {
     await sut({
       ...defaultNotification,
       icon,
+      type: 'neutral',
     });
-    expect(screen.getByTestId('notification-icon')).toHaveAttribute(
-      'class',
-      'default-icon'
+    expect(screen.getByTestId('notification-icon')).toHaveClass(
+      'ion-notification__icon'
     );
   });
 
@@ -77,13 +77,20 @@ describe('IonNotificationComponent', () => {
       type: 'negative',
       icon: 'close-solid',
     },
+    {
+      type: 'neutral',
+      icon: 'info-solid',
+    },
   ])('should render $type class and $icon icon', async ({ type, icon }) => {
     await sut({
       ...defaultNotification,
       type: type as StatusType,
     });
     expect(document.getElementById(`ion-icon-${icon}`)).toBeInTheDocument();
-    expect(screen.getByTestId('notification-icon')).toHaveClass(`${type}-icon`);
+    expect(screen.getByTestId('notification-icon')).toHaveAttribute(
+      'ng-reflect-color',
+      statusColor[type as StatusType]
+    );
   });
 
   it.each(['title', 'message'])(

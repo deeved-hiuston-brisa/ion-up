@@ -10,27 +10,27 @@ import { IonNotificationService } from './../service/notification.service';
   template: `
     <div style="display: flex; flex-direction: column; gap: 2rem;">
       <ion-button
-        class="button"
+        class="ion-button"
         label="success"
         iconType="check"
         (ionOnClick)="notificationSuccess()"></ion-button>
 
       <ion-button
-        class="button"
+        class="ion-button"
         label="warning"
         type="dashed"
         iconType="exclamation"
         (ionOnClick)="notificationWarning()"></ion-button>
 
       <ion-button
-        class="button"
+        class="ion-button"
         label="info"
         type="secondary"
         iconType="info"
         (ionOnClick)="notificationInfo()"></ion-button>
 
       <ion-button
-        class="button"
+        class="ion-button"
         label="error"
         [danger]="true"
         iconType="close"
@@ -40,7 +40,7 @@ import { IonNotificationService } from './../service/notification.service';
   `,
   styles: [
     `
-      .button {
+      .ion-button {
         /deep/ button {
           width: 150px !important;
         }

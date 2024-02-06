@@ -11,14 +11,8 @@ import {
 import { Subscription } from 'rxjs';
 import { IonIconComponent } from '../../icon';
 import { setTimer } from '../../utils/setTimer';
+import { StatusType, statusColor, statusIcon } from '../../utils/statusTypes';
 import { IonNotificationProps } from './types';
-
-const STATUS_ICONS = {
-  success: 'check-solid',
-  info: 'info-solid',
-  warning: 'exclamation-solid',
-  negative: 'close-solid',
-};
 
 @Component({
   standalone: true,
@@ -39,7 +33,7 @@ export class IonNotificationComponent implements OnInit {
   @Output() ionOnClose = new EventEmitter<void>();
 
   private timer$!: Subscription;
-  public iconClass!: string;
+  public iconColor!: string;
 
   public timeByWords(message: string = ''): number {
     const wordsBySecond = 3;
@@ -83,24 +77,16 @@ export class IonNotificationComponent implements OnInit {
     if (this.icon) {
       return;
     }
-    this.icon = STATUS_ICONS[this.type as keyof typeof STATUS_ICONS];
+    this.icon = statusIcon[this.type as StatusType];
   }
 
-  public treatIconClass(): void {
-    let hasStatusIcon = false;
-    Object.values(STATUS_ICONS).forEach(statusIcon => {
-      if (this.icon === statusIcon) {
-        hasStatusIcon = true;
-      }
-    });
-    this.iconClass = !hasStatusIcon
-      ? 'default-icon'
-      : `default-icon ${this.type}-icon`;
+  private getIconColor(): string {
+    return statusColor[this.type as StatusType];
   }
 
   public ngOnInit(): void {
     this.setIcon();
-    this.treatIconClass();
+    this.iconColor = this.getIconColor();
     this.closeAuto();
   }
 }

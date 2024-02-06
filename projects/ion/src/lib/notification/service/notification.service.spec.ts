@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { fireEvent, screen } from '@testing-library/angular';
+import { StatusType, statusColor } from '../../utils/statusTypes';
 import { IonNotificationConfigOptions } from '../component';
 import { IonNotificationComponent } from '../component/notification.component';
 import { IonNotificationContainerComponent } from './notification.container.component';
@@ -122,7 +123,11 @@ describe('NotificationService -> notification types', () => {
   it.each(NOTIFICATION_TYPES)('should create %s notification', async type => {
     NOTIFICATIONS_CALLS[type as keyof typeof NOTIFICATION_ICONS]();
     expect(screen.getByTestId('notification-icon')).toHaveClass(
-      NOTIFICATION_ICONS[type as keyof typeof NOTIFICATION_ICONS]
+      'ion-notification__icon'
+    );
+    expect(screen.getByTestId('notification-icon')).toHaveAttribute(
+      'ng-reflect-color',
+      statusColor[type as StatusType]
     );
   });
 
