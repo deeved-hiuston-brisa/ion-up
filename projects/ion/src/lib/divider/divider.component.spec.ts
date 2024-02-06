@@ -1,10 +1,9 @@
-/* tslint:disable:no-unused-variable */
 import { ComponentFixture } from '@angular/core/testing';
 import { render, screen } from '@testing-library/angular';
 
+import { DirectionType } from '../utils/commonTypes';
 import { IonDividerComponent } from './divider.component';
 import { IonDividerProps } from './types';
-import { DirectionType } from '../utils/commonTypes';
 
 const ClassType = {
   text: 'ion-divider__text',
