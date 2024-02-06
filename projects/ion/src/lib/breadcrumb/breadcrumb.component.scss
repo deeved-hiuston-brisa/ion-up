@@ -7,16 +7,16 @@
 
   &__list {
     display: inline-flex;
-    gap: 8px;
+    gap: spacing(1);
     margin: 0;
     padding: 0;
 
     li {
       display: flex;
-      gap: 8px;
+      gap: spacing(1);
       align-items: center;
       text-align: center;
-  
+
       ion-icon {
         ::ng-deep svg {
           fill: $neutral-5;
