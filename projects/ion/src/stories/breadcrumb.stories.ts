@@ -13,18 +13,16 @@ const meta: Meta<IonBreadcrumbComponent> = {
     props: {
       ...args,
     },
-    argTypes: {
-      label: {
-        description:
-          'O parametro `label` é obrigatório e representa o texto que sera apresentado em cada breadcrumb.',
-        control: 'text',
-      },
-      link: {
-        description:
-          'O parametro `link` é obrigatório e representa a url de cada breadcrumb.',
+  }),
+  argTypes: {
+    breadcrumbs: {
+      description:
+        'Representa os breadcrumbs a serem exibidos. Cada breadcrumb deve conter um `label` e um `link`.',
+      control: {
+        type: 'object',
       },
     },
-  }),
+  },
 };
 
 export default meta;
