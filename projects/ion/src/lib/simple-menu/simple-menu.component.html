@@ -1,0 +1,21 @@
+<ion-button
+  type="ghost"
+  [icon]="{ type: 'sandwich', rightPosition: true }"
+  size="lg">
+</ion-button>
+
+<div
+  class="ion-menu"
+  [class.ion-menu--open]="open"
+  (mouseenter)="openMenu()"
+  (mouseleave)="dismissMenu()">
+  <header class="ion-menu__header"></header>
+  <div class="ion-menu__footer">
+    <ion-button
+      label="Sair"
+      type="ghost"
+      [icon]="{ type: 'out', rightPosition: true }"
+      (ionOnClick)="logout()">
+    </ion-button>
+  </div>
+</div>
