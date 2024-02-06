@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BreadcrumbItem } from './types';
 import { IonIconComponent } from '../icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ion-breadcrumb',
   standalone: true,
-  imports: [IonIconComponent],
+  imports: [CommonModule, IonIconComponent],
   templateUrl: './breadcrumb.component.html',
   styleUrl: './breadcrumb.component.scss',
 })

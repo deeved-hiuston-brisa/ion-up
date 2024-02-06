@@ -26,13 +26,15 @@
   }
 }
 
-.ol-navigator li a {
+.ol-navigator li button {
   text-decoration: none;
   padding: spacing(1.25) spacing(0);
   color: $neutral-6;
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
+  border: none;
+  background-color: transparent;
   cursor: pointer;
 
   &:hover {
@@ -40,7 +42,9 @@
   }
 
   &:focus {
-    text-shadow: 0px 0px 0px $neutral-1, 0px 0px 0px $primary-5;
+    text-shadow:
+      0px 0px 0px $neutral-1,
+      0px 0px 0px $primary-5;
   }
 
   &:active {
@@ -52,7 +56,7 @@
 }
 
 .ol-navigator li:last-child {
-  a {
+  button {
     color: $primary-6;
     font-weight: 600;
     cursor: text;

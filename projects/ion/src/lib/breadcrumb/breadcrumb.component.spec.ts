@@ -1,22 +1,76 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { fireEvent, render, screen } from '@testing-library/angular';
 
 import { IonBreadcrumbComponent } from './breadcrumb.component';
+import { BreadcrumbItem, BreadcrumbProps } from './types';
+import { SafeAny } from '../utils/safe-any';
+import { IonIconComponent } from '../icon';
+
+const selectEvent = jest.fn();
+
+const items: BreadcrumbItem[] = [
+  {
+    label: 'Inicio',
+    link: '/home',
+  },
+  {
+    label: 'Recursos',
+    link: '/recursos',
+  },
+  {
+    label: 'Tecnico',
+    link: '/recursos/1',
+  },
+];
+
+const sut = async (
+  customProps: BreadcrumbProps = {
+    selected: {
+      emit: selectEvent,
+    },
+  } as SafeAny
+): Promise<void> => {
+  await render(IonBreadcrumbComponent, {
+    componentProperties: {
+      breadcrumbs: items,
+      ...customProps,
+    },
+    imports: [IonIconComponent],
+  });
+};
 
 describe('BreadcrumbComponent', () => {
-  let component: IonBreadcrumbComponent;
-  let fixture: ComponentFixture<IonBreadcrumbComponent>;
-
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [IonBreadcrumbComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(IonBreadcrumbComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await sut();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it.each(items)(
+    'should render %s in breadcrumb',
+    async (link: BreadcrumbItem) => {
+      expect(screen.getByText(link.label)).toBeInTheDocument();
+    }
+  );
+
+  it('should render recursos in breadcrmb', async () => {
+    expect(screen.getByText('Recursos')).toHaveClass('breadcrumbs-link');
+  });
+
+  it('should emit the selected breadcrumb', async () => {
+    const [firstItem] = items;
+
+    const element = screen.getByText(firstItem.label);
+    fireEvent.click(element);
+    expect(selectEvent).toHaveBeenCalledWith(firstItem);
+  });
+
+  it('should not emit the selected breadcrumb', async () => {
+    const [firstItem] = items;
+
+    const element = screen.getByText(firstItem.label);
+    fireEvent.click(element);
+    expect(selectEvent).not.toHaveBeenCalledWith(items[items.length - 1]);
+  });
+
+  afterEach(() => {
+    selectEvent.mockClear();
   });
 });
