@@ -4,65 +4,65 @@
   text-decoration: none;
   font-family: sans-serif;
   font-size: 15px;
-}
 
-.ion-breadcrumbs__list {
-  display: inline-flex;
-  gap: 8px;
-  margin: 0;
-  padding: 0;
-}
+  &__list {
+    display: inline-flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
 
-.ion-breadcrumbs__list li {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  text-align: center;
-
-  ion-icon {
-    ::ng-deep svg {
-      fill: $neutral-5;
+    li {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      text-align: center;
+  
+      ion-icon {
+        ::ng-deep svg {
+          fill: $neutral-5;
+        }
+      }
     }
   }
-}
 
-.ion-breadcrumbs__list li button {
-  text-decoration: none;
-  padding: spacing(1.25) spacing(0);
-  color: $neutral-6;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-
-  &:hover {
-    color: $primary-6;
-  }
-
-  &:focus {
-    text-shadow:
-      0px 0px 0px $neutral-1,
-      0px 0px 0px $primary-5;
-  }
-
-  &:active {
-    font-weight: 600;
+  &__list li button {
+    text-decoration: none;
+    padding: spacing(1.25) spacing(0);
+    color: $neutral-6;
+    font-weight: 400;
     font-size: 14px;
     line-height: 20px;
-    color: $primary-6;
-  }
-}
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 
-.ion-breadcrumbs__list li:last-child {
-  button {
-    color: $primary-6;
-    font-weight: 600;
-    cursor: text;
+    &:hover {
+      color: $primary-6;
+    }
+
+    &:focus {
+      text-shadow:
+        0px 0px 0px $neutral-1,
+        0px 0px 0px $primary-5;
+    }
+
+    &:active {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      color: $primary-6;
+    }
   }
 
-  ion-icon {
-    display: none;
+  &__list li:last-child {
+    button {
+      color: $primary-6;
+      font-weight: 600;
+      cursor: text;
+    }
+
+    ion-icon {
+      display: none;
+    }
   }
 }
