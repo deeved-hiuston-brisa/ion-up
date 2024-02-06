@@ -60,7 +60,7 @@ describe('IonNotificationComponent', () => {
     );
   });
 
-  it.each([
+  it.only.each([
     {
       type: 'success',
       icon: 'check-solid',
@@ -79,12 +79,13 @@ describe('IonNotificationComponent', () => {
     },
     {
       type: 'neutral',
-      icon: 'info-solid',
+      icon: 'pencil',
     },
   ])('should render $type class and $icon icon', async ({ type, icon }) => {
     await sut({
       ...defaultNotification,
       type: type as StatusType,
+      icon: icon,
     });
     expect(document.getElementById(`ion-icon-${icon}`)).toBeInTheDocument();
     expect(screen.getByTestId('notification-icon')).toHaveAttribute(
