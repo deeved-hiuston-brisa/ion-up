@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BreadcrumbItem } from './types';
+import { BreadcrumbItem, BreadcrumbProps } from './types';
 import { IonIconComponent } from '../icon';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './breadcrumb.component.scss',
 })
 export class IonBreadcrumbComponent {
-  @Input() breadcrumbs!: Array<BreadcrumbItem>;
+  @Input() breadcrumbs!: BreadcrumbProps['breadcrumbItems'];
   @Output() selected = new EventEmitter<BreadcrumbItem>();
 
   onSelected(item: BreadcrumbItem): void {

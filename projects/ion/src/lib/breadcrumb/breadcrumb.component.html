@@ -1,8 +1,8 @@
-<nav class="breadcrumbs-nav">
-  <ol class="ol-navigator">
+<nav class="ion-breadcrumbs">
+  <ol class="ion-breadcrumbs__list">
     @for (breadcrumb of breadcrumbs; track breadcrumb.label) {
       <li>
-        <button (click)="onSelected(breadcrumb)" class="breadcrumbs-link">
+        <button (click)="onSelected(breadcrumb)" class="ion-breadcrumbs__item">
           {{ breadcrumb.label }}
         </button>
         <ion-icon type="right2" size="16"></ion-icon>

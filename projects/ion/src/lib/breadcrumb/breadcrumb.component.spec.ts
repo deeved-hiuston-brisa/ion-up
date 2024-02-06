@@ -51,7 +51,7 @@ describe('BreadcrumbComponent', () => {
   );
 
   it('should render recursos in breadcrmb', async () => {
-    expect(screen.getByText('Recursos')).toHaveClass('breadcrumbs-link');
+    expect(screen.getByText('Recursos')).toHaveClass('ion-breadcrumbs__item');
   });
 
   it('should emit the selected breadcrumb', async () => {
