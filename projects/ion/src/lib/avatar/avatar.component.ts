@@ -37,7 +37,6 @@ export class IonAvatarComponent implements OnInit {
   ngOnInit(): void {
     if (this.type === AvatarType.initials) {
       this.initials = this.getInitials(this.value as string) || '--';
-      return;
     }
   }
 }
