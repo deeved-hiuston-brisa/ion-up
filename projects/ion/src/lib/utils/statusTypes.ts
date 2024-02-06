@@ -18,5 +18,5 @@ export enum statusIcon {
   info = 'info-solid',
   warning = 'exclamation-solid',
   negative = 'close-solid',
-  neutral = 'info-solid',
+  neutral = 'info',
 }
