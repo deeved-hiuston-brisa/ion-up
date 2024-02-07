@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/angular';
 import { IonBadgeComponent } from './badge.component';
-import { IonBadgeProps } from './type';
+import { IonBadgeProps } from './types';
 
 const types: Array<IonBadgeProps['type']> = [
   'primary',
