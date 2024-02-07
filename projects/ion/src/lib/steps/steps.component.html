@@ -10,6 +10,8 @@
         step.status !== 'error'
       "
       [class.ion-step--disabled]="disabled"
+      tabindex="0"
+      role="button"
       (click)="goesTo(step.index)">
       <div class="ion-step__draw">
         <div
