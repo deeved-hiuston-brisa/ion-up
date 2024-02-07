@@ -27,7 +27,7 @@ export class IonLinkComponent implements OnChanges {
   @Input() disabled?: IonLinkProps['disabled'] = false;
   @Input() target?: IonLinkProps['target'] = '_self';
   @Input() link?: IonLinkProps['link'];
-  @Output() ionOnClick?: IonLinkProps['ionOnClick'] = new EventEmitter<void>();
+  @Output() ionOnClick: IonLinkProps['ionOnClick'] = new EventEmitter<void>();
 
   public iconSize = 16;
 
@@ -35,7 +35,7 @@ export class IonLinkComponent implements OnChanges {
     if (this.disabled) {
       return;
     }
-    this.ionOnClick?.emit();
+    this.ionOnClick.emit();
   }
 
   public ngOnChanges(changes: SimpleChanges): void {

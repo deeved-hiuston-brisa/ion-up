@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/angular';
 
-import { IonLinkComponent } from './link.component';
 import { SafeAny } from '../utils/safe-any';
+import { IonLinkComponent } from './link.component';
 import { FontSize, IonLinkProps } from './types';
 
 const sizes: FontSize[] = ['sm', 'md'];
@@ -10,9 +10,11 @@ const getLinkComponentRef = (): HTMLElement => {
   return screen.getByTestId('ion-link');
 };
 
-const sut = async (customProps?: IonLinkProps): Promise<void> => {
+const defaultProps = { ionOnClick: { emit: jest.fn() } as SafeAny };
+
+const sut = async (customProps?: Partial<IonLinkProps>): Promise<void> => {
   await render(IonLinkComponent, {
-    componentProperties: { ...customProps },
+    componentProperties: { ...defaultProps, ...customProps },
   });
 };
 

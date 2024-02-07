@@ -80,14 +80,14 @@ export const Default: Story = {
   args: {
     label: 'Link',
     size: 'sm',
-  } as IonLinkComponent,
+  },
 };
 
 export const Medium: Story = {
   args: {
     label: 'Link',
     size: 'md',
-  } as IonLinkComponent,
+  },
 };
 
 export const WithIcon: Story = {
@@ -95,7 +95,7 @@ export const WithIcon: Story = {
     label: 'Link',
     icon: 'box',
     size: 'sm',
-  } as IonLinkComponent,
+  },
 };
 
 export const LeftIcon: Story = {
@@ -104,7 +104,7 @@ export const LeftIcon: Story = {
     icon: 'box',
     iconSide: 'left',
     size: 'sm',
-  } as IonLinkComponent,
+  },
 };
 
 export const Bold: Story = {
@@ -112,7 +112,7 @@ export const Bold: Story = {
     label: 'Link',
     bold: true,
     size: 'sm',
-  } as IonLinkComponent,
+  },
 };
 
 export const Disabled: Story = {
@@ -120,7 +120,7 @@ export const Disabled: Story = {
     label: 'Link',
     disabled: true,
     size: 'sm',
-  } as IonLinkComponent,
+  },
 };
 
 export const DisabledWithIcon: Story = {
@@ -129,7 +129,7 @@ export const DisabledWithIcon: Story = {
     icon: 'box',
     disabled: true,
     size: 'sm',
-  } as IonLinkComponent,
+  },
 };
 
 export const DisabledOnlyIcon: Story = {
@@ -137,7 +137,7 @@ export const DisabledOnlyIcon: Story = {
     icon: 'box',
     disabled: true,
     size: 'sm',
-  } as IonLinkComponent,
+  },
 };
 
 export const WithTarget: Story = {
@@ -145,7 +145,7 @@ export const WithTarget: Story = {
     label: 'Link',
     target: '_blank',
     size: 'sm',
-  } as IonLinkComponent,
+  },
 };
 
 export const WithLink: Story = {
@@ -153,5 +153,5 @@ export const WithLink: Story = {
     label: 'Link',
     link: 'https://github.com/Brisanet/ion-plus',
     size: 'sm',
-  } as IonLinkComponent,
+  },
 };
