@@ -1,6 +1,6 @@
 <section class="steps-container" data-testid="ion-steps">
   @for (step of steps; track step.label; let index = $index) {
-    <div
+    <button
       [attr.data-testid]="'step-' + step.index + '-' + step.status"
       [class]="'ion-step ion-step--' + step.status"
       [class.ion-step--clickable]="
@@ -10,9 +10,7 @@
         step.status !== 'error'
       "
       [class.ion-step--disabled]="disabled"
-      tabindex="0"
-      role="button"
-      (click)="goesTo(step.index)">
+      (click)="handleClick(step.index)">
       <div class="ion-step__draw">
         <div
           class="ion-step__line"
@@ -59,6 +57,6 @@
           {{ step.description }}
         </div>
       }
-    </div>
+    </button>
   }
 </section>

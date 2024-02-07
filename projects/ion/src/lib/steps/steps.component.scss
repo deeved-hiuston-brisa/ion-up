@@ -22,6 +22,10 @@
 .ion-step {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  border: 0;
+  padding: 0;
 
   &__draw {
     display: flex;
