@@ -29,8 +29,8 @@ export class IonStepsComponent implements OnInit, OnChanges {
   private firstCatchStatus = true;
   public FIRST_STEP = 1;
 
-  public handleClick(index: number): void {
-    if (this.clickable && !this.disabled) {
+  public handleClick(index: number | undefined): void {
+    if (index && this.clickable && !this.disabled) {
       this.goesTo(index);
     }
   }
