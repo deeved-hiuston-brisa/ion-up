@@ -1,0 +1,16 @@
+<button
+  [attr.data-testid]="'ion-tab-' + label"
+  class="ion-tab"
+  [ngClass]="{
+    'ion-tab--selected': selected
+  }"
+  [disabled]="disabled"
+  (click)="handleClick()">
+  @if (iconType) {
+    <ion-icon [type]="iconType" class="icon-tab__icon"></ion-icon>
+  }
+  {{ label || 'Configure uma label' }}
+  @if (badge) {
+    <ion-badge [label]="badge" type="primary"></ion-badge>
+  }
+</button>
