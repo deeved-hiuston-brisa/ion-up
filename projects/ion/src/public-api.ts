@@ -3,9 +3,10 @@
  */
 
 // export * from './lib/ion.component';
-export * from './lib/icon';
-export * from './lib/button';
 export * from './lib/badge';
+export * from './lib/button';
+export * from './lib/icon';
+export * from './lib/tab';
 export * from './lib/divider';
 export * from './lib/link';
 export * from './lib/tag';
