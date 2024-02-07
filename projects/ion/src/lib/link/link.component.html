@@ -1,7 +1,7 @@
 <!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
 <span class="link-container" [class.link-container--disabled]="disabled">
   @if (!link) {
-    <a
+    <button
       data-testid="ion-link"
       class="ion-link"
       [class.ion-link--left-icon]="iconSide === 'left'"
@@ -22,7 +22,7 @@
           [type]="icon"
           [size]="iconSize"></ion-icon>
       }
-    </a>
+    </button>
   } @else {
     <a
       data-testid="ion-link"

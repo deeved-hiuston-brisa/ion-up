@@ -26,12 +26,13 @@
 
 .ion-link {
   text-decoration: none;
-
   display: flex;
   align-items: center;
   gap: spacing(0.5);
   box-sizing: border-box;
+  border: none;
   border-bottom: 1px solid transparent;
+  background-color: transparent;
   cursor: pointer;
 
   @include colors($primary-5);

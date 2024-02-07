@@ -1,6 +1,7 @@
 import { IonLinkComponent } from '../lib/link';
 
 import type { Meta, StoryObj } from '@storybook/angular';
+import { iconsPaths } from '../public-api';
 
 const meta: Meta<IonLinkComponent> = {
   title: 'Ion/Navigation/Link',
@@ -22,7 +23,7 @@ const meta: Meta<IonLinkComponent> = {
       control: {
         type: 'select',
       },
-      options: ['arrow-right', 'arrow-left'],
+      options: [...Object.keys(iconsPaths)],
       description: 'Link icon.',
     },
     iconSide: {
@@ -54,6 +55,21 @@ const meta: Meta<IonLinkComponent> = {
       },
       defaultValue: { summary: false },
       description: 'Link disabled.',
+    },
+    target: {
+      control: {
+        type: 'select',
+      },
+      defaultValue: { summary: '_self' },
+      options: ['_blank', '_self', '_parent', '_top'],
+      description:
+        'Link target. Can be `_blank`, `_self`, `_parent` or `_top`.',
+    },
+    link: {
+      control: {
+        type: 'text',
+      },
+      description: 'Link URL.',
     },
   },
 };
@@ -120,6 +136,22 @@ export const DisabledOnlyIcon: Story = {
   args: {
     icon: 'box',
     disabled: true,
+    size: 'sm',
+  } as IonLinkComponent,
+};
+
+export const WithTarget: Story = {
+  args: {
+    label: 'Link',
+    target: '_blank',
+    size: 'sm',
+  } as IonLinkComponent,
+};
+
+export const WithLink: Story = {
+  args: {
+    label: 'Link',
+    link: 'https://github.com/Brisanet/ion-plus',
     size: 'sm',
   } as IonLinkComponent,
 };

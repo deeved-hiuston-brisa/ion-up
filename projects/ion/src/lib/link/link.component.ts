@@ -1,3 +1,4 @@
+import { CommonModule, NgClass } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -7,9 +8,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
-import { IonLinkProps } from './types';
 import { IonIconComponent } from '../icon';
-import { CommonModule, NgClass } from '@angular/common';
+import { IonLinkProps } from './types';
 
 @Component({
   standalone: true,

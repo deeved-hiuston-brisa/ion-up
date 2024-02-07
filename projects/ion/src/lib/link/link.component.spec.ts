@@ -69,8 +69,6 @@ describe('IonLinkComponent', () => {
       bold: true,
     });
 
-    screen.debug(screen.getByTestId('ion-link-label'), 10000000);
-
     expect(screen.getByTestId('ion-link-label')).toHaveClass(
       `ion-link__label--${size} ion-link__label--bold`
     );
