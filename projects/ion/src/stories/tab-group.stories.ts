@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { IonTabGroupComponent, TabInGroup } from '../lib/tab-group';
+import { IonTabGroupComponent } from '../lib/tab-group';
+import type { IonTabGroupProps } from '../lib/tab-group';
 import { iconsPaths } from '../public-api';
 
-const tabs: TabInGroup[] = [];
+const tabs: IonTabGroupProps['tabs'] = [];
 for (let index = 1; index <= 8; index++) {
   tabs.push({
     label: 'Tab ' + index,
