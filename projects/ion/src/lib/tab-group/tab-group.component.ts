@@ -3,6 +3,8 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
+  OnInit,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -17,7 +19,7 @@ import { IonTabGroupProps, TabInGroup } from './types';
   templateUrl: './tab-group.component.html',
   styleUrls: ['./tab-group.component.scss'],
 })
-export class IonTabGroupComponent {
+export class IonTabGroupComponent implements OnInit, OnChanges {
   @Input() tabs!: IonTabGroupProps['tabs'];
   @Input() direction?: IonTabGroupProps['direction'] = 'horizontal';
   @Input() border?: IonTabGroupProps['border'] = 'bottom';
