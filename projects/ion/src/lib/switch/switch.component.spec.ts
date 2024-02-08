@@ -1,8 +1,16 @@
-import { render, screen } from '@testing-library/angular';
-import userEvent from '@testing-library/user-event';
+import { Component } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { fireEvent, render, screen } from '@testing-library/angular';
+
 import { SafeAny } from '../utils/safe-any';
 import { IonSwitchComponent } from './switch.component';
 import { SwitchSize } from './types';
+import { CommonModule } from '@angular/common';
 
 let ionSwitch: HTMLElement;
 
@@ -33,22 +41,22 @@ describe('IonSwitchComponent', () => {
       expect(ionSwitch).toHaveClass('ion-switch');
     });
     it('should change class to active when switch is clicked', () => {
-      userEvent.click(ionSwitch);
+      fireEvent.click(ionSwitch);
       expect(ionSwitch).toHaveClass('ion-switch--active');
     });
     it('should remove active class when switch is clicked twice', () => {
-      userEvent.click(ionSwitch);
+      fireEvent.click(ionSwitch);
       expect(ionSwitch).toHaveClass('ion-switch--active');
 
-      userEvent.click(ionSwitch);
+      fireEvent.click(ionSwitch);
       expect(ionSwitch).toHaveClass('ion-switch');
     });
     it('should emit correct value when switch is clicked', () => {
-      userEvent.click(ionSwitch);
-      expect(emitValue.emit).toBeCalledWith(true);
+      fireEvent.click(ionSwitch);
+      expect(emitValue.emit).toHaveBeenCalledWith(true);
 
-      userEvent.click(ionSwitch);
-      expect(emitValue.emit).toBeCalledWith(false);
+      fireEvent.click(ionSwitch);
+      expect(emitValue.emit).toHaveBeenCalledWith(false);
     });
   });
   describe.each(sizes)('Sizes - %s', size => {
@@ -68,5 +76,54 @@ describe('IonSwitchComponent', () => {
       ionSwitch = await sut({ disabled: true });
       expect(ionSwitch).toBeDisabled();
     });
+  });
+});
+
+@Component({
+  template: `
+    <form [formGroup]="formGroup">
+      <ion-switch formControlName="name" key="name"></ion-switch>
+      <ion-switch formControlName="email" key="email"></ion-switch>
+    </form>
+  `,
+})
+class HostInputComponent {
+  formGroup = new FormGroup({
+    name: new FormControl(false),
+    email: new FormControl({ value: false, disabled: true }),
+  });
+}
+
+const sutHost = async (
+  props: Partial<HostInputComponent> = {}
+): Promise<Element> => {
+  const { container } = await render(HostInputComponent, {
+    componentProperties: props,
+    imports: [
+      CommonModule,
+      FormsModule,
+      ReactiveFormsModule,
+      IonSwitchComponent,
+    ],
+  });
+  return container;
+};
+
+describe('SwitchComponent - Angular Forms', () => {
+  let container: Element;
+
+  beforeEach(async () => {
+    container = await sutHost({});
+  });
+
+  it('should render switch', () => {
+    expect(container.querySelector('#name')).toBeInTheDocument();
+  });
+  it('should render component disabled', () => {
+    expect(container.querySelector('#email')).toBeDisabled();
+  });
+  it('should change to active when click', () => {
+    fireEvent.click(container.querySelector('#name')!);
+    expect(container.querySelector('#name')).toHaveClass('ion-switch--active');
   });
 });
