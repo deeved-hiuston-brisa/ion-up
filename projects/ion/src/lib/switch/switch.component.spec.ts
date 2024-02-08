@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import {
   FormControl,
@@ -10,7 +11,6 @@ import { fireEvent, render, screen } from '@testing-library/angular';
 import { SafeAny } from '../utils/safe-any';
 import { IonSwitchComponent } from './switch.component';
 import { SwitchSize } from './types';
-import { CommonModule } from '@angular/common';
 
 let ionSwitch: HTMLElement;
 
@@ -80,6 +80,8 @@ describe('IonSwitchComponent', () => {
 });
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, IonSwitchComponent],
   template: `
     <form [formGroup]="formGroup">
       <ion-switch formControlName="name" key="name"></ion-switch>
@@ -94,26 +96,15 @@ class HostInputComponent {
   });
 }
 
-const sutHost = async (
-  props: Partial<HostInputComponent> = {}
-): Promise<Element> => {
-  const { container } = await render(HostInputComponent, {
-    componentProperties: props,
-    imports: [
-      CommonModule,
-      FormsModule,
-      ReactiveFormsModule,
-      IonSwitchComponent,
-    ],
-  });
-  return container;
+const sutHost = async (): Promise<Element> => {
+  return (await render(HostInputComponent)).container;
 };
 
 describe('SwitchComponent - Angular Forms', () => {
   let container: Element;
 
   beforeEach(async () => {
-    container = await sutHost({});
+    container = await sutHost();
   });
 
   it('should render switch', () => {
