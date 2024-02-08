@@ -11,7 +11,7 @@ export type IonSwitchProps = {
    * Key of the switch
    * @type {string}
    * @example
-   * <ion-switch key ='switch' />
+   * <ion-switch key='switch' />
    */
   key: string;
 
@@ -19,7 +19,7 @@ export type IonSwitchProps = {
    * Value of the switch
    * @type {boolean}
    * @example
-   * <ion-switch value = {true} />
+   * <ion-switch value={true} />
    */
   value: boolean;
 
@@ -28,7 +28,7 @@ export type IonSwitchProps = {
    * @type {SwitchSize}
    * @default `sm`
    * @example
-   * <ion-switch size = 'md' />
+   * <ion-switch size='md' />
    */
   size: SwitchSize;
 
@@ -37,7 +37,7 @@ export type IonSwitchProps = {
    * @type {boolean}
    * @default false
    * @example
-   * <ion-switch disabled = {false} />
+   * <ion-switch disabled={false} />
    */
   disabled: boolean;
 
@@ -47,7 +47,7 @@ export type IonSwitchProps = {
    * @param value - New value of the switch
    * @type {EventEmitter<boolean>}
    * @example
-   * <ion-switch atValueChange = {(value) => console.log(value)} />
+   * <ion-switch atValueChange={(value) => console.log(value)} />
    */
   atValueChange: EventEmitter<boolean>;
 };
