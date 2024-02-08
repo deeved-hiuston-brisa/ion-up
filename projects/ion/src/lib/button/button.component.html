@@ -2,14 +2,21 @@
   [attr.data-testid]="'ion-button-' + label"
   [disabled]="disabled"
   [ngClass]="
-    'ion-btn-' + type + ' ' + 'ion-btn-' + size + ' ' + 'ion-btn-' + shape
+    'ion-btn ion-btn--' +
+    type +
+    ' ' +
+    'ion-btn--' +
+    size +
+    ' ' +
+    'ion-btn--' +
+    shape
   "
-  [class.ion-btn-danger]="!disabled && danger"
-  [class.ion-btn-inverter]="icon && icon.type && icon.rightPosition"
-  [class.ion-btn-loading]="!disabled && loading"
+  [class.ion-btn--danger]="!disabled && danger"
+  [class.ion-btn--inverter]="icon && icon.type && icon.rightPosition"
+  [class.ion-btn--loading]="!disabled && loading"
   (click)="handleButtonClick()">
   @if (!disabled && loading) {
-    <span class="ion-btn-loading__spinner"></span>
+    <span class="ion-btn__loading-spinner"></span>
     @if (shape === 'normal') {
       <span>Loading</span>
     }
