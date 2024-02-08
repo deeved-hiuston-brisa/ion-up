@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 import { AvatarType, IonAvatarProps } from './types';
 import { IconType } from '../icon/types';
@@ -15,6 +15,7 @@ import { DefaultImageDirective } from './defaultImage.directive';
 })
 export class IonAvatarComponent implements OnInit {
   @Input() type!: IonAvatarProps['type'];
+  @HostBinding('[attr.data-size]')
   @Input() size?: IonAvatarProps['size'] = 'md';
   @Input() value?: IonAvatarProps['value'];
   @Input() image?: IonAvatarProps['image'];
