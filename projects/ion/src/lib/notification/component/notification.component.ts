@@ -30,7 +30,8 @@ export class IonNotificationComponent implements OnInit {
   @Input() fadeIn: IonNotificationProps['fadeIn'] = 'fadeIn';
   @Input() fadeOut: IonNotificationProps['fadeOut'] = 'fadeOut';
   @ViewChild('notificationRef', { static: false }) notification!: ElementRef;
-  @Output() ionOnClose = new EventEmitter<void>();
+  @Output() ionOnClose: IonNotificationProps['ionOnClose'] =
+    new EventEmitter<void>();
 
   private timer$!: Subscription;
   public iconColor!: string;

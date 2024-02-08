@@ -81,5 +81,5 @@ export interface IonNotificationConfigOptions {
    * @example
    * <ion-notification (ionOnClose) = "yourFunction()"/>
    */
-  ionOnClose?: EventEmitter<void>;
+  ionOnClose: EventEmitter<void>;
 }

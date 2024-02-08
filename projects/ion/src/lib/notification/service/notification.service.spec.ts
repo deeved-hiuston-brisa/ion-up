@@ -31,7 +31,7 @@ jest.setTimeout(1000);
 describe('NotificationService', () => {
   let notificationService: IonNotificationService;
   const renderNotification = (
-    options: IonNotificationConfigOptions = {},
+    options: Partial<IonNotificationConfigOptions> = {},
     closeEventCall?: () => void
   ) => {
     notificationService.success(

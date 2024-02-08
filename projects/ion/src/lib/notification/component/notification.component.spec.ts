@@ -1,13 +1,19 @@
 import { EventEmitter } from '@angular/core';
 import { fireEvent, render, screen } from '@testing-library/angular';
+import { SafeAny } from '../../utils/safe-any';
 import { StatusType, statusColor } from '../../utils/statusTypes';
 import { IonNotificationComponent } from './notification.component';
 import { IonNotificationProps } from './types';
 
-const defaultNotification = {
+const indexChangeMock = jest.fn();
+
+const defaultNotification: IonNotificationProps = {
   title: 'Editado',
   message: 'cadastro',
   type: 'success' as StatusType,
+  ionOnClose: {
+    emit: indexChangeMock,
+  } as SafeAny,
 };
 
 const sut = async (
@@ -35,7 +41,13 @@ describe('IonNotificationComponent', () => {
   });
 
   it('should render success icon by default', async () => {
-    await sut({ title: 'Editado', message: 'cadastro' });
+    await sut({
+      title: 'Editado',
+      message: 'cadastro',
+      ionOnClose: {
+        emit: indexChangeMock,
+      } as SafeAny,
+    });
     expect(document.getElementById('ion-icon-check-solid')).toBeInTheDocument();
   });
 
@@ -60,7 +72,7 @@ describe('IonNotificationComponent', () => {
     );
   });
 
-  it.only.each([
+  it.each([
     {
       type: 'success',
       icon: 'check-solid',

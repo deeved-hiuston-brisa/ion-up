@@ -38,7 +38,7 @@ export class IonNotificationService {
   public success(
     title: string,
     message: string,
-    options: IonNotificationConfigOptions = {},
+    options?: Partial<IonNotificationConfigOptions>,
     closeEventCall?: () => void
   ): void {
     this.showNotification(
@@ -53,7 +53,7 @@ export class IonNotificationService {
   public info(
     title: string,
     message: string,
-    options: IonNotificationConfigOptions = {},
+    options?: Partial<IonNotificationConfigOptions>,
     closeEventCall?: () => void
   ): void {
     this.showNotification(
@@ -68,7 +68,7 @@ export class IonNotificationService {
   public warning(
     title: string,
     message: string,
-    options: IonNotificationConfigOptions = {},
+    options?: Partial<IonNotificationConfigOptions>,
     closeEventCall?: () => void
   ): void {
     this.showNotification(
@@ -83,7 +83,7 @@ export class IonNotificationService {
   public error(
     title: string,
     message: string,
-    options: IonNotificationConfigOptions = {},
+    options?: Partial<IonNotificationConfigOptions>,
     closeEventCall?: () => void
   ): void {
     this.showNotification(
@@ -136,7 +136,7 @@ export class IonNotificationService {
   private showNotification(
     title: string,
     message: string,
-    options: IonNotificationConfigOptions,
+    options?: Partial<IonNotificationConfigOptions>,
     type: StatusType = 'success',
     closeEventCall?: () => void
   ): void {
@@ -164,7 +164,7 @@ export class IonNotificationService {
     notification: IonNotificationComponent,
     title: string,
     message: string,
-    options: IonNotificationConfigOptions,
+    options?: Partial<IonNotificationConfigOptions>,
     type: StatusType = 'success'
   ): void {
     notification.title = title;
