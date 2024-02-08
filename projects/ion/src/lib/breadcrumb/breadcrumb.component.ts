@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BreadcrumbItem, BreadcrumbProps } from './types';
-import { IonIconComponent } from '../icon';
+import { IconType, IonIconComponent } from '../icon';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 export class IonBreadcrumbComponent {
   @Input() breadcrumbs!: BreadcrumbProps['breadcrumbItems'];
   @Output() selected = new EventEmitter<BreadcrumbItem>();
+
+  icon: IconType = 'right2';
 
   onSelected(item: BreadcrumbItem): void {
     if (item !== this.breadcrumbs[this.breadcrumbs.length - 1]) {
