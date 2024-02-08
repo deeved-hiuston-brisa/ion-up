@@ -12,6 +12,12 @@ const meta: Meta<IonSwitchComponent> = {
     },
   }),
   argTypes: {
+    key: {
+      control: {
+        type: 'text',
+      },
+      description: 'Chave do switch.',
+    },
     value: {
       control: {
         type: 'boolean',
@@ -41,6 +47,7 @@ export default meta;
 type Story = StoryObj<IonSwitchComponent>;
 export const Default: Story = {
   args: {
+    key: 'Default',
     value: false,
     size: 'sm',
     disabled: false,
@@ -49,6 +56,7 @@ export const Default: Story = {
 
 export const Medium: Story = {
   args: {
+    key: 'Medium',
     value: false,
     size: 'md',
     disabled: false,
@@ -57,6 +65,7 @@ export const Medium: Story = {
 
 export const Large: Story = {
   args: {
+    key: 'Large',
     value: false,
     size: 'lg',
     disabled: false,
@@ -65,6 +74,7 @@ export const Large: Story = {
 
 export const Checked: Story = {
   args: {
+    key: 'Checked',
     value: true,
     size: 'sm',
     disabled: false,
@@ -73,6 +83,7 @@ export const Checked: Story = {
 
 export const Disabled: Story = {
   args: {
+    key: 'Disabled',
     value: false,
     size: 'sm',
     disabled: true,
@@ -81,6 +92,7 @@ export const Disabled: Story = {
 
 export const CheckedDisabled: Story = {
   args: {
+    key: 'CheckedDisabled',
     value: true,
     size: 'sm',
     disabled: true,
