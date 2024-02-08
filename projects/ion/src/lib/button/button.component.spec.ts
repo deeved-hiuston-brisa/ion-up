@@ -33,7 +33,7 @@ describe('IonButtonComponent', () => {
 
   it.each(types)('should correctly render button %s types.', async type => {
     expect(await sut({ label: defaultName, type })).toHaveClass(
-      `ion-btn-${type}`
+      `ion-btn--${type}`
     );
   });
 
@@ -41,14 +41,14 @@ describe('IonButtonComponent', () => {
     'should correctly render button %s types with the danger property.',
     async type => {
       expect(await sut({ label: defaultName, type, danger: true })).toHaveClass(
-        `ion-btn-danger`
+        `ion-btn--danger`
       );
     }
   );
 
   it.each(sizes)('should correctly render button %s sizes.', async size => {
     expect(await sut({ label: defaultName, size })).toHaveClass(
-      `ion-btn-${size}`
+      `ion-btn--${size}`
     );
   });
 
@@ -65,7 +65,7 @@ describe('IonButtonComponent', () => {
       label: 'Delete',
       icon: { type: 'trash', rightPosition: true },
     });
-    expect(button).toHaveClass('ion-btn-inverter');
+    expect(button).toHaveClass('ion-btn--inverter');
   });
 
   it('should render a button disabled.', async () => {
@@ -83,13 +83,13 @@ describe('IonButtonComponent', () => {
       loading: true,
       icon: { type: 'play' },
     });
-    expect(button).toHaveClass('ion-btn-loading');
+    expect(button).toHaveClass('ion-btn--loading');
     expect(button).toHaveTextContent('Loading');
   });
 
   it.each(shapes)('should correctly render button %s shape.', async shape => {
     expect(await sut({ label: defaultName, shape })).toHaveClass(
-      `ion-btn-${shape}`
+      `ion-btn--${shape}`
     );
   });
 
