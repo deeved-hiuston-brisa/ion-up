@@ -1,0 +1,12 @@
+<!-- eslint-disable @angular-eslint/template/elements-content -->
+<button
+  [id]="key"
+  data-testid="ion-switch"
+  class="ion-switch"
+  [attr.name]="key"
+  [disabled]="disabled"
+  [class.ion-switch--active]="value"
+  [class.ion-switch--inactive]="!value"
+  [attr.size]="size"
+  [disabled]="disabled"
+  (click)="writeValue(!value)"></button>
