@@ -15,12 +15,12 @@ import { DefaultImageDirective } from './defaultImage.directive';
 })
 export class IonAvatarComponent implements OnInit {
   @Input() type!: IonAvatarProps['type'];
-  @HostBinding('[attr.data-size]')
   @Input() size?: IonAvatarProps['size'] = 'md';
   @Input() value?: IonAvatarProps['value'];
   @Input() image?: IonAvatarProps['image'];
   @Input() onErrorImage?: IonAvatarProps['onErrorImage'];
   @Input() icon?: IconType = 'union';
+  @HostBinding('[attr.data-size]')
   initials!: string;
 
   private getInitials(name: string): string {
