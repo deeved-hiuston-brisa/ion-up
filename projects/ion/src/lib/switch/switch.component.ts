@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
@@ -27,34 +28,30 @@ export class IonSwitchComponent implements ControlValueAccessor {
   @Output() atValueChange: IonSwitchProps['atValueChange'] =
     new EventEmitter<boolean>();
 
-  onTouch = (): void => {};
+  onTouched = (): void => {};
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  onChange = (_value: boolean): void => {};
+  onChange = (value: boolean): void => {};
 
-  // Allow Angular to set the value on the component
   writeValue(value: boolean): void {
     this.value = value;
-    this.atValueChange.emit(value);
-    this.executeFunction(this.onChange, value);
-    this.executeFunction(this.onTouch);
   }
 
-  registerOnChange(fn: () => void): void {
+  registerOnChange(fn: (value: boolean) => void): void {
     this.onChange = fn;
   }
 
   registerOnTouched(fn: () => void): void {
-    this.onTouch = fn;
+    this.onTouched = fn;
   }
 
   setDisabledState(disabled: boolean): void {
     this.disabled = disabled;
   }
 
-  executeFunction(func: unknown, params?: unknown): void {
-    if (typeof func === 'function') {
-      func.bind(this)(params);
-    }
+  handleClick(value: boolean): void {
+    this.value = !value;
+    this.atValueChange.emit(this.value);
+    this.onChange(this.value);
+    this.onTouched();
   }
 }

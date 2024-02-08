@@ -8,6 +8,6 @@
   [class.ion-switch--inactive]="!value"
   [attr.size]="size"
   [disabled]="disabled"
-  (click)="writeValue(!value)">
+  (click)="handleClick(value)">
   <ng-content></ng-content>
 </button>
