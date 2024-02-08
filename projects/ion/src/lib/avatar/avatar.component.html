@@ -4,7 +4,7 @@
       <span> {{ initials }}</span>
     }
     @case ('icon') {
-      <ion-icon [type]="icon"></ion-icon>
+      <ion-icon [type]="icon!"></ion-icon>
     }
     @case ('photo') {
       <img [src]="image" [default]="onErrorImage" alt="avatar" />

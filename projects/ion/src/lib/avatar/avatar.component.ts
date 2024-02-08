@@ -19,7 +19,7 @@ export class IonAvatarComponent implements OnInit {
   @Input() value?: IonAvatarProps['value'];
   @Input() image?: IonAvatarProps['image'];
   @Input() onErrorImage?: IonAvatarProps['onErrorImage'];
-  @Input() icon?: IconType = 'union';
+  @Input() icon: IconType = 'union';
   @HostBinding('[attr.data-size]')
   initials!: string;
 
