@@ -36,10 +36,8 @@ export class IonStepsComponent implements OnInit, OnChanges {
   }
 
   private goesTo(index: number) {
-    if (this.indexChange) {
-      this.indexChange.emit(index);
-      this.changeStep(index);
-    }
+    this.indexChange.emit(index);
+    this.changeStep(index);
   }
 
   public ngOnInit(): void {

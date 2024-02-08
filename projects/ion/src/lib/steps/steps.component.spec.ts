@@ -18,9 +18,14 @@ const defaultSteps: Step[] = [
   },
 ];
 
+const indexChangeMock = jest.fn();
+
 const defaultProps: IonStepsProps = {
   current: 1,
   steps: defaultSteps,
+  indexChange: {
+    emit: indexChangeMock,
+  } as SafeAny,
 };
 
 const sut = async (
@@ -41,7 +46,7 @@ describe('Static IonStepsComponent', () => {
   });
   it('should render first checked', async () => {
     await sut({
-      current: defaultProps.current,
+      ...defaultProps,
       steps: [
         {
           label: 'Step 1',
@@ -62,7 +67,7 @@ describe('Static IonStepsComponent', () => {
   });
   it('should render first step checked and second with error and description', async () => {
     await sut({
-      current: defaultProps.current,
+      ...defaultProps,
       steps: [
         {
           label: 'Step 1',
@@ -88,7 +93,7 @@ describe('Static IonStepsComponent', () => {
   });
   it('should render step component with 3 checked steps', async () => {
     await sut({
-      current: defaultProps.current,
+      ...defaultProps,
       steps: [
         {
           label: 'Step 1',
@@ -116,10 +121,9 @@ describe('Static IonStepsComponent', () => {
   });
   it('should go to step 3 when it be clicked', async () => {
     await sut({
+      ...defaultProps,
       clickable: true,
       disabled: false,
-      current: 1,
-      steps: defaultSteps,
     });
     fireEvent.click(screen.getByTestId('step-3-default'));
     expect(screen.findByTestId('step-3-selected')).toBeTruthy();

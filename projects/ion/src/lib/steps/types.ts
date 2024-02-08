@@ -96,5 +96,5 @@ export type IonStepsProps = {
    * @example
    * <ion-steps (ionOnClik) = "yourFunction()"/>
    */
-  indexChange?: EventEmitter<number>;
+  indexChange: EventEmitter<number>;
 };
