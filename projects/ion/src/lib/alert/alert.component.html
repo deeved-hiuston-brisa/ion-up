@@ -1,0 +1,42 @@
+<div
+  class="ion-alert"
+  data-testid="ion-alert"
+  [ngClass]="{
+    'ion-alert--no-background': hideBackground,
+    'ion-alert--with-description': description && description.length > 0,
+    'ion-alert--no-radius': noRadius
+  }"
+  #ionAlert>
+  <div class="ion-alert__header">
+    <div class="ion-alert__message">
+      <ion-icon
+        class="ion-alert__icon"
+        [attr.data-testid]="'alert-icon-' + iconType"
+        [type]="iconType"></ion-icon>
+
+      @if (message && message.length > 0) {
+        <span class="ion-alert__text">{{ message }}</span>
+      }
+
+      @if (customBody) {
+        <ng-container
+          data-testid="ion-alert-custom-body"
+          [ngTemplateOutlet]="customBody"></ng-container>
+      }
+    </div>
+
+    @if (closable) {
+      <ion-icon
+        class="ion-alert__close-icon"
+        data-testid="close-icon"
+        type="close"
+        (click)="closeEvent()"></ion-icon>
+    }
+  </div>
+
+  @if (description && description.length > 0) {
+    <span class="ion-alert__description">
+      {{ description }}
+    </span>
+  }
+</div>
