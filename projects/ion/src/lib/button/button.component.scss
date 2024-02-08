@@ -1,5 +1,9 @@
 @import '../../styles/index.scss';
 
+:host {
+  display: inline-flex;
+}
+
 @mixin set-colors($background, $color) {
   background-color: $background;
   color: $color;
@@ -41,9 +45,9 @@ button {
   align-items: center;
   justify-content: center;
 
-  padding: 6px 16px;
-  border-radius: 8px;
-  gap: 8px;
+  padding: spacing(0.75) spacing(2);
+  border-radius: spacing(1);
+  gap: spacing(1);
   border: 0;
 
   background-color: $primary-6;
@@ -248,21 +252,63 @@ button {
   }
 
   &.ion-btn-sm {
-    @include button-parameters(24px, 4px, 12px, 12px, 16px);
+    @include button-parameters(24px, spacing(0.5), spacing(1.5), 12px, 16px);
     @include set-icon-size(12px);
+
+    &.ion-btn-rounded,
+    &.ion-btn-circle {
+      height: 24px;
+      width: 24px;
+      padding: spacing(0.5) spacing(1.5);
+    }
+  }
+
+  &.ion-btn-md {
+    @include button-parameters(32px, 6px, 16px, 14px, 20px);
+    @include set-icon-size(16px);
+
+    &.ion-btn-rounded,
+    &.ion-btn-circle {
+      height: 32px;
+      width: 32px;
+      padding: 0 spacing(2);
+    }
   }
 
   &.ion-btn-lg {
     @include button-parameters(40px, 8px, 20px, 16px, 24px);
     @include set-icon-size(18px);
+
+    &.ion-btn-rounded,
+    &.ion-btn-circle {
+      height: 40px;
+      width: 40px;
+      padding: 0 spacing(2.5);
+    }
   }
 
   &.ion-btn-xl {
     @include button-parameters(48px, 12px, 24px, 16px, 24px);
     @include set-icon-size(18px);
+
+    &.ion-btn-rounded,
+    &.ion-btn-circle {
+      height: 48px;
+      width: 48px;
+      padding: 0 spacing(3);
+    }
   }
 
   &.ion-btn-inverter {
     flex-direction: row-reverse;
+  }
+
+  &.ion-btn-circle {
+    border-radius: 50%;
+  }
+
+  &.ion-btn-loading.ion-btn-circle,
+  &.ion-btn-loading.ion-btn-rounded {
+    padding: 0;
   }
 }

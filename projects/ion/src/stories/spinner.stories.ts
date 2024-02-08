@@ -29,9 +29,15 @@ const meta: Meta<IonSpinnerComponent> = {
         'Cor do spinner. Pode ser `primary`, `secondary` ou `danger`.',
     },
     customColor: {
+      control: {
+        type: 'color',
+      },
       description: 'Cor customizada do spinner.',
     },
     text: {
+      control: {
+        type: 'text',
+      },
       description: 'Texto do spinner.',
     },
     textSize: {
