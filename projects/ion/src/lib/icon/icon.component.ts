@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { iconsPaths } from './svgs/icons';
-import { ContainerStyle, Highlight, IconType } from './types';
+import { ContainerStyle, Highlight, IonIconProps } from './types';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -18,10 +18,10 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./icon.component.scss'],
 })
 export class IonIconComponent implements OnChanges {
-  @Input({ required: true }) type!: IconType;
-  @Input() size = 24;
-  @Input() color = '#282b33';
-  @Input() highlight: Highlight = Highlight.NONE;
+  @Input({ required: true }) type!: IonIconProps['type'];
+  @Input() size: IonIconProps['size'] = 24;
+  @Input() color: IonIconProps['color'] = '#282b33';
+  @Input() highlight: IonIconProps['highlight'] = Highlight.NONE;
 
   @ViewChild('svgElement', { static: true }) svgElement!: ElementRef;
 
@@ -46,18 +46,18 @@ export class IonIconComponent implements OnChanges {
     const stylesControl = {
       double: {
         color: `${this.color}1A`,
-        size: `${this.size * this.getCircleProportion().outsideCircle}px`,
+        size: `${this.size! * this.getCircleProportion().outsideCircle}px`,
       },
       simple: {
         color: `${this.color}1A`,
-        size: `${this.size * 2}px`,
+        size: `${this.size! * 2}px`,
       },
       none: defaultStyle,
     };
 
     this.outerContainerStyle = {
-      color: stylesControl[this.highlight].color,
-      size: stylesControl[this.highlight].size,
+      color: stylesControl[this.highlight!].color,
+      size: stylesControl[this.highlight!].size,
     };
   }
 
@@ -70,15 +70,15 @@ export class IonIconComponent implements OnChanges {
     const stylesControl = {
       double: {
         color: `${this.color}40`,
-        size: `${this.size * this.getCircleProportion().innerCircle}px`,
+        size: `${this.size! * this.getCircleProportion().innerCircle}px`,
       },
       simple: defaultStyle,
       none: defaultStyle,
     };
 
     this.innerContainerStyle = {
-      color: stylesControl[this.highlight].color,
-      size: stylesControl[this.highlight].size,
+      color: stylesControl[this.highlight!].color,
+      size: stylesControl[this.highlight!].size,
     };
   }
 
@@ -108,7 +108,7 @@ export class IonIconComponent implements OnChanges {
 
   private isHex(): boolean {
     const regex = /^#?([0-9A-Fa-f]{6})$/;
-    return regex.test(this.color);
+    return !!this.color && regex.test(this.color);
   }
 
   private getCircleProportion(): {
@@ -127,7 +127,8 @@ export class IonIconComponent implements OnChanges {
       },
     };
 
-    const iconSize = this.size >= mdIcon ? 'largeIcon' : 'smallIcon';
+    const iconSize =
+      this.size && this.size >= mdIcon ? 'largeIcon' : 'smallIcon';
 
     return {
       innerCircle: proportions[iconSize].inner,
