@@ -1,0 +1,93 @@
+@import '../../styles/index.scss';
+
+@mixin alert-style($background, $borderColor) {
+  .ion-alert {
+    background-color: $background;
+    border-color: $borderColor !important;
+
+    &__icon {
+      display: flex;
+      align-items: center;
+
+      ::ng-deep svg {
+        fill: $borderColor;
+      }
+    }
+
+    &--no-background {
+      background-color: transparent !important;
+      border: none !important;
+    }
+  }
+}
+
+.ion-alert {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid;
+  border-radius: 8px;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  line-height: 20px;
+  font-size: 14px;
+  padding: spacing(1) spacing(2) spacing(1) spacing(1.5);
+  border-left: 8px solid;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__message {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__close-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    ::ng-deep svg {
+      height: 18px;
+      width: 18px;
+      fill: $primary-color;
+    }
+  }
+
+  &--with-description {
+    border: none !important;
+    background-color: $neutral-2 !important;
+    padding: spacing(2) spacing(3) !important;
+    color: $neutral-7;
+    gap: 4px;
+
+    .ion-alert {
+      &__text {
+        font-weight: 600;
+      }
+    }
+  }
+
+  &--no-radius {
+    border-radius: 0;
+  }
+}
+
+:host {
+  &[data-type='success'] {
+    @include alert-style($positive-1, $positive-6);
+  }
+  &[data-type='info'] {
+    @include alert-style($info-1, $info-6);
+  }
+  &[data-type='warning'] {
+    @include alert-style($warning-1, $warning-6);
+  }
+  &[data-type='negative'] {
+    @include alert-style($negative-1, $negative-6);
+  }
+}
