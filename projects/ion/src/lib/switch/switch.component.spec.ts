@@ -6,7 +6,12 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { fireEvent, render, screen } from '@testing-library/angular';
+import {
+  RenderResult,
+  fireEvent,
+  render,
+  screen,
+} from '@testing-library/angular';
 
 import { SafeAny } from '../utils/safe-any';
 import { IonSwitchComponent } from './switch.component';
@@ -96,15 +101,15 @@ class HostInputComponent {
   });
 }
 
-const sutHost = async (): Promise<Element> => {
-  return (await render(HostInputComponent)).container;
+const sutHost = async (): Promise<RenderResult<HostInputComponent>> => {
+  return render(HostInputComponent);
 };
 
 describe('SwitchComponent - Angular Forms', () => {
   let container: Element;
 
   beforeEach(async () => {
-    container = await sutHost();
+    ({ container } = await sutHost());
   });
 
   it('should render switch', () => {
