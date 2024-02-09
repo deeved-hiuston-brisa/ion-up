@@ -24,22 +24,14 @@ $base-lg-size: 4px;
   }
 }
 
-@mixin translateEllipse($side: 'half') {
-  $base: 2;
+@mixin translateEllipse($base, $side: 'half') {
+  $baseWidth: 2;
   @if $side == 'full' {
-    $base: 4;
+    $baseWidth: 4;
   }
 
-  &[size='sm']::before {
-    transform: translateX(calc($base-sm-size * $base));
-  }
-
-  &[size='md']::before {
-    transform: translateX(calc($base-md-size * $base));
-  }
-
-  &[size='lg']::before {
-    transform: translateX(calc($base-lg-size * $base));
+  &::before {
+    transform: translateX(calc($base * $baseWidth));
   }
 }
 
@@ -75,7 +67,6 @@ $base-lg-size: 4px;
 
   &:active:not(:disabled) {
     background: $primary-4;
-    @include translateEllipse();
   }
 
   &::before {
@@ -95,46 +86,8 @@ $base-lg-size: 4px;
     }
   }
 
-  &[size='sm'] {
-    @include switch-sizes($base-sm-size);
-  }
-
-  &[size='md'] {
-    @include switch-sizes($base-md-size);
-  }
-
-  &[size='lg'] {
-    @include switch-sizes($base-lg-size);
-  }
-
-  &--inactive {
-    &[size='sm'] {
-      @include addShadowAnimation($base-sm-size, 'shadowAnimationOut');
-    }
-
-    &[size='md'] {
-      @include addShadowAnimation($base-md-size, 'shadowAnimationOut');
-    }
-
-    &[size='lg'] {
-      @include addShadowAnimation($base-lg-size, 'shadowAnimationOut');
-    }
-  }
-
   &--active {
     background: $primary-color;
-
-    &[size='sm'] {
-      @include addShadowAnimation($base-sm-size);
-    }
-
-    &[size='md'] {
-      @include addShadowAnimation($base-md-size);
-    }
-
-    &[size='lg'] {
-      @include addShadowAnimation($base-lg-size);
-    }
 
     &:hover {
       background: $primary-5;
@@ -144,12 +97,8 @@ $base-lg-size: 4px;
       transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
     }
 
-    @include translateEllipse('full');
-
     &:active:not(:disabled) {
       background: $primary-7;
-
-      @include translateEllipse();
     }
 
     &:disabled {
@@ -158,6 +107,76 @@ $base-lg-size: 4px;
 
       &::before {
         background: $neutral-2;
+      }
+    }
+  }
+}
+
+:host {
+  &[data-size] {
+    &[data-size='sm'] .ion-switch {
+      @include switch-sizes($base-sm-size);
+
+      &:active:not(:disabled) {
+        @include translateEllipse($base-sm-size, 'full');
+      }
+
+      &--inactive {
+        @include addShadowAnimation($base-sm-size, 'shadowAnimationOut');
+      }
+
+      &--active {
+        @include addShadowAnimation($base-sm-size);
+
+        @include translateEllipse($base-sm-size, 'full');
+
+        &:active:not(:disabled) {
+          @include translateEllipse($base-sm-size);
+        }
+      }
+    }
+
+    &[data-size='md'] .ion-switch {
+      @include switch-sizes($base-md-size);
+
+      &:active:not(:disabled) {
+        @include translateEllipse($base-md-size);
+      }
+
+      &--inactive {
+        @include addShadowAnimation($base-md-size, 'shadowAnimationOut');
+      }
+
+      &--active {
+        @include addShadowAnimation($base-md-size);
+
+        @include translateEllipse($base-md-size, 'full');
+
+        &:active:not(:disabled) {
+          @include translateEllipse($base-md-size);
+        }
+      }
+    }
+
+    &[data-size='lg'] .ion-switch {
+      @include switch-sizes($base-lg-size);
+
+      &:active:not(:disabled) {
+        @include translateEllipse($base-lg-size);
+      }
+
+      &--inactive {
+        @include addShadowAnimation($base-lg-size, 'shadowAnimationOut');
+      }
+
+      &--active {
+        @include addShadowAnimation($base-lg-size);
+
+        @include translateEllipse($base-lg-size, 'full');
+
+        &:active:not(:disabled) {
+          @include translateEllipse($base-lg-size);
+        }
       }
     }
   }

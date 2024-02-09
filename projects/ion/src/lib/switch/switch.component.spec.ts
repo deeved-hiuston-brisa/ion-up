@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { ComponentFixture } from '@angular/core/testing';
 import {
   FormControl,
   FormGroup,
@@ -25,61 +26,67 @@ const emitValue = {
 
 const sizes: SwitchSize[] = ['sm', 'md', 'lg'];
 
+const getSwitchByTestId = (): HTMLElement => {
+  return screen.getByTestId('ion-switch');
+};
+
 const sut = async (
   customProps: Partial<IonSwitchComponent> = {}
-): Promise<HTMLElement> => {
-  await render(IonSwitchComponent, {
+): Promise<ComponentFixture<IonSwitchComponent>> => {
+  const { fixture } = await render(IonSwitchComponent, {
     componentProperties: { ...customProps, atValueChange: emitValue },
   });
-  return screen.getByTestId('ion-switch');
+
+  return fixture;
 };
 
 describe('IonSwitchComponent', () => {
   describe('General', () => {
     beforeEach(async () => {
-      ionSwitch = await sut();
+      await sut();
     });
     it('should render switch', async () => {
-      expect(ionSwitch).toBeInTheDocument();
+      expect(getSwitchByTestId()).toBeInTheDocument();
     });
     it('should render switch with default class', () => {
-      expect(ionSwitch).toHaveClass('ion-switch');
+      expect(getSwitchByTestId()).toHaveClass('ion-switch');
     });
     it('should change class to active when switch is clicked', () => {
-      fireEvent.click(ionSwitch);
-      expect(ionSwitch).toHaveClass('ion-switch--active');
+      fireEvent.click(getSwitchByTestId());
+      expect(getSwitchByTestId()).toHaveClass('ion-switch--active');
     });
     it('should remove active class when switch is clicked twice', () => {
-      fireEvent.click(ionSwitch);
-      expect(ionSwitch).toHaveClass('ion-switch--active');
+      fireEvent.click(getSwitchByTestId());
+      expect(getSwitchByTestId()).toHaveClass('ion-switch--active');
 
-      fireEvent.click(ionSwitch);
-      expect(ionSwitch).toHaveClass('ion-switch');
+      fireEvent.click(getSwitchByTestId());
+      expect(getSwitchByTestId()).toHaveClass('ion-switch');
     });
     it('should emit correct value when switch is clicked', () => {
-      fireEvent.click(ionSwitch);
+      fireEvent.click(getSwitchByTestId());
       expect(emitValue.emit).toHaveBeenCalledWith(true);
 
-      fireEvent.click(ionSwitch);
+      fireEvent.click(getSwitchByTestId());
       expect(emitValue.emit).toHaveBeenCalledWith(false);
     });
   });
   describe.each(sizes)('Sizes - %s', size => {
     beforeEach(async () => {
-      ionSwitch = await sut({ size });
+      ionSwitch = (await sut({ size })).nativeElement;
     });
     it(`should render a switch with size attribute and value '${size}'`, () => {
-      expect(ionSwitch).toHaveAttribute('size', size);
+      screen.debug(ionSwitch, 1000000);
+      expect(ionSwitch).toHaveAttribute('data-size', size);
     });
   });
   describe('Disabled', () => {
     it('should be enabled by default', async () => {
-      ionSwitch = await sut();
-      expect(ionSwitch).not.toBeDisabled();
+      await sut();
+      expect(getSwitchByTestId()).not.toBeDisabled();
     });
     it('should be disabled', async () => {
-      ionSwitch = await sut({ disabled: true });
-      expect(ionSwitch).toBeDisabled();
+      await sut({ disabled: true });
+      expect(getSwitchByTestId()).toBeDisabled();
     });
   });
 });
