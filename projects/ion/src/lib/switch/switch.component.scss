@@ -56,6 +56,7 @@ $base-lg-size: 4px;
   @include switch-sizes($size);
 
   &:active:not(:disabled) {
+    background: $primary-4;
     @include translateEllipse($size, 'full');
   }
 
@@ -69,6 +70,7 @@ $base-lg-size: 4px;
     @include translateEllipse($size, 'full');
 
     &:active:not(:disabled) {
+      background: $primary-7;
       @include translateEllipse($size);
     }
   }
@@ -85,10 +87,6 @@ $base-lg-size: 4px;
 
   &:hover {
     background: $primary-3;
-  }
-
-  &:active:not(:disabled) {
-    background: $primary-4;
   }
 
   &::before {
@@ -117,10 +115,6 @@ $base-lg-size: 4px;
 
     &::before {
       transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
-    }
-
-    &:active:not(:disabled) {
-      background: $primary-7;
     }
 
     &:disabled {
