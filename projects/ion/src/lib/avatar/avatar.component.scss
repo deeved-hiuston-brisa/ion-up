@@ -54,19 +54,25 @@ $avatar-secondary-color: $primary-2;
 :host {
   display: inline-flex;
 
-  &[data-size="sm"] div {
+  &[data-size='xs'] div {
+    @include circle(16px);
+    @include icon-size(12px);
+    font-size: 10px;
+  }
+
+  &[data-size='sm'] div {
     @include circle(24px);
     @include icon-size(16px);
     font-size: 12px;
   }
 
-  &[data-size="md"] div {
+  &[data-size='md'] div {
     @include circle(32px);
     @include icon-size(20px);
     font-size: 14px;
   }
 
-  &[data-size="lg"] div {
+  &[data-size='lg'] div {
     @include circle(40px);
     @include icon-size(24px);
     font-size: 16px;
