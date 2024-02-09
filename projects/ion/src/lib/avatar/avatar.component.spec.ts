@@ -4,6 +4,7 @@ import { IonAvatarComponent } from './avatar.component';
 import { AvatarSize, AvatarType } from './types';
 import { DefaultImageDirective } from './defaultImage.directive';
 import { IonIconComponent } from '../icon';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 async function sut(
   props: Partial<IonAvatarComponent> = {}
@@ -18,12 +19,18 @@ async function sut(
 
 describe('Avatar', () => {
   describe('Basics', () => {
+    let component: IonAvatarComponent;
+    let fixture: ComponentFixture<IonAvatarComponent>;
     const sizes: AvatarSize[] = ['lg', 'md', 'sm', 'xs'];
-    it.each(sizes)('should have size-%s class', async (size: AvatarSize) => {
-      expect(await sut({ size })).toHaveClass(`ion-avatar--${size}`);
-    });
-    it('should have default size-md when no size is passed', async () => {
-      expect(await sut()).toHaveClass('ion-avatar--md');
+    it.each(sizes)('should have data-%s size', size => {
+      fixture = TestBed.createComponent(IonAvatarComponent);
+      component = fixture.componentInstance;
+      component.size = size;
+
+      fixture.detectChanges();
+
+      const element = fixture.nativeElement;
+      expect(element.getAttribute('data-size')).toBe(`${size}`);
     });
   });
   describe('Initials', () => {

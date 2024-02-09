@@ -14,7 +14,7 @@ import { DefaultImageDirective } from './defaultImage.directive';
   styleUrl: './avatar.component.scss',
 })
 export class IonAvatarComponent implements OnInit {
-  @Input() type!: IonAvatarProps['type'];
+  @Input({ required: true }) type!: IonAvatarProps['type'];
   @HostBinding('[attr.data-size]')
   @Input()
   size?: IonAvatarProps['size'] = 'md';
@@ -25,21 +25,20 @@ export class IonAvatarComponent implements OnInit {
   @Input() icon: IconType = 'union';
   initials!: string;
 
-  private getInitials(name: string): string {
-    return (
-      name &&
-      name
-        .split(' ')
-        .map(word => word[0])
-        .slice(0, 2)
-        .join('')
-        .toUpperCase()
-    );
+  private getInitials(name?: string): string {
+    return name
+      ? name
+          .split(' ')
+          .map(word => word[0])
+          .slice(0, 2)
+          .join('')
+          .toUpperCase()
+      : '--';
   }
 
   ngOnInit(): void {
     if (this.type === AvatarType.initials) {
-      this.initials = this.getInitials(this.value as string) || '--';
+      this.initials = this.getInitials(this.value);
     }
   }
 }
