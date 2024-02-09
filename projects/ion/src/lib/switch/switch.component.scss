@@ -52,6 +52,28 @@ $base-lg-size: 4px;
   }
 }
 
+@mixin switch-style($size) {
+  @include switch-sizes($size);
+
+  &:active:not(:disabled) {
+    @include translateEllipse($size, 'full');
+  }
+
+  &--inactive {
+    @include addShadowAnimation($size, 'shadowAnimationOut');
+  }
+
+  &--active {
+    @include addShadowAnimation($size);
+
+    @include translateEllipse($size, 'full');
+
+    &:active:not(:disabled) {
+      @include translateEllipse($size);
+    }
+  }
+}
+
 .ion-switch {
   display: flex;
   background: $primary-2;
@@ -115,69 +137,15 @@ $base-lg-size: 4px;
 :host {
   &[data-size] {
     &[data-size='sm'] .ion-switch {
-      @include switch-sizes($base-sm-size);
-
-      &:active:not(:disabled) {
-        @include translateEllipse($base-sm-size, 'full');
-      }
-
-      &--inactive {
-        @include addShadowAnimation($base-sm-size, 'shadowAnimationOut');
-      }
-
-      &--active {
-        @include addShadowAnimation($base-sm-size);
-
-        @include translateEllipse($base-sm-size, 'full');
-
-        &:active:not(:disabled) {
-          @include translateEllipse($base-sm-size);
-        }
-      }
+      @include switch-style($base-sm-size);
     }
 
     &[data-size='md'] .ion-switch {
-      @include switch-sizes($base-md-size);
-
-      &:active:not(:disabled) {
-        @include translateEllipse($base-md-size);
-      }
-
-      &--inactive {
-        @include addShadowAnimation($base-md-size, 'shadowAnimationOut');
-      }
-
-      &--active {
-        @include addShadowAnimation($base-md-size);
-
-        @include translateEllipse($base-md-size, 'full');
-
-        &:active:not(:disabled) {
-          @include translateEllipse($base-md-size);
-        }
-      }
+      @include switch-style($base-md-size);
     }
 
     &[data-size='lg'] .ion-switch {
-      @include switch-sizes($base-lg-size);
-
-      &:active:not(:disabled) {
-        @include translateEllipse($base-lg-size);
-      }
-
-      &--inactive {
-        @include addShadowAnimation($base-lg-size, 'shadowAnimationOut');
-      }
-
-      &--active {
-        @include addShadowAnimation($base-lg-size);
-
-        @include translateEllipse($base-lg-size, 'full');
-
-        &:active:not(:disabled) {
-          @include translateEllipse($base-lg-size);
-        }
-      }
+      @include switch-style($base-lg-size);
     }
   }
 }
