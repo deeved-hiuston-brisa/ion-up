@@ -7,9 +7,9 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import {
-  RenderResult,
   fireEvent,
   render,
+  RenderResult,
   screen,
 } from '@testing-library/angular';
 
@@ -89,8 +89,8 @@ describe('IonSwitchComponent', () => {
   imports: [CommonModule, FormsModule, ReactiveFormsModule, IonSwitchComponent],
   template: `
     <form [formGroup]="formGroup">
-      <ion-switch formControlName="name" key="name"></ion-switch>
-      <ion-switch formControlName="email" key="email"></ion-switch>
+      <ion-switch formControlName="name" key="name" />
+      <ion-switch formControlName="email" key="email" />
     </form>
   `,
 })
