@@ -75,7 +75,6 @@ describe('IonSwitchComponent', () => {
       ionSwitch = (await sut({ size })).nativeElement;
     });
     it(`should render a switch with size attribute and value '${size}'`, () => {
-      screen.debug(ionSwitch, 1000000);
       expect(ionSwitch).toHaveAttribute('data-size', size);
     });
   });
