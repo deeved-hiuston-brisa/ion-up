@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import type { Meta, StoryObj } from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular';
+import type { IonTooltipProps } from '../lib/tooltip';
 import {
   IonTooltipComponent,
   IonTooltipDirective,
-  IonTooltipProps,
   TooltipPosition,
   TooltipTrigger,
 } from '../lib/tooltip';
@@ -64,9 +65,9 @@ type Story = StoryObj<IonTooltipComponent>;
 
 const defaultArgs: IonTooltipProps = {
   ionTooltipTitle: 'Eu sou um tooltip',
-  ionTooltipPosition: TooltipPosition.DEFAULT,
+  ionTooltipPosition: TooltipPosition.TOP_CENTER,
   ionTooltipColorScheme: 'dark',
-  ionTooltipTrigger: TooltipTrigger.DEFAULT,
+  ionTooltipTrigger: TooltipTrigger.HOVER,
 };
 
 export const Default: Story = {

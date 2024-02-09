@@ -28,8 +28,8 @@ import { IonTooltipDirective } from './tooltip.directive';
 class HostTestComponent {
   @Input() ionTooltipTitle = 'Tooltip';
   @Input() ionTooltipColorScheme: TooltipColorScheme = 'dark';
-  @Input() ionTooltipPosition: TooltipPosition = TooltipPosition.DEFAULT;
-  @Input() ionTooltipTrigger: TooltipTrigger = TooltipTrigger.DEFAULT;
+  @Input() ionTooltipPosition: TooltipPosition = TooltipPosition.TOP_CENTER;
+  @Input() ionTooltipTrigger: TooltipTrigger = TooltipTrigger.HOVER;
   @Input() ionTooltipShowDelay = 0;
   @Input() ionTooltipTemplateRef = true;
 }

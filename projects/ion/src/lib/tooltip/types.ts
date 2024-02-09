@@ -11,13 +11,11 @@ export enum TooltipPosition {
   BOTTOM_RIGHT = 'bottomRight',
   BOTTOM_CENTER = 'bottomCenter',
   BOTTOM_LEFT = 'bottomLeft',
-  DEFAULT = 'topCenter',
 }
 
 export enum TooltipTrigger {
   CLICK = 'click',
   HOVER = 'hover',
-  DEFAULT = 'hover',
 }
 
 export interface IonTooltipProps {

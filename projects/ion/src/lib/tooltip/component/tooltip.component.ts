@@ -22,7 +22,7 @@ export class IonTooltipComponent implements AfterViewChecked {
   ionTooltipTemplateRef!: IonTooltipProps['ionTooltipTemplateRef'];
   ionTooltipColorScheme: IonTooltipProps['ionTooltipColorScheme'] = 'dark';
   ionTooltipPosition: IonTooltipProps['ionTooltipPosition'] =
-    TooltipPosition.DEFAULT;
+    TooltipPosition.TOP_CENTER;
 
   ionTooltipVisible = false;
   left = 0;

@@ -27,9 +27,9 @@ export class IonTooltipDirective implements OnDestroy, OnInit {
   @Input() ionTooltipTitle = '';
   @Input() ionTooltipTemplateRef!: TemplateRef<void>;
   @Input() ionTooltipColorScheme: TooltipColorScheme = 'dark';
-  @Input() ionTooltipPosition: TooltipPosition = TooltipPosition.DEFAULT;
+  @Input() ionTooltipPosition: TooltipPosition = TooltipPosition.TOP_CENTER;
   @Input() ionTooltipArrowPointAtCenter = true;
-  @Input() ionTooltipTrigger: TooltipTrigger = TooltipTrigger.DEFAULT;
+  @Input() ionTooltipTrigger: TooltipTrigger = TooltipTrigger.HOVER;
   @Input() ionTooltipShowDelay = 0;
 
   public subscription$!: Subscription;
