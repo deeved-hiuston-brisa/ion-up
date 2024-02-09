@@ -1,35 +1,32 @@
-import { render, screen } from '@testing-library/angular';
+import { RenderResult, render, screen } from '@testing-library/angular';
 
 import { IonAvatarComponent } from './avatar.component';
 import { AvatarSize, AvatarType } from './types';
 import { DefaultImageDirective } from './defaultImage.directive';
 import { IonIconComponent } from '../icon';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-async function sut(
-  props: Partial<IonAvatarComponent> = {}
-): Promise<HTMLElement> {
-  await render(IonAvatarComponent, {
+async function sut(props: Partial<IonAvatarComponent> = {}): Promise<{
+  fixture: RenderResult<IonAvatarComponent>;
+  element: HTMLElement;
+}> {
+  const fixture = await render(IonAvatarComponent, {
     componentProperties: props,
     providers: [DefaultImageDirective],
     imports: [IonIconComponent],
   });
-  return screen.getByTestId('ion-avatar');
+  const element = fixture.fixture.nativeElement;
+  return {
+    fixture,
+    element,
+  };
 }
 
 describe('Avatar', () => {
   describe('Basics', () => {
-    let component: IonAvatarComponent;
-    let fixture: ComponentFixture<IonAvatarComponent>;
     const sizes: AvatarSize[] = ['lg', 'md', 'sm', 'xs'];
-    it.each(sizes)('should have data-%s size', size => {
-      fixture = TestBed.createComponent(IonAvatarComponent);
-      component = fixture.componentInstance;
-      component.size = size;
-
+    it.each(sizes)('should have data-%s size', async size => {
+      const { fixture, element } = await sut({ size });
       fixture.detectChanges();
-
-      const element = fixture.nativeElement;
       expect(element.getAttribute('data-size')).toBe(`${size}`);
     });
   });
