@@ -109,7 +109,7 @@ $base-lg-size: 4px;
 
   &--inactive {
     &[size='sm'] {
-      @include addShadowAnimation($base-md-size, 'shadowAnimationOut');
+      @include addShadowAnimation($base-sm-size, 'shadowAnimationOut');
     }
 
     &[size='md'] {
@@ -117,7 +117,7 @@ $base-lg-size: 4px;
     }
 
     &[size='lg'] {
-      @include addShadowAnimation($base-md-size, 'shadowAnimationOut');
+      @include addShadowAnimation($base-lg-size, 'shadowAnimationOut');
     }
   }
 
