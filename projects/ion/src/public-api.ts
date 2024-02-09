@@ -11,5 +11,6 @@ export * from './lib/icon';
 export * from './lib/spinner';
 export * from './lib/tab';
 export * from './lib/tag';
+export * from './lib/breadcrumb';
 export * from './lib/tooltip';
 export * from './lib/utils/commonTypes';
