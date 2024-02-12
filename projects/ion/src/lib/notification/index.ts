@@ -1,2 +1,1 @@
-export * from './component/index';
-export * from './service/notification.service';
+export * from './public-api';

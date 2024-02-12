@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 import { IonIconComponent } from '../../icon';
 import { setTimer } from '../../utils/setTimer';
 import { StatusType, statusColor, statusIcon } from '../../utils/statusTypes';
-import { IonNotificationProps } from './types';
+import { IonNotificationProps } from '../types';
 
 @Component({
   standalone: true,

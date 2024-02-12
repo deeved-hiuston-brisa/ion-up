@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 
-import { IonNotificationComponent } from '../lib/notification/component';
+import { IonNotificationComponent } from '../lib/notification';
 import { iconsPaths } from '../public-api';
 
 const meta: Meta<IonNotificationComponent> = {
@@ -14,10 +14,11 @@ const meta: Meta<IonNotificationComponent> = {
   }),
   argTypes: {
     title: {
-      description: 'Rótulo do botão. Obrigatório.',
+      description: 'Título a ser exibido na notificação. Obrigatório.',
     },
     message: {
-      description: 'Rótulo do botão. Obrigatório.',
+      description:
+        'Conteúdo da mensagem apresentada abaixo do título. Obrigatório.',
     },
     type: {
       control: {

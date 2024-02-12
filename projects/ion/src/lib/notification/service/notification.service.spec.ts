@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { fireEvent, screen } from '@testing-library/angular';
+import { IonNotificationConfigOptions } from '..';
 import { StatusType, statusColor } from '../../utils/statusTypes';
-import { IonNotificationConfigOptions } from '../component';
 import { IonNotificationComponent } from '../component/notification.component';
 import { IonNotificationContainerComponent } from './notification.container.component';
 import { IonNotificationService } from './notification.service';

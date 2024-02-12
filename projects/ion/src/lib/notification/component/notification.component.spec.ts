@@ -2,8 +2,8 @@ import { EventEmitter } from '@angular/core';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { SafeAny } from '../../utils/safe-any';
 import { StatusType, statusColor } from '../../utils/statusTypes';
+import { IonNotificationProps } from '../types';
 import { IonNotificationComponent } from './notification.component';
-import { IonNotificationProps } from './types';
 
 const indexChangeMock = jest.fn();
 

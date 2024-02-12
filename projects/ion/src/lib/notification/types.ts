@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
-import { IconType } from '../../icon';
-import { fadeInDirection, fadeOutDirection } from '../../utils/animationsTypes';
-import { StatusType } from '../../utils/statusTypes';
+import { IconType } from '../icon';
+import { fadeInDirection, fadeOutDirection } from '../utils/animationsTypes';
+import { StatusType } from '../utils/statusTypes';
 
 export interface IonNotificationProps extends IonNotificationConfigOptions {
   /**

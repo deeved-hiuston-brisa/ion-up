@@ -8,8 +8,8 @@ import {
   Injector,
 } from '@angular/core';
 import { Subject } from 'rxjs';
+import { IonNotificationConfigOptions } from '..';
 import { StatusType } from '../../utils/statusTypes';
-import { IonNotificationConfigOptions } from '../component';
 import { SafeAny } from './../../utils/safe-any';
 import { IonNotificationComponent } from './../component/notification.component';
 import { IonNotificationContainerComponent } from './notification.container.component';
