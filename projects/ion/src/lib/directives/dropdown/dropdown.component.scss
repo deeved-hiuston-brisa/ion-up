@@ -1,0 +1,34 @@
+@import '@angular/cdk/overlay-prebuilt.css';
+@import '../../../styles/index.scss';
+
+.dropdown-menu {
+  list-style: none;
+  padding: 12px 8px;
+  background-color: $neutral-1;
+  box-shadow:
+    0 8px 6px -4px rgba(0, 0, 0, 0.15),
+    0 0 2px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+
+  width: fit-content;
+  min-width: 182px;
+
+  &-item {
+    cursor: pointer;
+    padding: spacing(1) spacing(2);
+    background-color: $neutral-1;
+    border-radius: 8px;
+    font-family: 'Source Sans Pro', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: $neutral-7;
+
+  }
+
+  &-item:hover{
+    background: $primary-1;
+    color: $primary-4;
+  }
+}

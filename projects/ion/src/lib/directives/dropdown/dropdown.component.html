@@ -1,0 +1,7 @@
+<ul class="dropdown-menu" cdkMenu>
+  @for (item of options; track item.value) {
+    <li class="dropdown-menu-item" cdkMenuItem>{{ item.label }}</li>
+  } @empty {
+    sem dados
+  }
+</ul>

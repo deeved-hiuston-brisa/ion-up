@@ -1,26 +1,21 @@
 import {
-  Component,
   Directive,
   ElementRef,
   HostListener,
   Input,
   OnDestroy,
 } from '@angular/core';
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ConnectedPosition, Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-
-@Component({
-  standalone: true,
-  template: `oieee`,
-  selector: 'ion-test',
-})
-export class DropdownComponent {}
+import { DropdownComponent } from './dropdown.component';
+import { Options } from './types';
 
 @Directive({
   selector: '[ionDropdown]',
   standalone: true,
 })
 export class DropdownDirective implements OnDestroy {
+  @Input({ required: true }) options!: Options[];
   @Input() ionTrigger: 'click' | 'hover' = 'hover';
 
   private overlayRef: OverlayRef | null = null;
@@ -46,34 +41,65 @@ export class DropdownDirective implements OnDestroy {
       !this.overlayRef ? this.createOverlay() : this.destroyOverlay();
     }
   }
-
+  /**
+   * TODO: debounce
+   */
   @HostListener('mouseenter', ['$event'])
   @HostListener('mouseleave', ['$event'])
-  handleHoverLeave() {
+  handleHoverEnterAndLeave() {
     if (this.ionTrigger === 'hover') {
       !this.overlayRef ? this.createOverlay() : this.destroyOverlay();
     }
   }
 
   private createOverlay(): void {
+    const nativeElement = this.elementRef.nativeElement;
     const positionStrategy = this.overlay
       .position()
-      .flexibleConnectedTo(this.elementRef)
+      .flexibleConnectedTo(nativeElement)
       .withPositions([
         {
           originX: 'start',
           originY: 'bottom',
           overlayX: 'start',
           overlayY: 'top',
-        },
-      ]);
+        } as ConnectedPosition,
+        {
+          originX: 'start',
+          originY: 'top',
+          overlayX: 'start',
+          overlayY: 'bottom',
+        } as ConnectedPosition,
+      ])
+      .withDefaultOffsetY(10);
     this.overlayRef = this.overlay.create({
-      backdropClass: 'cdk-overlay-transparent-backdrop',
       hasBackdrop: true,
+      backdropClass: 'cdk-overlay-transparent-backdrop',
+      panelClass: ['drop'],
       positionStrategy: positionStrategy,
     });
-    const component = new ComponentPortal(DropdownComponent);
+    const dropdownComponent = DropdownComponent;
+    dropdownComponent.prototype.options = this.options;
+    const component = new ComponentPortal(dropdownComponent);
     this.overlayRef.attach(component);
+
+    const rect = nativeElement.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (windowHeight - rect.bottom < 200) {
+      console.log('oie');
+      // Se estiver perto da parte inferior, ajuste a posição para abrir para cima
+      positionStrategy.withPositions([
+        {
+          originX: 'start',
+          originY: 'top',
+          overlayX: 'start',
+          overlayY: 'bottom',
+        } as ConnectedPosition,
+      ]);
+      positionStrategy.withDefaultOffsetY(30);
+      this.overlayRef.updatePosition();
+    }
 
     this.overlayRef.backdropClick().subscribe(() => {
       this.destroyOverlay();
