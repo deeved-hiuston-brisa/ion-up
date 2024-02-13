@@ -1,0 +1,26 @@
+<section
+  data-testid="ion-accordion-item"
+  [class.open]="show"
+  [class.close]="!show"
+  tabindex="0">
+  <header (click)="toggle()">
+    <div data-testid="ion-accordion-item__header">
+      @if (templateHeader) {
+        <ng-container
+          [ngTemplateOutlet]="templateHeader"
+          [ngTemplateOutletContext]="generateContext(data)" />
+      }
+    </div>
+    @if (show) {
+      <ion-icon
+        [type]="show ? 'semi-up' : 'semi-down'"
+        [size]="iconSize"></ion-icon>
+    }
+  </header>
+
+  @if (show) {
+    <main data-testid="ion-accordion-item__main">
+      <ng-content></ng-content>
+    </main>
+  }
+</section>
