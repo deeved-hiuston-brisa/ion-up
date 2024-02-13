@@ -14,4 +14,5 @@ export * from './lib/spinner';
 export * from './lib/tab';
 export * from './lib/tag';
 export * from './lib/triple-toggle';
+export * from './lib/avatar';
 export * from './lib/utils/commonTypes';
