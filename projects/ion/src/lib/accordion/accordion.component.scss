@@ -2,35 +2,31 @@
 
 section {
   ::ng-deep ion-accordion-item:first-child {
-    section {
-      header {
+    .ion-accordion-item {
+      .ion-accordion-item__header {
         border-radius: 8px 8px 0 0;
       }
     }
   }
 
   ::ng-deep ion-accordion-item {
-    section {
-      header,
-      main {
+    .ion-accordion-item {
+      .ion-accordion-item__header,
+      .ion-accordion-item__main {
         border: 1px solid $neutral-4;
       }
     }
   }
 
   ::ng-deep ion-accordion-item:last-child {
-    section {
-      header {
+    .ion-accordion-item:not(.ion-accordion-item--open) {
+      .ion-accordion-item__header {
         border-radius: 0 0 8px 8px;
       }
     }
 
-    section.open {
-      header {
-        border-radius: 0;
-      }
-
-      main {
+    .ion-accordion-item--open {
+      .ion-accordion-item__main {
         border-radius: 0 0 8px 8px;
       }
     }

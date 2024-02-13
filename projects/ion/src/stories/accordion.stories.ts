@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 
-import { AccordionItem, IonAccordionComponent } from '../lib/accordion';
+import type { AccordionItem } from '../lib/accordion';
+import { IonAccordionComponent } from '../lib/accordion';
 
 const accordions: AccordionItem[] = [
   {
