@@ -12,5 +12,6 @@ export * from './lib/tab';
 export * from './lib/divider';
 export * from './lib/tag';
 export * from './lib/spinner';
+export * from './lib/avatar';
 export * from './lib/breadcrumb';
 export * from './lib/utils/commonTypes';
