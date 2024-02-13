@@ -20,9 +20,9 @@ import { IonStepsProps, Status, StatusType, Step } from './types';
 })
 export class IonStepsComponent implements OnInit, OnChanges {
   @Input() current: IonStepsProps['current'] = 1;
-  @Input() steps!: IonStepsProps['steps'];
+  @Input({ required: true }) steps!: IonStepsProps['steps'];
   @Input() disabled: IonStepsProps['disabled'] = false;
-  @Input() clickable!: IonStepsProps['clickable'];
+  @Input() clickable: IonStepsProps['clickable'] = false;
   @Output() indexChange: IonStepsProps['indexChange'] =
     new EventEmitter<number>();
 
@@ -31,11 +31,11 @@ export class IonStepsComponent implements OnInit, OnChanges {
 
   public handleClick(index: number | undefined): void {
     if (index && this.clickable && !this.disabled) {
-      this.goesTo(index);
+      this.goToStep(index);
     }
   }
 
-  private goesTo(index: number) {
+  private goToStep(index: number) {
     this.indexChange.emit(index);
     this.changeStep(index);
   }
