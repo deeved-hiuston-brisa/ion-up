@@ -7,14 +7,7 @@
       [class.ion-link--icon-only]="!label || label === ''"
       [attr.disabled]="disabled"
       (click)="onClick()">
-      <ng-container *ngTemplateOutlet="link_label"></ng-container>
-
-      @if (icon) {
-        <ion-icon
-          data-testid="ion-link-icon"
-          [type]="icon"
-          [size]="iconSize"></ion-icon>
-      }
+      <ng-container *ngTemplateOutlet="link_content"></ng-container>
     </button>
   } @else {
     <a
@@ -26,19 +19,12 @@
       [target]="target"
       [href]="link"
       rel="noreferrer">
-      <ng-container *ngTemplateOutlet="link_label"></ng-container>
-
-      @if (icon) {
-        <ion-icon
-          data-testid="ion-link-icon"
-          [type]="icon"
-          [size]="iconSize"></ion-icon>
-      }
+      <ng-container *ngTemplateOutlet="link_content"></ng-container>
     </a>
   }
 </span>
 
-<ng-template #link_label>
+<ng-template #link_content>
   @if (label && label.length) {
     <span
       data-testid="ion-link-label"
@@ -46,5 +32,11 @@
       [ngClass]="'ion-link__label ion-link__label--' + size"
       >{{ label }}
     </span>
+  }
+  @if (icon) {
+    <ion-icon
+      data-testid="ion-link-icon"
+      [type]="icon"
+      [size]="iconSize"></ion-icon>
   }
 </ng-template>
