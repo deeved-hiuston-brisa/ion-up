@@ -14,4 +14,6 @@ export * from './lib/tag';
 export * from './lib/spinner';
 export * from './lib/avatar';
 export * from './lib/breadcrumb';
+export * from './lib/message';
+
 export * from './lib/utils/commonTypes';
