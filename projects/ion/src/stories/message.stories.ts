@@ -27,7 +27,7 @@ const meta: Meta<IonMessageComponent> = {
       ],
       control: { type: 'select' },
       description:
-        'O parâmetro `type` indica o tipo da mensagem, podendo ser `positive`, `negative alert`, `negative error`, `warning`, `info`, `custom`',
+        'O parâmetro `type` indica o tipo da mensagem, podendo ser `positive`, `negative_alert`, `negative_error`, `warning`, `info`, `custom`',
     },
     iconType: {
       description:
