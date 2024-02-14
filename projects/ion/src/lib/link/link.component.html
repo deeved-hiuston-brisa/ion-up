@@ -7,7 +7,7 @@
       [class.ion-link--icon-only]="!label || label === ''"
       [attr.disabled]="disabled"
       (click)="onClick()">
-      <ng-container *ngTemplateOutlet="link_content"></ng-container>
+      <ng-template *ngTemplateOutlet="link_content"></ng-template>
     </button>
   } @else {
     <a
@@ -19,7 +19,7 @@
       [target]="target"
       [href]="link"
       rel="noreferrer">
-      <ng-container *ngTemplateOutlet="link_content"></ng-container>
+      <ng-template *ngTemplateOutlet="link_content"></ng-template>
     </a>
   }
 </span>
