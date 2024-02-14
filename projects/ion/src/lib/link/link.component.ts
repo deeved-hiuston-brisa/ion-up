@@ -19,13 +19,13 @@ import { IonLinkProps } from './types';
   styleUrls: ['./link.component.scss'],
 })
 export class IonLinkComponent implements OnChanges {
-  @Input() label?: IonLinkProps['label'] = '';
+  @Input() label: IonLinkProps['label'] = '';
   @Input() icon?: IonLinkProps['icon'];
-  @Input() iconSide?: IonLinkProps['iconSide'] = 'right';
-  @Input() size?: IonLinkProps['size'] = 'sm';
-  @Input() bold?: IonLinkProps['bold'] = false;
-  @Input() disabled?: IonLinkProps['disabled'] = false;
-  @Input() target?: IonLinkProps['target'] = '_self';
+  @Input() iconSide: IonLinkProps['iconSide'] = 'right';
+  @Input() size: IonLinkProps['size'] = 'sm';
+  @Input() bold: IonLinkProps['bold'] = false;
+  @Input() disabled: IonLinkProps['disabled'] = false;
+  @Input() target: IonLinkProps['target'] = '_self';
   @Input() link?: IonLinkProps['link'];
   @Output() ionOnClick: IonLinkProps['ionOnClick'] = new EventEmitter<void>();
 
@@ -44,8 +44,8 @@ export class IonLinkComponent implements OnChanges {
       md: 24,
     };
 
-    if (changes['size']) {
-      this.iconSize = sizeControls[this.size!];
+    if (changes['size'] && this.size) {
+      this.iconSize = sizeControls[this.size];
     }
   }
 }
