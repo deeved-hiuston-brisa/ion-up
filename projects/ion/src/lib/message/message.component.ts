@@ -21,10 +21,10 @@ const icontypes = {
 export class IonMessageComponent implements OnInit {
   @Input() label!: IonMessageProps['label'];
   @Input() type?: IonMessageProps['type'] = 'positive';
-  @Input() icon?: IonMessageProps['iconType'];
+  @Input() iconType?: IonMessageProps['iconType'];
 
   setIcon(): void {
-    this.icon = icontypes[this.type as keyof typeof icontypes];
+    this.iconType = icontypes[this.type as keyof typeof icontypes];
   }
 
   ngOnInit(): void {

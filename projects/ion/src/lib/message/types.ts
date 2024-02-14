@@ -16,7 +16,7 @@ export interface IonMessageProps {
   label: string;
   /**
    * @description The `type` parameter represents the message type that will be displayed. Can be 'positive', 'negative_alert', 'negative_error', 'warning', 'info' or 'custom'.
-   * @type {string}
+   * @type {MessageStatusType}
    * @default 'positive'
    */
   type?: MessageStatusType;

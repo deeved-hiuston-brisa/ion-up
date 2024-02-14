@@ -29,9 +29,10 @@ const meta: Meta<IonMessageComponent> = {
       description:
         'O parâmetro `type` indica o tipo da mensagem, podendo ser `positive`, `negative alert`, `negative error`, `warning`, `info`, `custom`',
     },
-    icon: {
+    iconType: {
       description:
-        'Recebe um objeto que configura o ícone associado ao botão. `type` define o tipo de ícone a ser rederizado. `rightPosition` indica se o ícone deve ser renderizado a direita da label.',
+        'O parâmetro `iconType` indica o ícone que será mostrado. O tipo da mensagem já define o ícone que será mostrado.',
+      control: 'text',
     },
   },
 };
