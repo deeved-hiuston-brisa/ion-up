@@ -21,9 +21,9 @@ import { IonTabGroupProps, TabInGroup } from './types';
 })
 export class IonTabGroupComponent implements OnInit, OnChanges {
   @Input() tabs!: IonTabGroupProps['tabs'];
-  @Input() direction?: IonTabGroupProps['direction'] = 'horizontal';
-  @Input() border?: IonTabGroupProps['border'] = 'bottom';
-  @Input() size?: IonTabGroupProps['size'] = 'sm';
+  @Input() direction: IonTabGroupProps['direction'] = 'horizontal';
+  @Input() border: IonTabGroupProps['border'] = 'bottom';
+  @Input() size: IonTabGroupProps['size'] = 'sm';
   @Output() selected: IonTabGroupProps['selected'] =
     new EventEmitter<TabInGroup>();
 
@@ -83,9 +83,12 @@ export class IonTabGroupComponent implements OnInit, OnChanges {
   private isBorderDirectionCorrect(
     direction: IonTabGroupProps['direction']
   ): boolean {
+    if (!this.border) {
+      return false;
+    }
     const directions = {
-      horizontal: this.border === 'top' || this.border === 'bottom',
-      vertical: this.border === 'left' || this.border === 'right',
+      horizontal: ['top', 'bottom'].includes(this.border),
+      vertical: ['left', 'right'].includes(this.border),
     };
 
     return directions[direction];

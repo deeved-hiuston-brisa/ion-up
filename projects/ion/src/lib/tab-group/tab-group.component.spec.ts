@@ -38,8 +38,8 @@ const sut = async (
 
 describe('IonTabGroupComponent', () => {
   it('should render component in horizontal by default', async () => {
-    const rendered = await sut();
-    expect(rendered.element).not.toHaveClass('ion-tab-group__column-inner');
+    const { element } = await sut();
+    expect(element).not.toHaveClass('ion-tab-group__column-inner');
     expect(getTab()).toHaveAttribute('data-direction', 'bottom');
   });
 
@@ -49,22 +49,20 @@ describe('IonTabGroupComponent', () => {
   });
 
   it('should render component in vertical', async () => {
-    const rendered = await sut({
+    const { element } = await sut({
       direction: 'vertical',
       tabs: mockTabs,
       selected: {
         emit: selectEvent,
       } as SafeAny,
     });
-    expect(rendered.element.childNodes[0]).toHaveClass(
-      'ion-tab-group__column-inner'
-    );
+    expect(element.childNodes[0]).toHaveClass('ion-tab-group__column-inner');
   });
 
   it('should emit tab selected when clicked', async () => {
-    const rendered = await sut();
+    const { event } = await sut();
     fireEvent.click(screen.getByText(mockTabs[0].label));
-    expect(rendered.event).toHaveBeenCalledWith({
+    expect(event).toHaveBeenCalledWith({
       label: mockTabs[0].label,
       selected: true,
     });
@@ -109,10 +107,10 @@ describe('IonTabGroupComponent', () => {
   );
 
   it('should emit selected tab when double clicked', async () => {
-    const rendered = await sut();
+    const { event } = await sut();
     fireEvent.click(screen.getByText(mockTabs[1].label));
     fireEvent.click(screen.getByText(mockTabs[1].label));
-    expect(rendered.event).toHaveBeenCalledWith({
+    expect(event).toHaveBeenCalledWith({
       label: mockTabs[1].label,
       selected: true,
     });
