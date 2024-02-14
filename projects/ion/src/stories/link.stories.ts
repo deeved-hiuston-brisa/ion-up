@@ -17,14 +17,14 @@ const meta: Meta<IonLinkComponent> = {
       control: {
         type: 'text',
       },
-      description: 'Link label.',
+      description: 'Rótulo do link.',
     },
     icon: {
       control: {
         type: 'select',
       },
       options: [...Object.keys(iconsPaths)],
-      description: 'Link icon.',
+      description: 'Ícone do link.',
     },
     iconSide: {
       control: {
@@ -32,7 +32,7 @@ const meta: Meta<IonLinkComponent> = {
       },
       options: ['left', 'right'],
       defaultValue: { summary: 'right' },
-      description: 'Link icon side. Can be `left` or `right`.',
+      description: 'Lado do ícone do link. Pode ser `left` ou `right`.',
     },
     size: {
       control: {
@@ -40,21 +40,21 @@ const meta: Meta<IonLinkComponent> = {
       },
       options: ['sm', 'md'],
       defaultValue: { summary: 'sm' },
-      description: 'Link size. Can be `sm` or `md`.',
+      description: 'Tamanho do link. Pode ser `sm` ou `md`.',
     },
     bold: {
       control: {
         type: 'boolean',
       },
       defaultValue: { summary: false },
-      description: 'Link bold font.',
+      description: 'Fonte em negrito do link.',
     },
     disabled: {
       control: {
         type: 'boolean',
       },
       defaultValue: { summary: false },
-      description: 'Link disabled.',
+      description: 'Link desativado.',
     },
     target: {
       control: {
@@ -63,13 +63,13 @@ const meta: Meta<IonLinkComponent> = {
       defaultValue: { summary: '_self' },
       options: ['_blank', '_self', '_parent', '_top'],
       description:
-        'Link target. Can be `_blank`, `_self`, `_parent` or `_top`.',
+        'Target do link. Pode ser `_blank`, `_self`, `_parent` ou `_top`.',
     },
     link: {
       control: {
         type: 'text',
       },
-      description: 'Link URL.',
+      description: 'URL do link.',
     },
   },
 };
