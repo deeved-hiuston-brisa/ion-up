@@ -81,9 +81,7 @@ describe('IonLinkComponent', () => {
       label: customLabel,
     });
 
-    const linkComponent = getLinkComponentRef();
-
-    expect(linkComponent).toHaveAttribute('disabled', 'false');
+    expect(getLinkComponentRef()).toHaveAttribute('disabled', 'false');
   });
 
   it('should be disabled when informed', async () => {
