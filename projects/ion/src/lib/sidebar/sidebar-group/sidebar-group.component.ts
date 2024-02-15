@@ -6,8 +6,8 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { IconType, IonIconComponent } from '../../icon';
-import { SidebarItem } from '../types';
+import { IonIconComponent } from '../../icon';
+import { SidebarGroup } from '../types';
 import { selectItemByIndex, unselectAllItems } from '../utils';
 import { CommonModule } from '@angular/common';
 import { IonSidebarItemComponent } from '../public-api';
@@ -20,11 +20,11 @@ import { IonSidebarItemComponent } from '../public-api';
   styleUrls: ['./sidebar-group.component.scss'],
 })
 export class IonSidebarGroupComponent implements OnChanges {
-  @Input() title = '';
-  @Input() icon!: IconType;
-  @Input() items: SidebarItem[] = [];
-  @Input() selected = false;
-  @Input() haveGroupAction = false;
+  @Input() title: SidebarGroup['title'] = '';
+  @Input({ required: true }) icon!: SidebarGroup['icon'];
+  @Input() items: SidebarGroup['items'] = [];
+  @Input() selected: SidebarGroup['selected'] = false;
+  @Input() haveGroupAction: SidebarGroup['haveGroupAction'] = false;
   @Output() ionOnClick = new EventEmitter();
   @Output() ionOnGroupClick = new EventEmitter();
 
