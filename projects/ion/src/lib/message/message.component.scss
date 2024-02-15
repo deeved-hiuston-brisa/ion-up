@@ -22,25 +22,26 @@
   border-radius: 8px;
   padding: spacing(1) spacing(2);
   cursor: pointer;
-
-  &.custom {
+}
+:host {
+  &[data-type='custom'] {
     @include icons-details($neutral-6);
   }
 
-  &.positive {
+  &[data-type='positive'] {
     @include icons-details($positive-6);
   }
 
-  &.negative_alert,
-  &.negative_error {
+  &[data-type='negative_alert'],
+  &[data-type='negative_error'] {
     @include icons-details($negative-6);
   }
 
-  &.warning {
+  &[data-type='warning'] {
     @include icons-details($warning-6);
   }
 
-  &.info {
+  &[data-type='info'] {
     @include icons-details($info-6);
   }
 }

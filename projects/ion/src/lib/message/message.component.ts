@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { IonMessageProps } from './types';
 import { IonIconComponent } from '../icon';
 
@@ -20,7 +20,9 @@ const icontypes = {
 })
 export class IonMessageComponent implements OnInit {
   @Input() label!: IonMessageProps['label'];
-  @Input() type?: IonMessageProps['type'] = 'positive';
+  @HostBinding('[attr.data-type]')
+  @Input()
+  type?: IonMessageProps['type'] = 'positive';
   @Input() iconType?: IonMessageProps['iconType'];
 
   setIcon(): void {
