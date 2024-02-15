@@ -4,7 +4,9 @@
   data-testid="ion-button-sandwich"
   [icon]="{ type: 'sandwich', rightPosition: true }"
   size="lg"
-  type="ghost">
+  type="ghost"
+  shape="rounded">
+  >
 </ion-button>
 
 <div
@@ -41,6 +43,7 @@
     <ion-button
       label="Sair"
       type="ghost"
+      size="md"
       [icon]="{ type: 'out', rightPosition: true }"
       (ionOnClick)="logout()">
     </ion-button>

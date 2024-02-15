@@ -7,7 +7,7 @@
   margin-top: 16px;
   padding: spacing(3) 0px;
   max-height: 400px;
-  width: 290px;
+  width: 280px;
   background-color: $neutral-1;
   box-shadow:
     0px 8px 6px -4px rgba(0, 0, 0, 0.15),
@@ -31,18 +31,28 @@
 
   &--opened {
     opacity: 1;
+
     transform: translateX(0px) translateY(0px) translateZ(0px);
     transition: 500ms ease 0s;
   }
 
   &__footer {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    color: $neutral-7;
-    font-size: 14px;
 
-    span {
-      margin-left: spacing(1);
+    margin-top: spacing(3);
+    padding: 0px spacing(2);
+
+    div {
+      display: flex;
+      align-items: center;
+      color: $neutral-7;
+      font-size: 14px;
+
+      span {
+        margin-left: spacing(1);
+      }
     }
   }
 }
