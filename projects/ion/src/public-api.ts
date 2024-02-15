@@ -10,6 +10,7 @@ export * from './lib/icon';
 export * from './lib/no-data';
 export * from './lib/tab';
 export * from './lib/divider';
+export * from './lib/link';
 export * from './lib/tag';
 export * from './lib/spinner';
 export * from './lib/switch';
