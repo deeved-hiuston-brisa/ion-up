@@ -40,7 +40,7 @@
   }
 }
 
-button {
+button.ion-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,7 +92,7 @@ button {
     }
   }
 
-  &.ion-btn-loading {
+  &--loading {
     cursor: progress;
 
     @keyframes spin {
@@ -101,7 +101,7 @@ button {
       }
     }
 
-    .ion-btn-loading__spinner {
+    .ion-btn__loading-spinner {
       border: 2px solid transparent;
       border-left-color: $primary-6;
       border-radius: 50%;
@@ -110,36 +110,36 @@ button {
       animation: spin 1s linear infinite;
     }
 
-    &.ion-btn-primary,
-    &.ion-btn-primary.ion-btn-danger {
-      .ion-btn-loading__spinner {
+    &.ion-btn--primary,
+    &.ion-btn--primary.ion-btn--danger {
+      .ion-btn__loading-spinner {
         border-left-color: $neutral-1;
       }
     }
 
-    &.ion-btn-danger {
-      .ion-btn-loading__spinner {
+    &.ion-btn--danger {
+      .ion-btn__loading-spinner {
         border-left-color: $negative-6;
       }
     }
 
-    &.ion-btn-sm {
-      .ion-btn-loading__spinner {
+    &.ion-btn--sm {
+      .ion-btn__loading-spinner {
         width: 10px;
         height: 10px;
       }
     }
 
-    &.ion-btn-lg,
-    &.ion-btn-xl {
-      .ion-btn-loading__spinner {
+    &.ion-btn--lg,
+    &.ion-btn--xl {
+      .ion-btn__loading-spinner {
         width: 18px;
         height: 18px;
       }
     }
   }
 
-  &.ion-btn-danger {
+  &--danger {
     @include set-colors($negative-6, $neutral-1);
 
     &:hover {
@@ -151,7 +151,7 @@ button {
     }
   }
 
-  &.ion-btn-secondary {
+  &--secondary {
     @include set-colors($neutral-1, $primary-6);
     border: 1px solid $primary-4;
 
@@ -169,7 +169,7 @@ button {
       border-color: $neutral-5;
     }
 
-    &.ion-btn-danger {
+    &.ion-btn--danger {
       @include set-colors(transparent, $negative-6);
       border-color: $neutral-4;
 
@@ -184,7 +184,7 @@ button {
     }
   }
 
-  &.ion-btn-ghost {
+  &--ghost {
     @include set-colors(transparent, $primary-6);
     border: 1px solid transparent;
 
@@ -201,7 +201,7 @@ button {
       @include set-colors(transparent, $neutral-5);
     }
 
-    &.ion-btn-danger {
+    &.ion-btn--danger {
       @include set-colors(transparent, $negative-6);
 
       &:hover {
@@ -214,7 +214,7 @@ button {
     }
   }
 
-  &.ion-btn-dashed {
+  &--dashed {
     @include set-colors(transparent, $primary-color);
     border: 1px solid $neutral-4;
     border-style: dashed;
@@ -236,7 +236,7 @@ button {
       border-color: $neutral-5;
     }
 
-    &.ion-btn-danger {
+    &.ion-btn--danger {
       @include set-colors(transparent, $negative-6);
 
       &:hover {
@@ -251,64 +251,64 @@ button {
     }
   }
 
-  &.ion-btn-sm {
+  &--sm {
     @include button-parameters(24px, spacing(0.5), spacing(1.5), 12px, 16px);
     @include set-icon-size(12px);
 
-    &.ion-btn-rounded,
-    &.ion-btn-circle {
+    &.ion-btn--rounded,
+    &.ion-btn--circle {
       height: 24px;
       width: 24px;
       padding: spacing(0.5) spacing(1.5);
     }
   }
 
-  &.ion-btn-md {
+  &--md {
     @include button-parameters(32px, 6px, 16px, 14px, 20px);
     @include set-icon-size(16px);
 
-    &.ion-btn-rounded,
-    &.ion-btn-circle {
+    &.ion-btn--rounded,
+    &.ion-btn--circle {
       height: 32px;
       width: 32px;
       padding: 0 spacing(2);
     }
   }
 
-  &.ion-btn-lg {
+  &--lg {
     @include button-parameters(40px, 8px, 20px, 16px, 24px);
     @include set-icon-size(18px);
 
-    &.ion-btn-rounded,
-    &.ion-btn-circle {
+    &.ion-btn--rounded,
+    &.ion-btn--circle {
       height: 40px;
       width: 40px;
       padding: 0 spacing(2.5);
     }
   }
 
-  &.ion-btn-xl {
+  &--xl {
     @include button-parameters(48px, 12px, 24px, 16px, 24px);
     @include set-icon-size(18px);
 
-    &.ion-btn-rounded,
-    &.ion-btn-circle {
+    &.ion-btn--rounded,
+    &.ion-btn--circle {
       height: 48px;
       width: 48px;
       padding: 0 spacing(3);
     }
   }
 
-  &.ion-btn-inverter {
+  &--inverter {
     flex-direction: row-reverse;
   }
 
-  &.ion-btn-circle {
+  &--circle {
     border-radius: 50%;
   }
 
-  &.ion-btn-loading.ion-btn-circle,
-  &.ion-btn-loading.ion-btn-rounded {
+  &--loading.ion-btn--circle,
+  &--loading.ion-btn--rounded {
     padding: 0;
   }
 }
