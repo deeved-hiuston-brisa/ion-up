@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { render, screen } from '@testing-library/angular';
+import { RenderResult, render, screen } from '@testing-library/angular';
 
 import { IonMessageComponent } from './message.component';
 import { IonMessageProps, MessageStatusType } from './types';
@@ -25,13 +25,19 @@ export const icontypes = [
 
 const sut = async (
   customProps: IonMessageProps = defaultValue
-): Promise<HTMLElement> => {
-  await render(IonMessageComponent, {
+): Promise<{
+  fixture: RenderResult<IonMessageComponent>;
+  element: HTMLElement;
+}> => {
+  const fixture = await render(IonMessageComponent, {
     componentProperties: customProps,
     imports: [CommonModule, IonIconComponent],
   });
-
-  return screen.findByTestId(messageIDs.message);
+  const element = fixture.fixture.nativeElement as HTMLElement;
+  return {
+    fixture,
+    element,
+  };
 };
 
 describe('MessageComponent', () => {
@@ -50,10 +56,11 @@ describe('MessageComponent', () => {
 
 describe('', () => {
   it.each(icontypes)('should render %s type', async (type: string) => {
-    const element = await sut({
+    const { fixture, element } = await sut({
       ...defaultValue,
       type: type as MessageStatusType,
     });
-    expect(element).toHaveClass(type);
+    fixture.detectChanges();
+    expect(element.getAttribute('data-type')).toBe(`${type}`);
   });
 });
