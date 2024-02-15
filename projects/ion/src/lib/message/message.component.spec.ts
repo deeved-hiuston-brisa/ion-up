@@ -9,11 +9,6 @@ const defaultValue: IonMessageProps = {
   label: 'Message',
 };
 
-const messageIDs = {
-  message: 'ion-message',
-  iconStatus: 'message-ion',
-};
-
 export const icontypes = [
   'custom',
   'positive',
