@@ -1,16 +1,43 @@
 <ion-button
-  type="ghost"
+  (mouseenter)="openMenu()"
+  (mouseleave)="dismissMenu()"
+  data-testid="ion-button-sandwich"
   [icon]="{ type: 'sandwich', rightPosition: true }"
-  size="lg">
+  size="lg"
+  type="ghost">
 </ion-button>
 
 <div
-  class="ion-menu"
-  [class.ion-menu--open]="open"
+  class="ion-menu-container"
+  [class.ion-menu-container--opened]="open"
   (mouseenter)="openMenu()"
-  (mouseleave)="dismissMenu()">
-  <header class="ion-menu__header"></header>
-  <div class="ion-menu__footer">
+  (mouseleave)="dismissMenu()"
+  data-testid="ion-menu-container">
+  @if (logo) {
+    <header class="ion-menu__header">
+      <img [src]="logo.src" alt="logo.alt" />
+    </header>
+  }
+  <div class="ion-menu-container__footer">
+    <div>
+      @if (profile.imageUrl) {
+        <ion-avatar
+          data-testid="avatarPhoto"
+          type="photo"
+          [image]="profile.imageUrl"
+          size="md">
+        </ion-avatar>
+      } @else {
+        <ion-avatar
+          data-testid="avatarPhoto"
+          type="initials"
+          [value]="profile.name"
+          size="md">
+        </ion-avatar>
+      }
+
+      <span>{{ profile.name }}</span>
+    </div>
     <ion-button
       label="Sair"
       type="ghost"

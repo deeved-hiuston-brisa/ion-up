@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 
 import { IonSimpleMenuComponent } from '../lib/simple-menu';
-import { IonButtonComponent } from '../public-api';
+import { IonAvatarComponent, IonButtonComponent } from '../public-api';
 
 const meta: Meta<IonSimpleMenuComponent> = {
   title: 'Ion/Data Display/Simple Menu',
@@ -10,7 +10,7 @@ const meta: Meta<IonSimpleMenuComponent> = {
   render: (args: IonSimpleMenuComponent) => ({
     props: { ...args },
     moduleMetadata: {
-      imports: [IonButtonComponent],
+      imports: [IonButtonComponent, IonAvatarComponent],
     },
   }),
   argTypes: {
@@ -36,7 +36,7 @@ export const Default: Story = {
     ],
     profile: {
       imageUrl:
-        '"https://ovicio.com.br/wp-content/uploads/2022/01/20220123-rocket-raccoon-guardians-of-the-galaxy.jpeg"',
+        'https://ovicio.com.br/wp-content/uploads/2022/01/20220123-rocket-raccoon-guardians-of-the-galaxy.jpeg',
       name: 'User Name',
     },
   },
