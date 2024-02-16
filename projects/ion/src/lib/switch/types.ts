@@ -1,7 +1,6 @@
 import { EventEmitter } from '@angular/core';
 
 /**
-import { IonSwitchComponent } from './switch.component';
  * @typedef {'sm' | 'md' | 'lg'} SwitchSize Size of the switch
  */
 export type SwitchSize = 'sm' | 'md' | 'lg';
