@@ -22,7 +22,7 @@ import { IonInputDirective } from '../input.directive';
 export class inputMockComponent {
   @Input() value: string = '';
   @Input() type: string = 'text';
-  @Input() invalid: boolean = true;
+  @Input() invalid: boolean = false;
   @Input() placeholder: string = '';
   @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
