@@ -18,3 +18,4 @@ export * from './lib/breadcrumb';
 export * from './lib/message';
 
 export * from './lib/utils/commonTypes';
+export * from './lib/sidebar';
