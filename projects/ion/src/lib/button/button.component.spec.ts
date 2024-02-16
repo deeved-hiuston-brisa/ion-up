@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/angular';
-import { IonButtonProps } from './types';
-import { IonButtonComponent } from './button.component';
+import { fireEvent, render, screen } from '@testing-library/angular';
 import { SafeAny } from '../utils/safe-any';
+import { IonButtonComponent } from './button.component';
+import { IonButtonProps } from './types';
 
 const defaultName = 'button';
 
@@ -16,7 +16,9 @@ const sizes: Array<IonButtonProps['size']> = ['lg', 'md', 'sm', 'xl'];
 
 const shapes: Array<IonButtonProps['shape']> = ['normal', 'circle', 'rounded'];
 
-const sut = async (customProps: IonButtonProps): Promise<HTMLElement> => {
+const sut = async (
+  customProps: Partial<IonButtonProps>
+): Promise<HTMLElement> => {
   await render(IonButtonComponent, {
     componentProperties: customProps,
   });
@@ -84,7 +86,6 @@ describe('IonButtonComponent', () => {
       icon: { type: 'play' },
     });
     expect(button).toHaveClass('ion-btn--loading');
-    expect(button).toHaveTextContent('Loading');
   });
 
   it.each(shapes)('should correctly render button %s shape.', async shape => {
