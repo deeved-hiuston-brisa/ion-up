@@ -33,7 +33,7 @@ describe('SkeletonComponent', () => {
     expect(screen.getByTestId('ion-skeleton')).toHaveClass('ion-skeleton');
   });
 
-  it('should render rectaguular skeleton', async () => {
+  it('should render rectagular skeleton', async () => {
     await sut(rectangularProps);
     expect(screen.getByTestId('ion-skeleton')).toHaveStyle(
       'width: 400px; height: 100px;'
@@ -47,7 +47,7 @@ describe('SkeletonComponent', () => {
     );
   });
 
-  it('should accept custom border raius', async () => {
+  it('should accept custom border radius', async () => {
     await sut({
       variant: 'rect',
       width: 50,
