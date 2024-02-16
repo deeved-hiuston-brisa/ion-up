@@ -9,7 +9,7 @@ const defaultValue: IonMessageProps = {
   label: 'Message',
 };
 
-export const icontypes = [
+export const icontypes: MessageStatusType[] = [
   'custom',
   'positive',
   'negative_alert',
@@ -52,10 +52,10 @@ describe('MessageComponent', () => {
 });
 
 describe('', () => {
-  it.each(icontypes)('should render %s type', async (type: string) => {
+  it.each(icontypes)('should render %s type', async type => {
     const { fixture, element } = await sut({
       ...defaultValue,
-      type: type as MessageStatusType,
+      type: type,
     });
     fixture.detectChanges();
     expect(element.getAttribute('data-type')).toBe(`${type}`);
