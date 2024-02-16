@@ -4,6 +4,7 @@ import { RenderResult, render, screen } from '@testing-library/angular';
 import { IonMessageComponent } from './message.component';
 import { IonMessageProps, MessageStatusType } from './types';
 import { IonIconComponent } from '../icon';
+import { ComponentFixture } from '@angular/core/testing';
 
 const defaultValue: IonMessageProps = {
   label: 'Message',
@@ -36,15 +37,17 @@ const sut = async (
 };
 
 describe('MessageComponent', () => {
-  beforeEach(async () => {
-    await sut();
-  });
-
   it('should render woth default positive class', async () => {
-    expect(screen.getByTestId('ion-message')).toHaveClass('positive');
+    const { fixture, element } = await sut({
+      ...defaultValue,
+      type: 'positive',
+    });
+    fixture.detectChanges();
+    expect(element.getAttribute('data-type')).toBe('positive');
   });
 
   it('should have a message', async () => {
+    await sut();
     expect(screen.getAllByText(defaultValue.label)).toHaveLength(1);
   });
 });
