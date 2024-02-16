@@ -1,26 +1,27 @@
 import { render, screen } from '@testing-library/angular';
 
 import { IonSkeletonComponent } from './skeleton.component';
+import { IonSkeletonProps } from './types';
 
-const defaultProps = {
+const defaultProps: IonSkeletonProps = {
   variant: 'rect',
   width: 50,
   height: 50,
-} as IonSkeletonComponent;
+};
 
-const rectangularProps = {
+const rectangularProps: IonSkeletonProps = {
   variant: 'rect',
   width: 400,
   height: 100,
-} as IonSkeletonComponent;
+};
 
-const circularProps = {
+const circularProps: IonSkeletonProps = {
   variant: 'circular',
   width: 50,
   height: 50,
-} as IonSkeletonComponent;
+};
 
-const sut = async (customProps: IonSkeletonComponent): Promise<HTMLElement> => {
+const sut = async (customProps: IonSkeletonProps): Promise<HTMLElement> => {
   await render(IonSkeletonComponent, {
     componentProperties: customProps,
   });

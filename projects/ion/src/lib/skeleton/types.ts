@@ -2,7 +2,7 @@ export type SkeletonVariants = 'rect' | 'circular';
 
 export interface IonSkeletonProps {
   /**
-   * @descriiption The `variant` paramenter is used to define the shape of the skeleton.
+   * @description The `variant` parameter is used to define the shape of the skeleton.
    * @type {SkeletonVariants}
    */
   variant: SkeletonVariants;
@@ -12,6 +12,7 @@ export interface IonSkeletonProps {
    * @type {number}
    */
   radius?: number;
+
   /**
    * @description The `height` parameter is used to define the height of the skeleton.
    * @type {number}
