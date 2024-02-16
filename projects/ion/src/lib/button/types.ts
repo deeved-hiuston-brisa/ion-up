@@ -96,7 +96,7 @@ export interface IonButtonProps {
    * @type {EventEmitter<null>}
    * @description This event is emitted when the button is clicked. The issuance does not include additional data. No event will be fired when the `loading` and `disabled` properties are set to `true`.
    * @example
-   * <ion-button (ionOnClik) = "yourFunction()"/>
+   * <ion-button (ionOnClick) = "yourFunction()"/>
    */
-  ionOnClick?: EventEmitter<null>;
+  ionOnClick: EventEmitter<null>;
 }

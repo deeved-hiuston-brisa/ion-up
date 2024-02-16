@@ -17,3 +17,4 @@ export * from './lib/switch';
 export * from './lib/avatar';
 export * from './lib/breadcrumb';
 export * from './lib/utils/commonTypes';
+export * from './lib/sidebar';
