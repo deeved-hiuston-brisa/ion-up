@@ -9,7 +9,7 @@ const defaultValue: IonMessageProps = {
   label: 'Message',
 };
 
-export const icontypes: MessageStatusType[] = [
+export const iconTypes: MessageStatusType[] = [
   'custom',
   'positive',
   'negative_alert',
@@ -51,8 +51,8 @@ describe('MessageComponent', () => {
   });
 });
 
-describe('', () => {
-  it.each(icontypes)('should render %s type', async type => {
+describe('IonMessageComponent / Types', () => {
+  it.each(iconTypes)('should render %s type', async type => {
     const { fixture, element } = await sut({
       ...defaultValue,
       type: type,

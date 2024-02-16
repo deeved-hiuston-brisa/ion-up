@@ -10,7 +10,7 @@ export type MessageStatusType =
 
 export interface IonMessageProps {
   /**
-   * @description The `label` parammeter represents the message that will be displayed.
+   * @description The `label` parameter represents the message that will be displayed.
    * @type {string}
    */
   label: string;

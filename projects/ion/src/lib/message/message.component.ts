@@ -1,8 +1,9 @@
 import { Component, HostBinding, Input, OnInit } from '@angular/core';
-import { IonMessageProps } from './types';
-import { IonIconComponent } from '../icon';
 
-const icontypes = {
+import { IonIconComponent } from '../icon';
+import { IonMessageProps } from './types';
+
+const iconTypes = {
   positive: 'check-solid',
   negative_alert: 'exclamation-solid',
   negative_error: 'close-solid',
@@ -22,11 +23,11 @@ export class IonMessageComponent implements OnInit {
   @Input() label!: IonMessageProps['label'];
   @HostBinding('[attr.data-type]')
   @Input()
-  type?: IonMessageProps['type'] = 'positive';
+  type: IonMessageProps['type'] = 'positive';
   @Input() iconType?: IonMessageProps['iconType'];
 
   setIcon(): void {
-    this.iconType = icontypes[this.type as keyof typeof icontypes];
+    this.iconType = iconTypes[this.type as keyof typeof iconTypes];
   }
 
   ngOnInit(): void {
