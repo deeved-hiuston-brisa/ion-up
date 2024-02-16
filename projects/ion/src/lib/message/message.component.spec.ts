@@ -4,7 +4,6 @@ import { RenderResult, render, screen } from '@testing-library/angular';
 import { IonMessageComponent } from './message.component';
 import { IonMessageProps, MessageStatusType } from './types';
 import { IonIconComponent } from '../icon';
-import { ComponentFixture } from '@angular/core/testing';
 
 const defaultValue: IonMessageProps = {
   label: 'Message',
