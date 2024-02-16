@@ -54,7 +54,7 @@ describe('SkeletonComponent', () => {
       width: 50,
       height: 50,
       radius: 12,
-    } as IonSkeletonComponent);
+    });
     expect(screen.getByTestId('ion-skeleton')).toHaveStyle(
       'border-radius: 12px'
     );
