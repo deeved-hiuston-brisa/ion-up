@@ -6,26 +6,11 @@ import { IonInputDirective } from '../input.directive';
 
 @Component({
   standalone: true,
-  template: `<input
-    ionInput
-    [type]="type"
-    [(ngModel)]="value"
-    [invalid]="invalid"
-    [placeholder]="placeholder"
-    [readonly]="readonly"
-    [maxlength]="maxlength"
-    [minlength]="minlength"
-    [disabled]="disabled" />`,
+  template: `<input ionInput [disabled]="disabled" [invalid]="invalid" />`,
   imports: [CommonModule, IonInputDirective, FormsModule],
   styleUrls: ['../../colors/index.scss'],
 })
 export class inputMockComponent {
-  @Input() value: string = '';
-  @Input() type: string = 'text';
   @Input() invalid: boolean = false;
-  @Input() placeholder: string = '';
   @Input() disabled: boolean = false;
-  @Input() readonly: boolean = false;
-  @Input() maxlength: number = 100;
-  @Input() minlength: number = 0;
 }

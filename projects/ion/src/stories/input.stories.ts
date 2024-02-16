@@ -5,10 +5,10 @@ import type { Meta, StoryObj } from '@storybook/angular';
 const meta: Meta<inputMockComponent> = {
   title: 'Ion/Data Entry/Input',
   component: inputMockComponent,
-  tags: ['autodocs'],
   render: (args: inputMockComponent) => ({
-    props: args,
+    props: { ...args },
   }),
+  tags: ['autodocs'],
   argTypes: {
     invalid: {
       control: {
