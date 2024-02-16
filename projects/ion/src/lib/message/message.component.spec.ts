@@ -36,7 +36,7 @@ const sut = async (
 };
 
 describe('MessageComponent', () => {
-  it('should render woth default positive class', async () => {
+  it('should render the positive type as default', async () => {
     const { fixture, element } = await sut({
       ...defaultValue,
       type: 'positive',
