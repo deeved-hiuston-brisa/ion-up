@@ -10,7 +10,7 @@ import { IonInputDirective } from '../input.directive';
     ionInput
     [type]="type"
     [(ngModel)]="value"
-    [invalid]="false"
+    [invalid]="invalid"
     [placeholder]="placeholder"
     [readonly]="readonly"
     [maxlength]="maxlength"
@@ -22,7 +22,7 @@ import { IonInputDirective } from '../input.directive';
 export class inputMockComponent {
   @Input() value: string = '';
   @Input() type: string = 'text';
-  @Input() invalid: boolean = false;
+  @Input() invalid: boolean = true;
   @Input() placeholder: string = '';
   @Input() disabled: boolean = false;
   @Input() readonly: boolean = false;
