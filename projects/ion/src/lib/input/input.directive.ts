@@ -11,9 +11,6 @@ export class IonInputDirective {
   @HostBinding('class')
   class = 'ion-input';
 
-  @HostBinding('class.disabled')
-  disabled: IonInputProps['disabled'] = false;
-
   @HostBinding('class.invalid')
   @Input()
   invalid: IonInputProps['invalid'] = false;
