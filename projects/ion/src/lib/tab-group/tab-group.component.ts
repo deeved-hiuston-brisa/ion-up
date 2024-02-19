@@ -20,19 +20,19 @@ import { IonTabGroupProps, TabInGroup } from './types';
   styleUrls: ['./tab-group.component.scss'],
 })
 export class IonTabGroupComponent implements OnInit, OnChanges {
-  @Input() tabs!: IonTabGroupProps['tabs'];
+  @Input({ required: true }) tabs!: IonTabGroupProps['tabs'];
   @Input() direction: IonTabGroupProps['direction'] = 'horizontal';
   @Input() border: IonTabGroupProps['border'] = 'bottom';
   @Input() size: IonTabGroupProps['size'] = 'sm';
   @Output() selected: IonTabGroupProps['selected'] =
     new EventEmitter<TabInGroup>();
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.border = this.getBorderByDirection(this.direction || 'horizontal');
     this.direction = this.getDirectionByBorder(this.border);
   }
 
-  public ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(changes: SimpleChanges): void {
     const { direction, border } = changes;
     if (direction) {
       this.border = this.getBorderByDirection(this.direction || 'horizontal');
