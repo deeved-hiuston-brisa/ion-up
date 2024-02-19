@@ -25,9 +25,19 @@ export class IonStepsComponent implements OnInit, OnChanges {
   @Input() clickable: IonStepsProps['clickable'] = false;
   @Output() indexChange: IonStepsProps['indexChange'] =
     new EventEmitter<number>();
-
-  private firstCatchStatus = true;
   public FIRST_STEP = 1;
+  private firstCatchStatus = true;
+
+  ngOnInit(): void {
+    this.generateIndexesForStep();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { current } = changes;
+    if (current && !current.firstChange) {
+      this.changeStep(current.currentValue);
+    }
+  }
 
   public handleClick(index: number | undefined): void {
     if (index && this.clickable && !this.disabled) {
@@ -38,10 +48,6 @@ export class IonStepsComponent implements OnInit, OnChanges {
   private goToStep(index: number) {
     this.indexChange.emit(index);
     this.changeStep(index);
-  }
-
-  public ngOnInit(): void {
-    this.generateIndexesForStep();
   }
 
   private stepStatus(step: Step, currentIndex: number): StatusType {
@@ -69,13 +75,6 @@ export class IonStepsComponent implements OnInit, OnChanges {
     });
 
     this.firstCatchStatus = false;
-  }
-
-  public ngOnChanges(changes: SimpleChanges): void {
-    const { current } = changes;
-    if (current && !current.firstChange) {
-      this.changeStep(current.currentValue);
-    }
   }
 
   private generateIndexesForStep(): void {
