@@ -6,9 +6,14 @@
   },
   "assets": [
     {
-      "glob": "presets-styles/index.scss",
+      "glob": "presets-styles/**/*",
       "input": "src/lib/",
       "output": "./lib/"
+    },
+    {
+      "glob": "**/*",
+      "input": "src/styles/",
+      "output": "./styles/"
     }
   ]
 }
