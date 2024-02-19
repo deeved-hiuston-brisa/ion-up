@@ -1,0 +1,145 @@
+@import '../../styles/index.scss';
+
+$base-sm-size: 2px;
+$base-md-size: 3px;
+$base-lg-size: 4px;
+
+@mixin switch-sizes($base) {
+  width: calc($base * 12);
+  height: calc($base * 8);
+  border-radius: calc($base * 7.5);
+
+  &:focus-visible {
+    box-shadow:
+      0px 0px 0px $base $neutral-1,
+      0px 0px 0px calc($base * 2) $primary-5;
+    border-radius: calc($base * 7.5);
+  }
+
+  &::before {
+    top: $base;
+    left: $base;
+    width: calc($base * 6);
+    height: calc($base * 6);
+  }
+}
+
+@mixin translateEllipse($base, $side: 'half') {
+  $baseWidth: 2;
+  @if $side == 'full' {
+    $baseWidth: 4;
+  }
+
+  &::before {
+    transform: translateX(calc($base * $baseWidth));
+  }
+}
+
+@mixin addShadowAnimation($base, $changeName: 'animateShadow') {
+  animation: $changeName 300ms ease-in-out;
+
+  @keyframes #{$changeName} {
+    0% {
+      box-shadow: none;
+    }
+    20% {
+      box-shadow: 0 0 0 calc($base * 2) $primary-1;
+      background: $primary-4;
+    }
+    100% {
+      box-shadow: none;
+    }
+  }
+}
+
+@mixin switch-style($size) {
+  @include switch-sizes($size);
+
+  &:active:not(:disabled) {
+    background: $primary-4;
+    @include translateEllipse($size, 'full');
+  }
+
+  &--inactive {
+    @include addShadowAnimation($size, 'shadowAnimationOut');
+  }
+
+  &--active {
+    @include addShadowAnimation($size);
+
+    @include translateEllipse($size, 'full');
+
+    &:active:not(:disabled) {
+      background: $primary-7;
+      @include translateEllipse($size);
+    }
+  }
+}
+
+.ion-switch {
+  display: flex;
+  background: $primary-2;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: all ease-out 100ms;
+
+  &:hover {
+    background: $primary-3;
+  }
+
+  &::before {
+    content: '';
+    background: #ffffff;
+    position: absolute;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+  }
+
+  &:disabled {
+    background: $neutral-3;
+    cursor: not-allowed;
+
+    &::before {
+      background: $neutral-5;
+    }
+  }
+
+  &--active {
+    background: $primary-color;
+
+    &:hover {
+      background: $primary-5;
+    }
+
+    &::before {
+      transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+    }
+
+    &:disabled {
+      background: $neutral-5;
+      cursor: not-allowed;
+
+      &::before {
+        background: $neutral-2;
+      }
+    }
+  }
+}
+
+:host {
+  &[data-size] {
+    &[data-size='sm'] .ion-switch {
+      @include switch-style($base-sm-size);
+    }
+
+    &[data-size='md'] .ion-switch {
+      @include switch-style($base-md-size);
+    }
+
+    &[data-size='lg'] .ion-switch {
+      @include switch-style($base-lg-size);
+    }
+  }
+}
