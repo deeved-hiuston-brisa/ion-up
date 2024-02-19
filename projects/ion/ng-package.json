@@ -3,5 +3,12 @@
   "dest": "../../dist/ion",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    {
+      "glob": "presets-styles/index.scss",
+      "input": "src/lib/",
+      "output": "./lib/"
+    }
+  ]
 }
