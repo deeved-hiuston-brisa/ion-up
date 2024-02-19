@@ -1,5 +1,7 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 
+import { IonInputProps } from './types';
+
 @Directive({
   selector: 'input[ionInput]',
   exportAs: 'ionInput',
@@ -10,9 +12,9 @@ export class IonInputDirective {
   class = 'ion-input';
 
   @HostBinding('class.disabled')
-  disabled = false;
+  disabled: IonInputProps['disabled'] = false;
 
   @HostBinding('class.invalid')
   @Input()
-  invalid = false;
+  invalid: IonInputProps['invalid'] = false;
 }

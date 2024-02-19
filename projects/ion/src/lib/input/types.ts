@@ -1,26 +1,20 @@
-import { EventEmitter } from '@angular/core';
-import { IconDirection } from '../icon';
-import { IonButtonProps } from '../button';
-import { SafeAny } from '../utils/safe-any';
-
-export type InputType = 'text' | 'password' | 'number' | 'email';
-
 export interface IonInputProps {
-  key?: string;
-  placeholder?: string;
-  button?: string;
-  iconInput?: string;
+  /*
+   * disabled state of the input
+   * @type {boolean}
+   * @default false
+   * @example
+   * <input [disabled]="true" ionInput />
+   * <input disabled ionInput />
+   */
   disabled?: boolean;
-  readonly?: boolean;
-  iconDirection?: IconDirection;
-  valid?: boolean;
+
+  /*
+   * key of the input
+   * @type {string}
+   * @default false
+   * @example
+   * <input [invalid]="true" ionInput />
+   */
   invalid?: boolean;
-  inputButton?: boolean;
-  clickButton?: EventEmitter<SafeAny>;
-  inputButtonConfig?: IonButtonProps;
-  value?: string;
-  clearButton?: boolean;
-  inputType?: InputType;
-  valueChange?: EventEmitter<string>;
-  maxLength?: string | number | null;
 }
