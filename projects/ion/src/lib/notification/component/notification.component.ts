@@ -22,8 +22,8 @@ import { IonNotificationProps } from '../types';
   styleUrls: ['./notification.component.scss'],
 })
 export class IonNotificationComponent implements OnInit {
-  @Input() title!: IonNotificationProps['title'];
-  @Input() message!: IonNotificationProps['message'];
+  @Input({ required: true }) title!: IonNotificationProps['title'];
+  @Input({ required: true }) message!: IonNotificationProps['message'];
   @Input() icon?: IonNotificationProps['icon'];
   @Input() type: IonNotificationProps['type'] = 'success';
   @Input() fixed: IonNotificationProps['fixed'] = false;
@@ -35,6 +35,12 @@ export class IonNotificationComponent implements OnInit {
 
   private timer$!: Subscription;
   public iconColor!: string;
+
+  ngOnInit(): void {
+    this.setIcon();
+    this.iconColor = this.getIconColor();
+    this.closeAuto();
+  }
 
   public timeByWords(message: string = ''): number {
     const wordsBySecond = 3;
@@ -83,11 +89,5 @@ export class IonNotificationComponent implements OnInit {
 
   private getIconColor(): string {
     return statusColor[this.type as StatusType];
-  }
-
-  public ngOnInit(): void {
-    this.setIcon();
-    this.iconColor = this.getIconColor();
-    this.closeAuto();
   }
 }
