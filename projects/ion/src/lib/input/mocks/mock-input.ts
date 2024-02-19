@@ -8,7 +8,7 @@ import { IonInputDirective } from '../input.directive';
   standalone: true,
   template: `<input ionInput [disabled]="disabled" [invalid]="invalid" />`,
   imports: [CommonModule, IonInputDirective, FormsModule],
-  styleUrls: ['../../colors/index.scss'],
+  styleUrls: ['../../presets-styles/index.scss'],
 })
 export class inputMockComponent {
   @Input() invalid: boolean = false;
