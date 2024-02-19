@@ -16,5 +16,6 @@ export * from './lib/pagination';
 export * from './lib/spinner';
 export * from './lib/tab';
 export * from './lib/tag';
+export * from './lib/switch';
 export * from './lib/utils/commonTypes';
 export * from './lib/sidebar';
