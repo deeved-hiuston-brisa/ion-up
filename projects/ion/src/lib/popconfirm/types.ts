@@ -1,4 +1,4 @@
-export type StatusType = 'success' | 'info' | 'warning' | 'negative';
+export type PopConfirmStatusType = 'success' | 'info' | 'warning' | 'negative';
 
 export interface IonPopConfirmProps {
   /**
@@ -18,7 +18,7 @@ export interface IonPopConfirmProps {
    * @example
    * <ion-popconfirm ionPopConfirmType = `warning`/>
    */
-  ionPopConfirmType?: StatusType;
+  ionPopConfirmType?: PopConfirmStatusType;
 
   /**
    * Popconfirm description.

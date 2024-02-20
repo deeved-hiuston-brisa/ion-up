@@ -16,7 +16,7 @@ import {
 
 import { SafeAny } from '../../utils/safe-any';
 import { IonPopConfirmComponent } from '../component/popconfirm.component';
-import { IonPopConfirmProps, StatusType } from '../types';
+import { IonPopConfirmProps, PopConfirmStatusType } from '../types';
 
 export interface PopPosition {
   top: number;
@@ -39,7 +39,7 @@ export interface PopOffset {
 export class IonPopConfirmDirective implements OnDestroy {
   @Input() ionPopConfirmTitle = 'Tem certeza?';
   @Input() ionPopConfirmDesc = '';
-  @Input() ionPopConfirmType: StatusType = 'warning';
+  @Input() ionPopConfirmType: PopConfirmStatusType = 'warning';
   @Input() ionConfirmText: IonPopConfirmProps['ionConfirmText'] = 'Confirmar';
   @Input() ionCancelText: IonPopConfirmProps['ionCancelText'] = 'Cancelar';
   @Output() ionOnConfirm = new EventEmitter<void>();
