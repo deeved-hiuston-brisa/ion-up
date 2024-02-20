@@ -15,9 +15,9 @@ export class IonTabComponent {
   @Input() label!: IonTabProps['label'];
   @HostBinding('[attr.data-size]')
   @Input()
-  tabSize?: IonTabProps['tabSize'] = 'sm';
-  @Input() disabled?: IonTabProps['disabled'] = false;
-  @Input() selected?: IonTabProps['selected'] = false;
+  tabSize: IonTabProps['tabSize'] = 'sm';
+  @Input() disabled: IonTabProps['disabled'] = false;
+  @Input() selected: IonTabProps['selected'] = false;
   @HostBinding('[attr.data-direction]')
   @Input()
   direction?: IonTabProps['direction'] = 'bottom';
