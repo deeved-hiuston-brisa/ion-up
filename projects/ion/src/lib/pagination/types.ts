@@ -2,13 +2,41 @@ import { EventEmitter } from '@angular/core';
 import { Size } from '../button';
 
 export interface Page {
+  /**
+   * Pagination page number.
+   * @param currentPage - It is numeric content displayed on a pagination button that indicates a page number.
+   * @type {number}
+   */
   page_number: number;
+
+  /**
+   * Pagination selected.
+   * @param selected - Indicates whether the button's page is the currently selected page.
+   * @type {boolean}
+   */
   selected: boolean;
 }
 
 export interface PageEvent {
-  actual: number;
+  /**
+   * Pagination event return currentPage.
+   * @param currentPage - Indicates current page when an event is emitted from pagination component.
+   * @type {number}
+   */
+  currentPage: number;
+
+  /**
+   * Pagination event return itemsPerPage.
+   * @param itemsPerPage - Indicates how many itens are show per page at pagination component.
+   * @type {number}
+   */
   itemsPerPage: number;
+
+  /**
+   * Pagination event return offset.
+   * @param offset - Indicates where in the list the server should start when returning items for a particular query.
+   * @type {number}
+   */
   offset: number;
 }
 

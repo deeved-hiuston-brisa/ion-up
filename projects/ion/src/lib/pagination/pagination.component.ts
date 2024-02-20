@@ -127,7 +127,7 @@ export class IonPaginationComponent implements OnChanges, OnInit {
 
     if (emitEvent && this.itemsPerPage) {
       this.events.emit({
-        actual: page.page_number,
+        currentPage: page.page_number,
         itemsPerPage: this.itemsPerPage,
         offset: (page.page_number - 1) * this.itemsPerPage,
       });
