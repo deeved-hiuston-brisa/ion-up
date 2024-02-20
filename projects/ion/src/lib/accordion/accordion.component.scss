@@ -1,0 +1,34 @@
+@import '../../styles/index.scss';
+
+section {
+  ::ng-deep ion-accordion-item:first-child {
+    .ion-accordion-item {
+      .ion-accordion-item__header {
+        border-radius: 8px 8px 0 0;
+      }
+    }
+  }
+
+  ::ng-deep ion-accordion-item {
+    .ion-accordion-item {
+      .ion-accordion-item__header,
+      .ion-accordion-item__main {
+        border: 1px solid $neutral-4;
+      }
+    }
+  }
+
+  ::ng-deep ion-accordion-item:last-child {
+    .ion-accordion-item:not(.ion-accordion-item--open) {
+      .ion-accordion-item__header {
+        border-radius: 0 0 8px 8px;
+      }
+    }
+
+    .ion-accordion-item--open {
+      .ion-accordion-item__main {
+        border-radius: 0 0 8px 8px;
+      }
+    }
+  }
+}
