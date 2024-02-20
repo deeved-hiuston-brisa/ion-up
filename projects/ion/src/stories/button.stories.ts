@@ -13,6 +13,9 @@ const meta: Meta<IonButtonComponent> = {
   }),
   argTypes: {
     label: {
+      control: {
+        type: 'text',
+      },
       description: 'Rótulo do botão. Obrigatório.',
     },
     type: {
@@ -33,14 +36,23 @@ const meta: Meta<IonButtonComponent> = {
       description: 'Tamanho do botão. Pode ser `sm`, `md`, `lg` ou `xl`.',
     },
     danger: {
+      control: {
+        type: 'boolean',
+      },
       description: 'Indica se o botão representa um perigo.',
       defaultValue: { summary: false },
     },
     disabled: {
+      control: {
+        type: 'boolean',
+      },
       description: 'Indica se o botão está desativado.',
       defaultValue: { summary: false },
     },
     loading: {
+      control: {
+        type: 'boolean',
+      },
       description:
         'Indica que o botão está em espera. Ou seja, esperando algum processo terminar para que possa está pronto para uso.',
       defaultValue: { summary: false },
@@ -50,11 +62,11 @@ const meta: Meta<IonButtonComponent> = {
         type: 'select',
       },
       options: ['normal', 'circle', 'rounded'],
-
       defaultValue: { summary: 'normal' },
       description: 'Altera a forma do botão.',
     },
     icon: {
+      control: 'object',
       description:
         'Recebe um objeto que configura o ícone associado ao botão. `type` define o tipo de ícone a ser rederizado. `rightPosition` indica se o ícone deve ser renderizado a direita da label.',
     },
@@ -68,18 +80,169 @@ const meta: Meta<IonButtonComponent> = {
 
 export default meta;
 type Story = StoryObj<IonButtonComponent>;
+
 export const Default: Story = {
   args: {
-    label: 'Play',
-    danger: false,
-    disabled: false,
-    loading: false,
-    size: 'md',
-    type: 'primary',
-    shape: 'normal',
+    label: 'Primary',
+  } as IonButtonComponent,
+};
+
+export const Secondary: Story = {
+  args: {
+    label: 'Secondary',
+    type: 'secondary',
+  } as IonButtonComponent,
+};
+
+export const SecondaryWithIcon: Story = {
+  args: {
+    label: 'Secondary',
+    type: 'secondary',
     icon: {
-      type: 'play',
-      rightPosition: false,
+      type: 'left3',
     },
+  } as IonButtonComponent,
+};
+
+export const Ghost: Story = {
+  args: {
+    label: 'Ghost',
+    type: 'ghost',
+  } as IonButtonComponent,
+};
+
+export const Dashed: Story = {
+  args: {
+    label: 'Dashed',
+    type: 'dashed',
+  } as IonButtonComponent,
+};
+
+export const SizeSm: Story = {
+  args: {
+    label: 'Small',
+    size: 'sm',
+  } as IonButtonComponent,
+};
+
+export const SizeMd: Story = {
+  args: {
+    label: 'Medium',
+    size: 'md',
+  } as IonButtonComponent,
+};
+
+export const SizeLg: Story = {
+  args: {
+    label: 'Large',
+    size: 'lg',
+  } as IonButtonComponent,
+};
+
+export const SizeXl: Story = {
+  args: {
+    label: 'Extra large',
+    size: 'xl',
+  } as IonButtonComponent,
+};
+
+export const IconOnly: Story = {
+  args: {
+    icon: {
+      type: 'pencil',
+    },
+  } as IonButtonComponent,
+};
+
+export const DangerIconOnly: Story = {
+  args: {
+    icon: {
+      type: 'pencil',
+    },
+    danger: true,
+  } as IonButtonComponent,
+};
+
+export const LgSizeWithIcon: Story = {
+  args: {
+    label: 'Delet',
+    icon: {
+      type: 'trash',
+    },
+    size: 'lg',
+  } as IonButtonComponent,
+};
+
+export const OnlyIconLoading: Story = {
+  args: {
+    icon: {
+      type: 'pencil',
+    },
+    shape: 'circle',
+    loading: true,
+  } as IonButtonComponent,
+};
+
+export const WithIconLoading: Story = {
+  args: {
+    label: 'Edit',
+    icon: {
+      type: 'pencil',
+    },
+    loading: true,
+  } as IonButtonComponent,
+};
+
+export const DangerWithIcon: Story = {
+  args: {
+    label: 'Delet',
+    icon: {
+      type: 'trash',
+    },
+    danger: true,
+  } as IonButtonComponent,
+};
+
+export const WithRightSideIcon: Story = {
+  args: {
+    label: 'Edit',
+    icon: {
+      type: 'pencil',
+      rightPosition: true,
+    },
+    danger: true,
+  } as IonButtonComponent,
+};
+
+export const NormalShape: Story = {
+  args: {
+    label: 'Edit',
+    icon: {
+      type: 'pencil',
+      rightPosition: true,
+    },
+    shape: 'normal',
+  } as IonButtonComponent,
+};
+
+export const CircularShape: Story = {
+  args: {
+    label: 'Edit',
+    icon: {
+      type: 'pencil',
+      rightPosition: true,
+    },
+    shape: 'circle',
+  } as IonButtonComponent,
+};
+
+export const RoundedShape: Story = {
+  args: {
+    label: 'Edit',
+    icon: {
+      type: 'pencil',
+      rightPosition: true,
+    },
+    shape: 'rounded',
   } as IonButtonComponent,
 };
