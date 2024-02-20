@@ -7,13 +7,15 @@ import { IonInputDirective } from '../public-api';
 
 # Input
 
+O componente input é um campo de entrada de texto que permite ao usuário inserir e editar texto.
+
 <Canvas>
   <Story
     name="Default Input"
     decorators={[
       () => {
         return {
-          template: ` <input ionInput>`,
+          template: `<input ionInput>`,
         };
       },
       moduleMetadata({
@@ -28,7 +30,7 @@ import { IonInputDirective } from '../public-api';
     decorators={[
       () => {
         return {
-          template: ` <input ionInput disabled>`,
+          template: `<input ionInput disabled>`,
         };
       },
       moduleMetadata({
@@ -43,7 +45,7 @@ import { IonInputDirective } from '../public-api';
     decorators={[
       () => {
         return {
-          template: ` <input ionInput [invalid]="true">`,
+          template: `<input ionInput [invalid]="true">`,
         };
       },
       moduleMetadata({
