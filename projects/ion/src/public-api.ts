@@ -14,6 +14,7 @@ export * from './lib/link';
 export * from './lib/tab-group';
 export * from './lib/tag';
 export * from './lib/spinner';
+export * from './lib/steps';
 export * from './lib/switch';
 export * from './lib/avatar';
 export * from './lib/breadcrumb';
