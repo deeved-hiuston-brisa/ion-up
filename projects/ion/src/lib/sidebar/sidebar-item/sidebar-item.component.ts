@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IconType, IonIconComponent } from '../../icon';
+import { IonIconComponent } from '../../icon';
+import { SidebarItem } from '../types';
 
 @Component({
   standalone: true,
@@ -9,10 +10,10 @@ import { IconType, IonIconComponent } from '../../icon';
   styleUrls: ['./sidebar-item.component.scss'],
 })
 export class IonSidebarItemComponent {
-  @Input() title = '';
-  @Input() icon: IconType = '';
-  @Input() selected = false;
-  @Input() disabled = false;
+  @Input() title: SidebarItem['title'] = '';
+  @Input() icon: SidebarItem['icon'] = '';
+  @Input() selected: SidebarItem['selected'] = false;
+  @Input() disabled: SidebarItem['disabled'] = false;
   @Output() ionOnClick = new EventEmitter();
 
   public selectItem(): void {
