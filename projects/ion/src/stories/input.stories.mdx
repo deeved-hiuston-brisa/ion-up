@@ -15,7 +15,7 @@ O componente input é um campo de entrada de texto que permite ao usuário inser
     decorators={[
       () => {
         return {
-          template: `<input ionInput>`,
+          template: `<input ionInput placeholder="Digite aqui">`,
         };
       },
       moduleMetadata({
@@ -30,7 +30,7 @@ O componente input é um campo de entrada de texto que permite ao usuário inser
     decorators={[
       () => {
         return {
-          template: `<input ionInput disabled>`,
+          template: `<input ionInput disabled placeholder="Desabilitado">`,
         };
       },
       moduleMetadata({
@@ -45,7 +45,7 @@ O componente input é um campo de entrada de texto que permite ao usuário inser
     decorators={[
       () => {
         return {
-          template: `<input ionInput [invalid]="true">`,
+          template: `<input ionInput [invalid]="true" placeholder="invalido">`,
         };
       },
       moduleMetadata({
