@@ -1,0 +1,64 @@
+<section class="steps-container" data-testid="ion-steps">
+  @for (step of steps; track step.label; let index = $index) {
+    <button
+      [attr.data-testid]="'step-' + step?.index + '-' + step?.status"
+      [class]="'ion-step ion-step--' + step?.status"
+      [class.ion-step--clickable]="
+        clickable &&
+        !disabled &&
+        step?.status !== 'selected' &&
+        step?.status !== 'error'
+      "
+      [class.ion-step--disabled]="disabled"
+      (click)="handleClick(step?.index)">
+      <div class="ion-step__draw">
+        <div
+          class="ion-step__line"
+          [class.ion-step__line--bolded]="
+            steps[index - 1] && steps[index - 1].status === 'checked'
+          "
+          [class.ion-step__line--transparent]="
+            step?.index === FIRST_STEP
+          "></div>
+
+        <div class="ion-step__circle">
+          <span>
+            @if (step?.status !== 'checked') {
+              {{ step?.index }}
+            } @else {
+              <ion-icon type="check" [size]="24" />
+            }
+          </span>
+        </div>
+
+        <div
+          class="ion-step__line"
+          [class.ion-step__line--bolded]="
+            steps[index].status === 'checked' ||
+            (steps[index + 1] && steps[index + 1].status !== 'default')
+          "
+          [class.ion-step__line--transparent]="
+            step?.index === steps.length
+          "></div>
+      </div>
+
+      <div
+        class="ion-step__label"
+        [class.ion-step__label--selected]="
+          step?.status === 'selected' || step?.status === 'error'
+        "
+        [class.ion-step__label--disabled]="disabled">
+        {{ step.label }}
+      </div>
+
+      @if (step.description) {
+        <div
+          class="ion-step__description"
+          [class.ion-step__description--disabled]="disabled"
+          [attr.data-testid]="'description-' + step?.index">
+          {{ step.description }}
+        </div>
+      }
+    </button>
+  }
+</section>
