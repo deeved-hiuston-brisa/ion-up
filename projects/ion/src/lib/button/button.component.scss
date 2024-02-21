@@ -1,5 +1,8 @@
 @import '../../styles/index.scss';
 
+$defaultColorEffect: #0858ce1a;
+$dangerColorEffect: #d6293a1a;
+
 :host {
   display: inline-flex;
 }
@@ -40,6 +43,53 @@
   }
 }
 
+@mixin outlineEffect($bgColor) {
+  outline: none;
+  box-shadow: 0px 0px 0px 4px $bgColor;
+}
+
+@mixin pressAnimation($isDanger: false) {
+  @if $isDanger {
+    animation: pressDanger 300ms linear forwards;
+    @keyframes pressDanger {
+      to {
+        @include outlineEffect($dangerColorEffect);
+      }
+    }
+  } @else {
+    animation: press 300ms linear forwards;
+    @keyframes press {
+      to {
+        @include outlineEffect($defaultColorEffect);
+      }
+    }
+  }
+}
+
+@mixin unpressAnimation($isDanger: false) {
+  @if $isDanger {
+    animation: unpressDanger 300ms linear forwards;
+    @keyframes unpressDanger {
+      from {
+        @include outlineEffect($dangerColorEffect);
+      }
+      to {
+        box-shadow: none;
+      }
+    }
+  } @else {
+    animation: unpress 300ms linear forwards;
+    @keyframes unpress {
+      from {
+        @include outlineEffect($defaultColorEffect);
+      }
+      to {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
 button.ion-btn {
   display: flex;
   align-items: center;
@@ -65,20 +115,29 @@ button.ion-btn {
     background-color: $primary-5;
   }
 
-  &:active {
-    background-color: $primary-7;
-  }
-
-  &:focus {
+  &:focus-visible {
+    background-color: $primary-5;
     outline: none;
     box-shadow:
       0px 0px 0px 2px $neutral-1,
       0px 0px 0px 4px $primary-5;
   }
 
+  &:active {
+    background-color: $primary-7;
+  }
+
   &:disabled {
     @include set-colors($neutral-3, $neutral-5);
     cursor: not-allowed;
+  }
+
+  &--press {
+    @include pressAnimation();
+  }
+
+  &--unpress {
+    @include unpressAnimation();
   }
 
   ion-icon {
@@ -93,6 +152,7 @@ button.ion-btn {
   }
 
   &--loading {
+    background-color: $primary-5;
     cursor: progress;
 
     @keyframes spin {
@@ -105,8 +165,8 @@ button.ion-btn {
       border: 2px solid transparent;
       border-left-color: $primary-6;
       border-radius: 50%;
-      width: 16px;
-      height: 16px;
+      width: 12px;
+      height: 12px;
       animation: spin 1s linear infinite;
     }
 
@@ -125,16 +185,16 @@ button.ion-btn {
 
     &.ion-btn--sm {
       .ion-btn__loading-spinner {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
       }
     }
 
     &.ion-btn--lg,
     &.ion-btn--xl {
       .ion-btn__loading-spinner {
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
       }
     }
   }
@@ -142,7 +202,17 @@ button.ion-btn {
   &--danger {
     @include set-colors($negative-6, $neutral-1);
 
-    &:hover {
+    &.ion-btn--press {
+      @include pressAnimation($isDanger: true);
+    }
+
+    &.ion-btn--unpress {
+      @include unpressAnimation($isDanger: true);
+    }
+
+    &:hover,
+    &:focus-visible,
+    &.ion-btn--loading {
       @include set-colors($negative-5, $neutral-1);
     }
 
@@ -153,15 +223,18 @@ button.ion-btn {
 
   &--secondary {
     @include set-colors($neutral-1, $primary-6);
-    border: 1px solid $primary-4;
+    border: 1px solid $neutral-4;
 
-    &:hover {
+    &:hover,
+    &:focus-visible,
+    &.ion-btn--loading {
       @include set-colors($primary-1, $primary-5);
-      border: 1px solid $primary-4;
+      border: 1px solid $primary-3;
     }
 
     &:active {
       @include set-colors($primary-2, $primary-7);
+      border: 1px solid $primary-5;
     }
 
     &:disabled {
@@ -170,16 +243,19 @@ button.ion-btn {
     }
 
     &.ion-btn--danger {
-      @include set-colors(transparent, $negative-6);
+      @include set-colors($neutral-1, $negative-6);
       border-color: $neutral-4;
 
-      &:hover {
+      &:hover,
+      &:focus-visible,
+      &.ion-btn--loading {
         @include set-colors($negative-1, $negative-5);
         border-color: $negative-3;
       }
 
       &:active {
-        @include set-colors($negative-2, $negative-5);
+        @include set-colors($negative-2, $negative-7);
+        border-color: $negative-5;
       }
     }
   }
@@ -188,7 +264,9 @@ button.ion-btn {
     @include set-colors(transparent, $primary-6);
     border: 1px solid transparent;
 
-    &:hover {
+    &:hover,
+    &:focus-visible,
+    &.ion-btn--loading {
       @include set-colors($primary-1, $primary-5);
       border: 1px solid transparent;
     }
@@ -204,12 +282,14 @@ button.ion-btn {
     &.ion-btn--danger {
       @include set-colors(transparent, $negative-6);
 
-      &:hover {
+      &:hover,
+      &:focus-visible,
+      &.ion-btn--loading {
         @include set-colors($negative-1, $negative-5);
       }
 
       &:active {
-        @include set-colors($negative-2, $negative-5);
+        @include set-colors($negative-2, $negative-7);
       }
     }
   }
@@ -219,9 +299,11 @@ button.ion-btn {
     border: 1px solid $neutral-4;
     border-style: dashed;
 
-    &:hover {
+    &:hover,
+    &:focus-visible,
+    &.ion-btn--loading {
       @include set-colors($primary-1, $primary-5);
-      border: 1px $primary-4;
+      border: 1px $primary-3;
       border-style: dashed;
     }
 
@@ -239,13 +321,15 @@ button.ion-btn {
     &.ion-btn--danger {
       @include set-colors(transparent, $negative-6);
 
-      &:hover {
+      &:hover,
+      &:focus-visible,
+      &.ion-btn--loading {
         @include set-colors($negative-1, $negative-5);
         border-color: $negative-3;
       }
 
       &:active {
-        @include set-colors($negative-2, $negative-5);
+        @include set-colors($negative-2, $negative-7);
         border-color: $negative-5;
       }
     }

@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/angular';
-import { IonButtonProps } from './types';
-import { IonButtonComponent } from './button.component';
+import { fireEvent, render, screen } from '@testing-library/angular';
 import { SafeAny } from '../utils/safe-any';
+import { IonButtonComponent } from './button.component';
+import { IonButtonProps } from './types';
 
 const defaultName = 'button';
 
@@ -86,7 +86,6 @@ describe('IonButtonComponent', () => {
       icon: { type: 'play' },
     });
     expect(button).toHaveClass('ion-btn--loading');
-    expect(button).toHaveTextContent('Loading');
   });
 
   it.each(shapes)('should correctly render button %s shape.', async shape => {

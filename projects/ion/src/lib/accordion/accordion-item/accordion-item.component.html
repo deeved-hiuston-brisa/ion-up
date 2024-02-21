@@ -1,0 +1,32 @@
+<section
+  data-testid="ion-accordion-item"
+  class="ion-accordion-item"
+  [class.ion-accordion-item--open]="show"
+  [class.ion-accordion-item--close]="!show"
+  tabindex="0">
+  <button
+    class="ion-accordion-item__header"
+    data-testid="ion-accordion-item__header"
+    (click)="toggle()">
+    <div>
+      @if (templateHeader) {
+        <ng-container
+          [ngTemplateOutlet]="templateHeader"
+          [ngTemplateOutletContext]="generateContext(data)" />
+      }
+    </div>
+    <ion-icon
+      class="ion-accordion-item__icon"
+      [class.ion-accordion-item__icon--rotate]="show"
+      [type]="'semi-down'"
+      [size]="iconSize" />
+  </button>
+
+  @if (show) {
+    <main
+      class="ion-accordion-item__main"
+      data-testid="ion-accordion-item__main">
+      <ng-content></ng-content>
+    </main>
+  }
+</section>
