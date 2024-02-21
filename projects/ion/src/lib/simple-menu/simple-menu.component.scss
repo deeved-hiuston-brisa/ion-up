@@ -20,6 +20,10 @@
   transform: translateX(-300px) translateY(0px) translateZ(0px);
   transition: 500ms ease 0s;
 
+  :ng-deep ion-tab-group div div {
+    width: 100%;
+  }
+
   &__header {
     padding: spacing(2) spacing(3);
 

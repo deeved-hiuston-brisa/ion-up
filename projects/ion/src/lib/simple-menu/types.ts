@@ -1,5 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { SafeAny } from '../utils/safe-any';
+import { TabInGroup } from '../tab-group/types';
 
 interface MenuProfile {
   imageUrl: string;
@@ -17,7 +18,7 @@ export interface SimpleMenuProps {
    * @types {TabInGroup[]}
    * CHANGE THE ANY TYPE AFTER TABGROUP COMPONENT IS CREATED
    */
-  options: SafeAny[];
+  options: TabInGroup[];
   /**
    * @description The `profile` parameter represents the user's profile that will be displayed in the menu.
    * @types {MenuProfile}
@@ -28,7 +29,7 @@ export interface SimpleMenuProps {
    * @types {EventEmitter<TabInGroup>}
    * CHANGE THE ANY TYPE AFTER TABGROUP COMPONENT IS CREATED
    */
-  selected?: EventEmitter<SafeAny>;
+  selected?: EventEmitter<TabInGroup>;
   /**
    * @description The `logoutClick` parameter is an event that is triggered when the logout button is clicked.
    * @types {EventEmitter<SafeAny>}

@@ -14,24 +14,31 @@
   [class.ion-menu-container--opened]="open"
   (mouseenter)="openMenu()"
   (mouseleave)="dismissMenu()"
-  data-testid="ion-menu-container">
+  data-testid="ion-simple-menu">
   @if (logo) {
-    <header class="ion-menu__header">
-      <img [src]="logo.src" alt="logo.alt" />
+    <header class="ion-menu-container__header">
+      <img [src]="logo.src" [alt]="logo.alt" data-testid="logo-photo" />
     </header>
   }
+
+  <ion-tab-group
+    size="md"
+    [tabs]="options"
+    direction="vertical"
+    (selected)="changeTab($event)"></ion-tab-group>
+
   <div class="ion-menu-container__footer">
     <div>
       @if (profile.imageUrl) {
         <ion-avatar
-          data-testid="avatarPhoto"
+          data-testid="avatar-photo"
           type="photo"
           [image]="profile.imageUrl"
           size="md">
         </ion-avatar>
       } @else {
         <ion-avatar
-          data-testid="avatarPhoto"
+          data-testid="avatar-initials"
           type="initials"
           [value]="profile.name"
           size="md">

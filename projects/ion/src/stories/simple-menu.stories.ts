@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 
 import { IonSimpleMenuComponent } from '../lib/simple-menu';
-import { IonAvatarComponent, IonButtonComponent } from '../public-api';
+import {
+  IonAvatarComponent,
+  IonButtonComponent,
+  IonTabGroupComponent,
+} from '../public-api';
 
 const meta: Meta<IonSimpleMenuComponent> = {
   title: 'Ion/Data Display/Simple Menu',
@@ -10,7 +14,7 @@ const meta: Meta<IonSimpleMenuComponent> = {
   render: (args: IonSimpleMenuComponent) => ({
     props: { ...args },
     moduleMetadata: {
-      imports: [IonButtonComponent, IonAvatarComponent],
+      imports: [IonButtonComponent, IonAvatarComponent, IonTabGroupComponent],
     },
   }),
   argTypes: {
@@ -27,17 +31,44 @@ const meta: Meta<IonSimpleMenuComponent> = {
 
 export default meta;
 type Story = StoryObj<IonSimpleMenuComponent>;
-export const Default: Story = {
+export const Basic: Story = {
   args: {
     options: [
-      { label: 'Option 1', value: 'Option 1' },
-      { label: 'Option 2', value: 'Option 2' },
-      { label: 'Option 3', value: 'Option 3' },
+      {
+        label: 'Agendamentos',
+        iconType: 'calendar',
+        selected: false,
+      },
+      {
+        label: 'Recursos',
+        iconType: 'pencil',
+        selected: false,
+      },
     ],
     profile: {
       imageUrl:
         'https://ovicio.com.br/wp-content/uploads/2022/01/20220123-rocket-raccoon-guardians-of-the-galaxy.jpeg',
-      name: 'User Name',
+      name: 'Rocket Raccoon',
+    },
+  },
+};
+
+export const WithLogo: Story = {
+  args: {
+    ...Basic.args,
+    logo: {
+      src: require('./assets/sidebar-logo.svg'),
+      alt: 'Logo Exemplo',
+    },
+  },
+};
+
+export const withoutImage: Story = {
+  args: {
+    options: [{ label: 'Agendamentos', iconType: 'calendar', selected: false }],
+    profile: {
+      imageUrl: '',
+      name: 'Jennie Kim',
     },
   },
 };
