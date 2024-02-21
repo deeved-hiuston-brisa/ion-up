@@ -34,14 +34,14 @@
       @if (profile.imageUrl) {
         <ion-avatar
           data-testid="avatar-photo"
-          type="photo"
+          [type]="avatarType"
           [image]="profile.imageUrl"
           size="md">
         </ion-avatar>
       } @else {
         <ion-avatar
           data-testid="avatar-initials"
-          type="initials"
+          [type]="initialsType"
           [value]="profile.name"
           size="md">
         </ion-avatar>

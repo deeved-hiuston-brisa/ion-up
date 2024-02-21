@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { IonButtonComponent } from '../button/button.component';
 import { SimpleMenuProps } from './types';
-import { IonAvatarComponent } from '../avatar';
+import { AvatarType, IonAvatarComponent } from '../avatar';
 import { TabInGroup } from '../tab-group/types';
 import { IonTabGroupComponent } from '../tab-group';
 
@@ -22,6 +22,8 @@ export class IonSimpleMenuComponent {
   @Output() logoutClick = new EventEmitter<SimpleMenuProps['logoutClick']>();
 
   open = false;
+  avatarType = AvatarType.photo;
+  initialsType = AvatarType.initials;
 
   private timeToToAutoClose = 1000;
   private menuTimeout!: ReturnType<typeof setTimeout>;
