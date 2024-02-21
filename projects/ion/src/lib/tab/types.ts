@@ -15,7 +15,7 @@ export interface IonTabProps {
 
   /**
    * Tab size.
-   * @param size - Indicates the size of the tab
+   * @param tabSize - Indicates the size of the tab
    * @type {`sm` | `md` | `lg`}
    * @default `sm`
    * @example
