@@ -21,3 +21,4 @@ export * from './lib/switch';
 export * from './lib/avatar';
 export * from './lib/utils/commonTypes';
 export * from './lib/sidebar';
+export * from './lib/popover';
