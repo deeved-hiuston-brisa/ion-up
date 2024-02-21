@@ -1,0 +1,59 @@
+<nav
+  class="ion-sidebar"
+  [class.ion-sidebar--opened]="!closed"
+  data-testid="ion-sidebar">
+  <header class="ion-sidebar__header">
+    <button class="ion-sidebar__logo-button" (click)="handleLogoClick()">
+      <img
+        [class.ion-sidebar__logo--pointer]="!!logoAction"
+        [src]="logo"
+        alt="logo" />
+    </button>
+    @if (!closed) {
+      <ion-button
+        data-testid="ion-sidebar__toggle-visibility"
+        [icon]="{
+          type: 'left3'
+        }"
+        size="lg"
+        type="ghost"
+        shape="rounded"
+        (ionOnClick)="toggleSidebarVisibility()"></ion-button>
+    }
+  </header>
+  <section class="ion-sidebar__items">
+    @for (item of items; let i = $index; track item.title) {
+      @if (item.options) {
+        <ion-sidebar-group
+          [attr.data-testid]="'ion-sidebar__group-' + i"
+          [title]="item.title"
+          [icon]="item.icon"
+          [selected]="!!item.selected"
+          [items]="item.options"
+          [haveGroupAction]="!!item.action"
+          (ionOnClick)="itemOnGroupSelected(i)"
+          (ionOnGroupClick)="groupSelected(i)"></ion-sidebar-group>
+      } @else {
+        <ion-sidebar-item
+          [title]="item.title"
+          [icon]="item.icon"
+          [selected]="!!item.selected"
+          [disabled]="!!item.disabled"
+          [attr.data-testid]="'ion-sidebar__item-' + i"
+          (ionOnClick)="itemSelected(i)"></ion-sidebar-item>
+      }
+    }
+  </section>
+</nav>
+
+<span data-testid="ion-sidebar__outside-container">
+  <ion-button
+    data-testid="ion-sidebar__toggle-visibility"
+    [icon]="{
+      type: 'sandwich'
+    }"
+    size="lg"
+    shape="rounded"
+    type="ghost"
+    (ionOnClick)="toggleSidebarVisibility()"></ion-button>
+</span>

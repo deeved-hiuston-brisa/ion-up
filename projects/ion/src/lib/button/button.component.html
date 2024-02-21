@@ -14,19 +14,18 @@
   [class.ion-btn--danger]="!disabled && danger"
   [class.ion-btn--inverter]="icon && icon.type && icon.rightPosition"
   [class.ion-btn--loading]="!disabled && loading"
-  (click)="handleButtonClick()">
+  (click)="handleButtonClick()"
+  (pointerdown)="pressAnimation()"
+  (pointerup)="unpressAnimation()"
+  (pointerleave)="unpressAnimation()"
+  #ionButton>
   @if (!disabled && loading) {
     <span class="ion-btn__loading-spinner"></span>
-    @if (shape === 'normal') {
-      <span>Loading</span>
-    }
-  } @else {
-    @if (icon && icon.type) {
-      <ion-icon [type]="icon.type"></ion-icon>
-    }
+  } @else if (icon && icon.type) {
+    <ion-icon [type]="icon.type"></ion-icon>
+  }
 
-    @if (shape === 'normal') {
-      <span>{{ label }}</span>
-    }
+  @if (shape === 'normal') {
+    <span>{{ label }}</span>
   }
 </button>
