@@ -1,6 +1,6 @@
 export interface IonInputProps {
   /**
-   * key of the input
+   * Indicates whether the input is invalid.
    * @type {string}
    * @default false
    * @example
