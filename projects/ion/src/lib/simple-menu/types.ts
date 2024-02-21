@@ -16,7 +16,6 @@ export interface SimpleMenuProps {
   /**
    * @description The `options` parameter is required and represents the list of options that will be displayed in the menu.
    * @types {TabInGroup[]}
-   * CHANGE THE ANY TYPE AFTER TABGROUP COMPONENT IS CREATED
    */
   options: TabInGroup[];
   /**
@@ -27,7 +26,6 @@ export interface SimpleMenuProps {
   /**
    * @description The `selected` parameter is an event that is triggered when an option is selected.
    * @types {EventEmitter<TabInGroup>}
-   * CHANGE THE ANY TYPE AFTER TABGROUP COMPONENT IS CREATED
    */
   selected?: EventEmitter<TabInGroup>;
   /**

@@ -26,6 +26,10 @@ const meta: Meta<IonSimpleMenuComponent> = {
       description:
         'O parametro `profile` representa o perfil do usuário que será exibido no menu. ',
     },
+    logo: {
+      description:
+        'O parametro `logo` representa a logo que será exibido no menu.',
+    },
   },
 };
 
