@@ -1,5 +1,5 @@
 export interface IonInputProps {
-  /*
+  /**
    * key of the input
    * @type {string}
    * @default false
