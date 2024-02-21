@@ -57,28 +57,28 @@
       outline: none;
     }
   }
-}
 
-.invalid {
-  border: 1px solid $negative-6;
+  &--invalid {
+    border: 1px solid $negative-6;
 
-  &:hover {
-    border-color: $negative-6;
-  }
+    &:hover {
+      border-color: $negative-6;
+    }
 
-  &:focus-within {
-    @include outline-none($negative-6, none);
-  }
-
-  &:active {
-    @include add-colors($negative-6, 2px solid, $negative-1);
-  }
-
-  &.disabled {
-    border-color: $neutral-4;
+    &:focus-within {
+      @include outline-none($negative-6, none);
+    }
 
     &:active {
-      @include outline-none($neutral-4, none);
+      @include add-colors($negative-6, 2px solid, $negative-1);
+    }
+
+    &.disabled {
+      border-color: $neutral-4;
+
+      &:active {
+        @include outline-none($neutral-4, none);
+      }
     }
   }
 }

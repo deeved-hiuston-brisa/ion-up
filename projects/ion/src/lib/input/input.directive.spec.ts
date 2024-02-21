@@ -33,7 +33,7 @@ describe('IonInputDirective', () => {
 
   it('Should render the input with the invalid class', async () => {
     await sut({ invalid: true });
-    expect(getInput()).toHaveClass('invalid');
+    expect(getInput()).toHaveClass('ion-input--invalid');
   });
 
   it('Should render the input with the disabled class', async () => {
