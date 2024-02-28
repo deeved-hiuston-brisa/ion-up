@@ -8,22 +8,22 @@
     [disabled]="loading || !hasPrevius()"
     (ionOnClick)="previous()" />
 
-  @if (isAdvanced) {
+  @if (isJumpButtonsVisible()) {
     <div
       class="ion-pagination__advanced-list"
       data-testid="advanced-pagination">
       <ion-button
-        [label]="'' + pages[0].page_number + ''"
-        [attr.data-testid]="'page-' + pages[0].page_number"
+        [label]="pages()[0].page_number.toString()"
+        [attr.data-testid]="'page-' + pages()[0].page_number"
         type="secondary"
         class="ion-pagination__button--rounded"
-        [class.ion-pagination__button--selected]="pages[0].selected"
+        [class.ion-pagination__button--selected]="pages()[0].selected"
         [size]="size"
         [disabled]="loading"
-        (ionOnClick)="selectPageOnClick(pages[0].page_number)" />
-      @if (moreBtnsConfig.left.visible) {
+        (ionOnClick)="selectPageOnClick(pages()[0].page_number)" />
+      @if (jumpButtons.left.visible()) {
         <ion-button
-          [icon]="{ type: moreBtnsConfig.left.hover ? 'left3' : 'more' }"
+          [icon]="{ type: jumpButtons.left.hover ? 'left3' : 'more' }"
           data-testid="more-left"
           type="secondary"
           [size]="size"
@@ -36,7 +36,7 @@
 
       @for (page of currentVisibleButtons; track page.page_number) {
         <ion-button
-          [label]="'' + page.page_number + ''"
+          [label]="page.page_number.toString()"
           [attr.data-testid]="'page-' + page.page_number"
           type="secondary"
           class="ion-pagination__button--rounded"
@@ -45,9 +45,9 @@
           [disabled]="loading"
           (ionOnClick)="selectPageOnClick(page.page_number)" />
       }
-      @if (moreBtnsConfig.right.visible) {
+      @if (jumpButtons.right.visible()) {
         <ion-button
-          [icon]="{ type: moreBtnsConfig.right.hover ? 'right3' : 'more' }"
+          [icon]="{ type: jumpButtons.right.hover ? 'right3' : 'more' }"
           data-testid="more-right"
           type="secondary"
           [size]="size"
@@ -58,21 +58,23 @@
           (ionOnClick)="jumpPagesForward()" />
       }
       <ion-button
-        [label]="'' + pages[pages.length - 1].page_number + ''"
-        [attr.data-testid]="'page-' + pages[pages.length - 1].page_number"
+        [label]="pages()[pages().length - 1].page_number.toString()"
+        [attr.data-testid]="'page-' + pages()[pages().length - 1].page_number"
         type="secondary"
         class="ion-pagination__button--rounded"
         [class.ion-pagination__button--selected]="
-          pages[pages.length - 1].selected
+          pages()[pages().length - 1].selected
         "
         [size]="size"
         [disabled]="loading"
-        (ionOnClick)="selectPageOnClick(pages[pages.length - 1].page_number)" />
+        (ionOnClick)="
+          selectPageOnClick(pages()[pages().length - 1].page_number)
+        " />
     </div>
   } @else {
-    @for (page of pages; track page.page_number) {
+    @for (page of pages(); track page.page_number) {
       <ion-button
-        [label]="'' + page.page_number + ''"
+        [label]="page.page_number.toString()"
         [attr.data-testid]="'page-' + page.page_number"
         type="secondary"
         class="ion-pagination__button--rounded"
