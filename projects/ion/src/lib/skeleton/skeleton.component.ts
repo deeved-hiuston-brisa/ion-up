@@ -9,7 +9,7 @@ import { IonSkeletonProps } from './types';
   styleUrl: './skeleton.component.scss',
 })
 export class IonSkeletonComponent {
-  @Input() variant!: IonSkeletonProps['variant'];
+  @Input({ required: true }) variant!: IonSkeletonProps['variant'];
   @Input() radius?: IonSkeletonProps['radius'];
   @Input() width: IonSkeletonProps['width'] = 50;
   @Input() height: IonSkeletonProps['height'] = 50;
