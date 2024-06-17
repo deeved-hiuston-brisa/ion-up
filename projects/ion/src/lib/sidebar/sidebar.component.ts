@@ -1,10 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { callItemAction, selectItemByIndex, unselectAllItems } from './utils';
-import { IonSidebarProps } from './types';
 import { IonButtonComponent } from '../button';
 import { IonSidebarGroupComponent } from './sidebar-group/sidebar-group.component';
 import { IonSidebarItemComponent } from './sidebar-item/sidebar-item.component';
-import { CommonModule } from '@angular/common';
+import { IonSidebarProps } from './types';
+import { callItemAction, selectItemByIndex, unselectAllItems } from './utils';
 
 @Component({
   standalone: true,
@@ -31,6 +31,7 @@ export class IonSidebarComponent {
   }
 
   public itemSelected(itemIndex: number): void {
+    console.log();
     selectItemByIndex(this.items, itemIndex);
     if (this.closeOnSelect) {
       this.toggleSidebarVisibility();
