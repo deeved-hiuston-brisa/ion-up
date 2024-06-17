@@ -1,7 +1,6 @@
 import {
   Component,
   ElementRef,
-  HostBinding,
   Input,
   OnInit,
   Renderer2,
@@ -14,11 +13,12 @@ import { IonBadgeProps } from './types';
   standalone: true,
   templateUrl: './badge.component.html',
   styleUrls: ['./badge.component.scss'],
+  host: {
+    '[attr.data-type]': 'type',
+  },
 })
 export class IonBadgeComponent implements OnInit {
-  @HostBinding('[attr.data-type]')
-  @Input()
-  type: IonBadgeProps['type'] = 'primary';
+  @Input() type: IonBadgeProps['type'] = 'primary';
   @Input({ transform: handleLabel, required: true })
   label!: IonBadgeProps['label'];
 
