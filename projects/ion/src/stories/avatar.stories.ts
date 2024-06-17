@@ -7,7 +7,7 @@ const meta: Meta<IonAvatarComponent> = {
   title: 'Ion/Data Display/Avatar',
   component: IonAvatarComponent,
   tags: ['autodocs'],
-  render: (args: IonAvatarComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },

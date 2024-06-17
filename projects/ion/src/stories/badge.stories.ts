@@ -5,7 +5,7 @@ const meta: Meta<IonBadgeComponent> = {
   title: 'Ion/Data Display/Badge',
   component: IonBadgeComponent,
   tags: ['autodocs'],
-  render: (args: IonBadgeComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },

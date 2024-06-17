@@ -1,11 +1,11 @@
-import { IonMessageComponent } from '../lib/message/message.component';
 import type { Meta, StoryObj } from '@storybook/angular';
+import { IonMessageComponent } from '../lib/message/message.component';
 
 const meta: Meta<IonMessageComponent> = {
   title: 'Ion/Feedback/Message',
   component: IonMessageComponent,
   tags: ['autodocs'],
-  render: (args: IonMessageComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },
