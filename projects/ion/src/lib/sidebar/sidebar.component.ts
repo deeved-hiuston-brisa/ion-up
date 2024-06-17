@@ -31,7 +31,6 @@ export class IonSidebarComponent {
   }
 
   public itemSelected(itemIndex: number): void {
-    console.log();
     selectItemByIndex(this.items, itemIndex);
     if (this.closeOnSelect) {
       this.toggleSidebarVisibility();
