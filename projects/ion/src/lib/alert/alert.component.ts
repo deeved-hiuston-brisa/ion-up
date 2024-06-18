@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   computed,
@@ -23,6 +24,7 @@ export const alertIconTypes: Record<IonAlertStatus, IconType> = {
   styleUrl: './alert.component.scss',
   imports: [CommonModule, IonIconComponent],
   host: { '[attr.data-type]': 'type()' },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IonAlertComponent {
   message = input<IonAlertProps['message']>();
