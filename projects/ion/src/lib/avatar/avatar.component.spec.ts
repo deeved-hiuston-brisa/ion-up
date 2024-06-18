@@ -1,16 +1,16 @@
 import { RenderResult, render, screen } from '@testing-library/angular';
 
 import { IonAvatarComponent } from './avatar.component';
-import { AvatarSize, AvatarType } from './types';
+import { AvatarSize, AvatarType, IonAvatarProps } from './types';
 import { DefaultImageDirective } from './defaultImage.directive';
 import { IonIconComponent } from '../icon';
 
-async function sut(props: Partial<IonAvatarComponent> = {}): Promise<{
+async function sut(props: Partial<IonAvatarProps> = {}): Promise<{
   fixture: RenderResult<IonAvatarComponent>;
   element: HTMLElement;
 }> {
   const fixture = await render(IonAvatarComponent, {
-    componentProperties: props,
+    componentInputs: { ...props },
     providers: [DefaultImageDirective],
     imports: [IonIconComponent],
   });

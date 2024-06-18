@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 import { IonIconComponent } from '../icon';
 import { IconType } from '../icon/types';
 import { DefaultImageDirective } from './defaultImage.directive';
-import { AvatarType, IonAvatarProps } from './types';
+import { IonAvatarProps } from './types';
 
 @Component({
   selector: 'ion-avatar',
@@ -13,33 +13,27 @@ import { AvatarType, IonAvatarProps } from './types';
   templateUrl: './avatar.component.html',
   styleUrl: './avatar.component.scss',
   host: {
-    '[attr.data-size]': 'size',
+    '[attr.data-size]': 'size()',
   },
 })
-export class IonAvatarComponent implements OnInit {
-  @Input({ required: true }) type!: IonAvatarProps['type'];
-  @Input() size?: IonAvatarProps['size'] = 'md';
-  @Input() value?: IonAvatarProps['value'];
-  @Input()
-  image: IonAvatarProps['image'] = '';
-  @Input() onErrorImage: IonAvatarProps['onErrorImage'] = '';
-  @Input() icon: IconType = 'union';
-  initials!: string;
+export class IonAvatarComponent {
+  type = input<IonAvatarProps['type']>();
+  size = input<IonAvatarProps['size']>('md');
+  value = input<IonAvatarProps['value']>('');
+  image = input<IonAvatarProps['image']>('');
+  onErrorImage = input<IonAvatarProps['onErrorImage']>('');
+  icon = input<IconType>('union');
 
-  private getInitials(name?: string): string {
+  initials = computed(() =>
+    this.value().length > 0 ? this.getInitials(this.value()) : '--'
+  );
+
+  private getInitials(name: string): string {
     return name
-      ? name
-          .split(' ')
-          .map(word => word[0])
-          .slice(0, 2)
-          .join('')
-          .toUpperCase()
-      : '--';
-  }
-
-  ngOnInit(): void {
-    if (this.type === AvatarType.initials) {
-      this.initials = this.getInitials(this.value);
-    }
+      .split(' ')
+      .map(word => word[0])
+      .slice(0, 2)
+      .join('')
+      .toUpperCase();
   }
 }
