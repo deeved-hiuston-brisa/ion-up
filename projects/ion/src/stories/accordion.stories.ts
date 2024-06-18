@@ -24,7 +24,7 @@ const meta: Meta<IonAccordionComponent> = {
   title: 'Ion/Data Display/Accordion',
   component: IonAccordionComponent,
   tags: ['autodocs'],
-  render: (args: IonAccordionComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },
@@ -87,12 +87,12 @@ type Story = StoryObj<IonAccordionComponent>;
 export const Default: Story = {
   args: {
     accordions,
-  } as IonAccordionComponent,
+  },
 };
 
 export const AccordionWithModeAccordionFalse: Story = {
   args: {
     accordions,
     modeAccordion: false,
-  } as IonAccordionComponent,
+  },
 };

@@ -1,14 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  HostBinding,
-  Input,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { IonAlertProps } from './types';
 import { CommonModule } from '@angular/common';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { IconType, IonIconComponent } from '../icon';
+import { IonAlertProps } from './types';
 
 export const alertIconTypes = {
   success: 'check-solid',
@@ -23,13 +16,14 @@ export const alertIconTypes = {
   templateUrl: './alert.component.html',
   styleUrl: './alert.component.scss',
   imports: [CommonModule, IonIconComponent],
+  host: {
+    '[attr.data-type]': 'type',
+  },
 })
 export class IonAlertComponent implements OnInit {
   @Input() message?: IonAlertProps['message'];
   @Input() customBody?: IonAlertProps['customBody'];
-  @HostBinding('[attr.data-type]')
-  @Input()
-  type?: IonAlertProps['type'] = 'success';
+  @Input() type?: IonAlertProps['type'] = 'success';
   @Input() description?: IonAlertProps['description'];
   @Input() closable?: IonAlertProps['closable'] = false;
   @Input() hideBackground?: IonAlertProps['hideBackground'] = false;
