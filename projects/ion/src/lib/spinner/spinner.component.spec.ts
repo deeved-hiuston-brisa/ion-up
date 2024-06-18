@@ -31,7 +31,7 @@ describe('SpinnerComponent', () => {
     }
   );
 
-  it('should render SpinnerComponent a with custom color', async () => {
+  it('should render SpinnerComponent with a custom color', async () => {
     const customColor = '#c05bff';
     await sut({ ...defaultProps, customColor });
     expect(screen.getByTestId('ion-spinner')).toHaveStyle({
