@@ -4,6 +4,9 @@ import type { Meta, StoryObj } from '@storybook/angular';
 import { IonButtonComponent } from '../lib/button';
 
 export const actionsData = {
+  args: {
+    label: 'Button',
+  },
   ionOnClick: action('ionOnClick'),
 };
 
@@ -22,7 +25,7 @@ const meta: Meta<IonButtonComponent> = {
       control: {
         type: 'text',
       },
-      description: 'Rótulo do botão. Obrigatório.',
+      description: 'Rótulo do botão.',
     },
     type: {
       control: {
@@ -171,7 +174,7 @@ export const DangerIconOnly: Story = {
 
 export const LgSizeWithIcon: Story = {
   args: {
-    label: 'Delet',
+    label: 'Delete',
     icon: {
       type: 'trash',
     },
@@ -201,7 +204,7 @@ export const WithIconLoading: Story = {
 
 export const DangerWithIcon: Story = {
   args: {
-    label: 'Delet',
+    label: 'Delete',
     icon: {
       type: 'trash',
     },
