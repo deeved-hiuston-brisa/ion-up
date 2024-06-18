@@ -1,5 +1,12 @@
 import { CommonModule, NgClass } from '@angular/common';
-import { Component, ElementRef, input, output, viewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  input,
+  output,
+  viewChild,
+} from '@angular/core';
 import { timer } from 'rxjs';
 import { IonIconComponent } from '../icon';
 import { IonButtonProps } from './types';
@@ -13,6 +20,7 @@ const ANIMATION_TIME = 300;
   imports: [CommonModule, IonIconComponent, NgClass],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IonButtonComponent {
   label = input<IonButtonProps['label']>();
