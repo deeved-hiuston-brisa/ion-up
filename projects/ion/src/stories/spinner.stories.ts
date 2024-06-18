@@ -6,7 +6,7 @@ const meta: Meta<IonSpinnerComponent> = {
   title: 'Ion/Feedback/Spinner',
   component: IonSpinnerComponent,
   tags: ['autodocs'],
-  render: (args: IonSpinnerComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },
