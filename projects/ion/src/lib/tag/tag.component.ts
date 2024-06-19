@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonIconComponent } from '../icon';
-import { IonTagInterface } from './types';
+import { IonTagProps } from './types';
 
 @Component({
   standalone: true,
@@ -11,19 +11,21 @@ import { IonTagInterface } from './types';
   styleUrls: ['./tag.component.scss'],
 })
 export class IonTagComponent {
-  @Input({ required: true }) label!: IonTagInterface['label'];
-  @Input() outline: IonTagInterface['outline'] = true;
-  @Input() status?: IonTagInterface['status'] = 'neutral';
-  @Input() icon?: IonTagInterface['icon'];
-  @Input() color?: IonTagInterface['color'];
+  label = input.required<IonTagProps['label']>();
+  outline = input<IonTagProps['outline']>(true);
+  status = input<IonTagProps['status']>('neutral');
+  icon = input<IonTagProps['icon']>('');
+  color = input<IonTagProps['color']>('');
 
-  protected getTagType(): string {
-    return `ion-tag ${this.outline ? 'outline' : ''} ${this.status}`;
-  }
+  protected tagType = computed(
+    () => `ion-tag ${this.outline() ? 'outline' : ''} ${this.status()}`
+  );
 
-  protected getTagColorAndBackground(): string {
-    return this.color && this.validateHexColor(this.color) ? this.color : '';
-  }
+  protected getTagColorAndBackground = computed(() =>
+    this.color().length && this.validateHexColor(this.color())
+      ? this.color()
+      : ''
+  );
 
   private validateHexColor(color: string): boolean {
     return /^#(?:[0-9a-fA-F]{3,4}){1,2}$/.test(color);
