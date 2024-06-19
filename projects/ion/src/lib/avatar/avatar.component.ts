@@ -17,7 +17,7 @@ import { IonAvatarProps } from './types';
   },
 })
 export class IonAvatarComponent {
-  type = input<IonAvatarProps['type']>();
+  type = input.required<IonAvatarProps['type']>();
   size = input<IonAvatarProps['size']>('md');
   value = input<IonAvatarProps['value']>('');
   image = input<IonAvatarProps['image']>('');
