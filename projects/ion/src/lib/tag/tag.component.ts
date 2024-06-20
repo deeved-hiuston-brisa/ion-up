@@ -1,4 +1,9 @@
-import { Component, computed, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonIconComponent } from '../icon';
 import { IonTagProps } from './types';
@@ -9,6 +14,7 @@ import { IonTagProps } from './types';
   imports: [CommonModule, IonIconComponent],
   templateUrl: './tag.component.html',
   styleUrls: ['./tag.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IonTagComponent {
   label = input.required<IonTagProps['label']>();
