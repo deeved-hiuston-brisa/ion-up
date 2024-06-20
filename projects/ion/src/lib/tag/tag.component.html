@@ -4,11 +4,11 @@
   [class]="tagType()"
   [style.background]="getTagColorAndBackground() + '1A'"
   [style.border-color]="getTagColorAndBackground()">
-  @if (icon().length) {
+  @if (icon(); as iconType) {
     <ion-icon
       data-testid="ion-tag-icon"
       [size]="12"
-      [type]="icon()"
+      [type]="iconType"
       [class.tag-icon]="!getTagColorAndBackground()"
       [color]="getTagColorAndBackground()"></ion-icon>
   }

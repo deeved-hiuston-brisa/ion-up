@@ -14,20 +14,18 @@ export class IonTagComponent {
   label = input.required<IonTagProps['label']>();
   outline = input<IonTagProps['outline']>(true);
   status = input<IonTagProps['status']>('neutral');
-  icon = input<IonTagProps['icon']>('');
-  color = input<IonTagProps['color']>('');
+  icon = input<IonTagProps['icon']>();
+  color = input<IonTagProps['color']>();
 
   protected tagType = computed(
     () => `ion-tag ${this.outline() ? 'outline' : ''} ${this.status()}`
   );
 
   protected getTagColorAndBackground = computed(() =>
-    this.color().length && this.validateHexColor(this.color())
-      ? this.color()
-      : ''
+    this.validateHexColor(this.color()) ? this.color() : ''
   );
 
-  private validateHexColor(color: string): boolean {
-    return /^#(?:[0-9a-fA-F]{3,4}){1,2}$/.test(color);
+  private validateHexColor(color?: string): boolean {
+    return !!(color && /^#(?:[0-9a-fA-F]{3,4}){1,2}$/.test(color));
   }
 }
