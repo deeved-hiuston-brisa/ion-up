@@ -73,7 +73,7 @@ export default [
 
     rules: {
       'prettier/prettier': [
-        'error',
+        'warn',
         {
           parser: 'angular',
         },
