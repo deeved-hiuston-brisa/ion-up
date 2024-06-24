@@ -79,5 +79,9 @@
     "commitizen": {
       "path": "@commitlint/cz-commitlint"
     }
+  },
+  "resolutions": {
+    "wrap-ansi": "7.0.0",
+    "string-width": "4.1.0"
   }
 }
