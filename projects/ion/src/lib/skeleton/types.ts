@@ -2,28 +2,22 @@ export type SkeletonVariants = 'rect' | 'circular';
 
 export interface IonSkeletonProps {
   /**
-   * @description The `variant` parameter is used to define the shape of the skeleton.
-   * @type {SkeletonVariants}
-   */
-  variant: SkeletonVariants;
-
-  /**
    * @description the `radius` parameter is used to define the radius of the skeleton.
-   * @type {number}
+   * @type {string | number}
    */
-  radius?: number;
+  radius: number | string;
 
   /**
    * @description The `height` parameter is used to define the height of the skeleton.
-   * @type {number}
+   * @type {string | number}
    * @default '50'
    */
-  height: number;
+  height: number | string;
 
   /**
    * @description The `width` parameter is used to define the width of the skeleton.
-   * @type {string}
+   * @type {string | number}
    * @default '50'
    */
-  width: number;
+  width: number | string;
 }

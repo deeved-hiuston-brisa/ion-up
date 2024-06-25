@@ -1,21 +1,36 @@
-import { Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 import { IonSkeletonProps } from './types';
 
 @Component({
   selector: 'ion-skeleton',
   standalone: true,
-  imports: [],
   templateUrl: './skeleton.component.html',
   styleUrl: './skeleton.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IonSkeletonComponent {
-  @Input({ required: true }) variant!: IonSkeletonProps['variant'];
-  @Input() radius?: IonSkeletonProps['radius'];
-  @Input() width: IonSkeletonProps['width'] = 50;
-  @Input() height: IonSkeletonProps['height'] = 50;
+  radius = input<IonSkeletonProps['radius']>();
+  width = input<IonSkeletonProps['width']>(50);
+  height = input<IonSkeletonProps['height']>(50);
 
-  variantRadius = {
-    circular: '50%',
-    rect: '0',
-  };
+  properties = computed(() => ({
+    width: this.convertUnit(this.width()),
+    height: this.convertUnit(this.height()),
+    borderRadius: this.convertUnit(this.radius()),
+  }));
+
+  private isString(value?: number | string): value is string {
+    return typeof value === 'string';
+  }
+
+  private convertUnit(value?: number | string): string | undefined {
+    if (value === undefined) return value;
+
+    return this.isString(value) ? value : `${value}px`;
+  }
 }

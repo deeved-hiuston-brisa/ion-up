@@ -3,27 +3,27 @@ import { render, screen } from '@testing-library/angular';
 import { IonSkeletonComponent } from './skeleton.component';
 import { IonSkeletonProps } from './types';
 
-const defaultProps: IonSkeletonProps = {
-  variant: 'rect',
+const defaultProps: Partial<IonSkeletonProps> = {
   width: 50,
   height: 50,
 };
 
-const rectangularProps: IonSkeletonProps = {
-  variant: 'rect',
+const rectangularProps: Partial<IonSkeletonProps> = {
   width: 400,
   height: 100,
 };
 
-const circularProps: IonSkeletonProps = {
-  variant: 'circular',
+const circularProps: Partial<IonSkeletonProps> = {
   width: 50,
   height: 50,
+  radius: '50%',
 };
 
-const sut = async (customProps: IonSkeletonProps): Promise<HTMLElement> => {
+const sut = async (
+  customProps: Partial<IonSkeletonProps>
+): Promise<HTMLElement> => {
   await render(IonSkeletonComponent, {
-    componentProperties: customProps,
+    componentInputs: customProps,
   });
   return screen.findByTestId('ion-skeleton');
 };
@@ -34,10 +34,27 @@ describe('SkeletonComponent', () => {
     expect(screen.getByTestId('ion-skeleton')).toHaveClass('ion-skeleton');
   });
 
-  it('should render rectagular skeleton', async () => {
+  it('should render a skeleton with default values', async () => {
+    await sut(defaultProps);
+    expect(screen.getByTestId('ion-skeleton')).toHaveStyle(
+      'width: 50px; height: 50px;'
+    );
+  });
+
+  it('should render rectangular skeleton', async () => {
     await sut(rectangularProps);
     expect(screen.getByTestId('ion-skeleton')).toHaveStyle(
       'width: 400px; height: 100px;'
+    );
+  });
+
+  it('should render without converting units', async () => {
+    await sut({
+      width: '100%',
+      height: '100%',
+    });
+    expect(screen.getByTestId('ion-skeleton')).toHaveStyle(
+      'width: 100%; height: 100%;'
     );
   });
 
@@ -50,7 +67,6 @@ describe('SkeletonComponent', () => {
 
   it('should accept custom border radius', async () => {
     await sut({
-      variant: 'rect',
       width: 50,
       height: 50,
       radius: 12,
