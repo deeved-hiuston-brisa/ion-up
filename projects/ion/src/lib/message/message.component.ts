@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { IonIconComponent } from '../icon';
 import { IonMessageProps } from './types';
@@ -18,12 +18,13 @@ const iconTypes = {
   imports: [IonIconComponent],
   templateUrl: './message.component.html',
   styleUrl: './message.component.scss',
+  host: {
+    '[attr.data-type]': 'type',
+  },
 })
 export class IonMessageComponent implements OnInit {
   @Input() label!: IonMessageProps['label'];
-  @HostBinding('[attr.data-type]')
-  @Input()
-  type: IonMessageProps['type'] = 'positive';
+  @Input() type: IonMessageProps['type'] = 'positive';
   @Input() iconType?: IonMessageProps['iconType'];
 
   setIcon(): void {

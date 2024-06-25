@@ -40,7 +40,7 @@ describe('SidebarItem', () => {
     );
   });
   it('should select on click', async () => {
-    await sut();
+    await sut({ selected: false });
     const element = screen.getByTestId(defaultTestId);
     await userEvent.click(element);
     expect(element).toHaveClass(`${defaultClass}--selected`);

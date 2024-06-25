@@ -6,7 +6,7 @@ const meta: Meta<IonBreadcrumbComponent> = {
   title: 'Ion/Navigation/Breadcrumb',
   component: IonBreadcrumbComponent,
   tags: ['autodocs'],
-  render: (args: IonBreadcrumbComponent) => ({
+  render: args => ({
     moduleMetadata: {
       imports: [IonIconComponent],
     },

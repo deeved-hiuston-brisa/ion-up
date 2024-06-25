@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
+import type { Meta, StoryObj } from '@storybook/angular';
 
 import { IonSidebarComponent } from './../lib/sidebar/sidebar.component';
 
@@ -7,7 +7,7 @@ const meta: Meta<IonSidebarComponent> = {
   title: 'Ion/Navigation/Sidebar',
   component: IonSidebarComponent,
   tags: ['autodocs'],
-  render: (args: IonSidebarComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },

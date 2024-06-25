@@ -6,7 +6,7 @@ const meta: Meta<IonSwitchComponent> = {
   title: 'Ion/Data Entry/Switch',
   component: IonSwitchComponent,
   tags: ['autodocs'],
-  render: (args: IonSwitchComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },
