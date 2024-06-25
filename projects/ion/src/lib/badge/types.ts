@@ -20,5 +20,5 @@ export interface IonBadgeProps {
    * @example
    * <ion-badge type="neutral" />
    */
-  type?: Type;
+  type: Type;
 }
