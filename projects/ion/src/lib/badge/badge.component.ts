@@ -36,7 +36,7 @@ export class IonBadgeComponent {
   icon = input<IonBadgeProps['icon']>();
   size = input<IonBadgeProps['size']>('xs');
   status = input<IonBadgeProps['status']>('primary');
-  customColor = input<string>();
+  customColor = input<IonBadgeProps['customColor']>();
 
   showLabel = computed(
     () => this.label() && (!this.icon() || this.size() === 'xs')
