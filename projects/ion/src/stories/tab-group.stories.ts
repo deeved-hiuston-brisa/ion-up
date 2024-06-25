@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { IonTabGroupComponent } from '../lib/tab-group';
 import type { IonTabGroupProps } from '../lib/tab-group';
+import { IonTabGroupComponent } from '../lib/tab-group';
 import { iconsPaths } from '../public-api';
 
 const tabs: IonTabGroupProps['tabs'] = [];
@@ -16,7 +16,7 @@ const meta: Meta<IonTabGroupComponent> = {
   title: 'Ion/Navigation/TabGroup',
   component: IonTabGroupComponent,
   tags: ['autodocs'],
-  render: (args: IonTabGroupComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },
@@ -67,20 +67,20 @@ type Story = StoryObj<IonTabGroupComponent>;
 export const Horizontal: Story = {
   args: {
     tabs,
-  } as IonTabGroupComponent,
+  },
 };
 
 export const HorizontalDisabled: Story = {
   args: {
-    tabs: [...tabs, { label: 'disabled tab', disabled: true }],
-  } as IonTabGroupComponent,
+    tabs: [...tabs, { label: 'disabled tab', disabled: true, selected: false }],
+  },
 };
 
 export const Vertical: Story = {
   args: {
     tabs,
     direction: 'vertical',
-  } as IonTabGroupComponent,
+  },
 };
 
 export const VerticalWithBorderLeft: Story = {
@@ -88,7 +88,7 @@ export const VerticalWithBorderLeft: Story = {
     tabs,
     border: 'left',
     direction: 'vertical',
-  } as IonTabGroupComponent,
+  },
 };
 
 export const SelectedByDefault: Story = {
@@ -103,7 +103,7 @@ export const SelectedByDefault: Story = {
         selected: false,
       },
     ],
-  } as IonTabGroupComponent,
+  },
 };
 
 export const mediumSize: Story = {
@@ -111,7 +111,7 @@ export const mediumSize: Story = {
     tabs,
     direction: 'vertical',
     size: 'md',
-  } as IonTabGroupComponent,
+  },
 };
 
 export const largeSize: Story = {
