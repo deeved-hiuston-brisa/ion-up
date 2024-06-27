@@ -1,12 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { CommonModule, NgClass } from '@angular/common';
-import {
-  Component,
-  EventEmitter,
-  HostBinding,
-  Input,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { IonSwitchProps } from './types';
@@ -24,13 +18,14 @@ import { IonSwitchProps } from './types';
       multi: true,
     },
   ],
+  host: {
+    '[attr.data-size]': 'size',
+  },
 })
 export class IonSwitchComponent implements ControlValueAccessor {
   @Input() key!: IonSwitchProps['key'];
   @Input() value: IonSwitchProps['value'] = false;
-  @HostBinding('attr.data-size')
-  @Input()
-  size: IonSwitchProps['size'] = 'sm';
+  @Input() size: IonSwitchProps['size'] = 'sm';
   @Input() disabled: IonSwitchProps['disabled'] = false;
   @Output() atValueChange: IonSwitchProps['atValueChange'] =
     new EventEmitter<boolean>();

@@ -6,7 +6,7 @@ const meta: Meta<IonStepsComponent> = {
   title: 'Ion/Navigation/Steps',
   component: IonStepsComponent,
   tags: ['autodocs'],
-  render: (args: IonStepsComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },
@@ -65,7 +65,7 @@ export const Default: Story = {
         label: 'Third',
       },
     ],
-  } as IonStepsComponent,
+  },
 };
 
 export const Disabled: Story = {
