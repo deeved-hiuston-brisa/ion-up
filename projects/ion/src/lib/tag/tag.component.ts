@@ -27,7 +27,7 @@ export class IonTagComponent {
     () => `ion-tag ${this.outline() ? 'outline' : ''} ${this.status()}`
   );
 
-  protected getTagColorAndBackground = computed(() =>
+  protected getTagColorAndBackground = computed<string>(() =>
     this.validateHexColor(this.color()) ? this.color() : ''
   );
 
