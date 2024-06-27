@@ -1,6 +1,11 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { IonBreadcrumbComponent } from '../lib/breadcrumb';
 import { IonIconComponent } from '../public-api';
+
+export const actionsData = {
+  selected: action('selected'),
+};
 
 const meta: Meta<IonBreadcrumbComponent> = {
   title: 'Ion/Navigation/Breadcrumb',
@@ -12,6 +17,7 @@ const meta: Meta<IonBreadcrumbComponent> = {
     },
     props: {
       ...args,
+      selected: actionsData.selected,
     },
   }),
   argTypes: {

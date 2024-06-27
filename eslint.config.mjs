@@ -1,5 +1,6 @@
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -73,11 +74,12 @@ export default [
 
     rules: {
       'prettier/prettier': [
-        'error',
+        'warn',
         {
           parser: 'angular',
         },
       ],
     },
   },
+  eslintConfigPrettier,
 ];
