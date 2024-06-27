@@ -20,7 +20,7 @@ export class IonBreadcrumbComponent {
   breadcrumbs = input.required<BreadcrumbProps['breadcrumbItems']>();
   selected = output<BreadcrumbItem>();
 
-  icon: IonIconProps = { type: 'right2', size: 16 };
+  icon: Pick<IonIconProps, 'type' | 'size'> = { type: 'right2', size: 16 };
 
   onSelected(selectedBreadcrumb: BreadcrumbItem): void {
     if (

@@ -1,10 +1,10 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   computed,
   input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { IonIconComponent } from '../icon';
 import { IonTagProps } from './types';
 
@@ -21,13 +21,13 @@ export class IonTagComponent {
   outline = input<IonTagProps['outline']>(true);
   status = input<IonTagProps['status']>('neutral');
   icon = input<IonTagProps['icon']>();
-  color = input<IonTagProps['color']>();
+  color = input<IonTagProps['color']>('');
 
   protected tagType = computed(
     () => `ion-tag ${this.outline() ? 'outline' : ''} ${this.status()}`
   );
 
-  protected getTagColorAndBackground = computed(() =>
+  protected getTagColorAndBackground = computed<string>(() =>
     this.validateHexColor(this.color()) ? this.color() : ''
   );
 
