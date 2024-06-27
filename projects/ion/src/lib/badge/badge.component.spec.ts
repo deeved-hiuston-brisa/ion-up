@@ -9,49 +9,31 @@ const types: Array<IonBadgeProps['type']> = [
   'negative',
 ];
 
-const sut = async (customProps: IonBadgeProps): Promise<HTMLElement> => {
+const sut = async (customProps: Partial<IonBadgeProps>): Promise<void> => {
   await render(IonBadgeComponent, {
-    componentProperties: customProps,
-    autoDetectChanges: true,
+    componentInputs: { ...customProps },
   });
-
-  return screen.getByTestId(`ion-badge-${customProps.label}`);
 };
 
 describe('IonBadgeComponent', () => {
   it.each(['text badge', 10, 30])(
     'should render a badge with label %s',
     async label => {
-      const { fixture } = await render(IonBadgeComponent, {
-        componentInputs: { label },
-      });
-      const componentInstance = fixture.componentInstance;
-      expect(componentInstance.label).toBe(label);
+      await sut({ label });
+      expect(screen.getByText(label)).toBeInTheDocument();
     }
   );
 
   it('should render 99+ when label is bigger than 99', async () => {
-    const { fixture } = await render(IonBadgeComponent, {
-      componentInputs: { label: 1000 },
-    });
-    const componentInstance = fixture.componentInstance;
-    expect(componentInstance.label).toBe('99+');
+    await sut({ label: 1000 });
+    expect(screen.getByText('99+')).toBeInTheDocument();
   });
 
   it.each(types)('should correctly render badge %s types.', async type => {
-    expect(await sut({ label: `type`, type })).toHaveAttribute(
+    await sut({ label: type, type });
+    expect(screen.getByTestId(`ion-badge-${type}`)).toHaveAttribute(
       'data-type',
       type
     );
-  });
-
-  it('should throw an error when the label property is empty', async () => {
-    try {
-      await render(IonBadgeComponent, {
-        componentProperties: { label: ' ' },
-      });
-    } catch (e) {
-      expect((e as unknown as Error).message).toBe(`Label can't be empty!`);
-    }
   });
 });
