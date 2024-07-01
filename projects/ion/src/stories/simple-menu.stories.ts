@@ -1,3 +1,4 @@
+import { action } from '@storybook/addon-actions';
 import type { Meta, StoryObj } from '@storybook/angular';
 
 import { IonSimpleMenuComponent } from '../lib/simple-menu';
@@ -11,8 +12,12 @@ const meta: Meta<IonSimpleMenuComponent> = {
   title: 'Ion/Data Display/Simple Menu',
   component: IonSimpleMenuComponent,
   tags: ['autodocs'],
-  render: (args: IonSimpleMenuComponent) => ({
-    props: { ...args },
+  render: args => ({
+    props: {
+      ...args,
+      selected: action('selected'),
+      logoutClick: action('logoutClick'),
+    },
     moduleMetadata: {
       imports: [IonButtonComponent, IonAvatarComponent, IonTabGroupComponent],
     },

@@ -11,18 +11,18 @@
 
 <div
   class="ion-menu-container"
-  [class.ion-menu-container--opened]="open"
+  [class.ion-menu-container--opened]="open()"
   (mouseenter)="openMenu()"
   (mouseleave)="dismissMenu()"
   data-testid="ion-simple-menu">
-  @if (logo) {
+  @if (logo(); as logo) {
     <header class="ion-menu-container__header">
       <img [src]="logo.src" [alt]="logo.alt" data-testid="logo-photo" />
     </header>
   }
 
   <ion-tab-group
-    [tabs]="options"
+    [tabs]="options()"
     size="md"
     direction="vertical"
     border="left"
@@ -31,23 +31,23 @@
 
   <div class="ion-menu-container__footer">
     <div>
-      @if (profile.imageUrl) {
+      @if (profile().imageUrl) {
         <ion-avatar
           data-testid="avatar-photo"
-          [type]="avatarType"
-          [image]="profile.imageUrl"
+          [type]="avatarType()"
+          [image]="profile().imageUrl"
           size="md">
         </ion-avatar>
       } @else {
         <ion-avatar
           data-testid="avatar-initials"
-          [type]="initialsType"
-          [value]="profile.name"
+          [type]="avatarType()"
+          [value]="profile().name"
           size="md">
         </ion-avatar>
       }
 
-      <span>{{ profile.name }}</span>
+      <span>{{ profile().name }}</span>
     </div>
     <ion-button
       label="Sair"

@@ -1,5 +1,4 @@
-import { EventEmitter } from '@angular/core';
-import { SafeAny } from '../utils/safe-any';
+import { OutputEmitterRef } from '@angular/core';
 import { TabInGroup } from '../tab-group/types';
 
 interface MenuProfile {
@@ -27,12 +26,12 @@ export interface SimpleMenuProps {
    * @description The `selected` parameter is an event that is triggered when an option is selected.
    * @types {EventEmitter<TabInGroup>}
    */
-  selected?: EventEmitter<TabInGroup>;
+  selected: OutputEmitterRef<TabInGroup>;
   /**
    * @description The `logoutClick` parameter is an event that is triggered when the logout button is clicked.
-   * @types {EventEmitter<SafeAny>}
+   * @types {EventEmitter<void>}
    */
-  logoutClick?: EventEmitter<SafeAny>;
+  logoutClick: OutputEmitterRef<void>;
   /**
    * @description The `logo` parameter represents the logo that will be displayed in the menu.
    * @types {Image}

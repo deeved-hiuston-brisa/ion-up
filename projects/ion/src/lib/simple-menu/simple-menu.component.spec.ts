@@ -2,10 +2,10 @@ import { fireEvent, render, screen } from '@testing-library/angular';
 
 import { IonAvatarComponent } from '../avatar';
 import { IonTabComponent } from '../tab';
+import { TabInGroup } from '../tab-group';
 import { SafeAny } from '../utils/safe-any';
 import { IonSimpleMenuComponent } from './simple-menu.component';
 import { SimpleMenuProps } from './types';
-import { TabInGroup } from '../tab-group';
 
 const classMenuOpen = 'ion-menu-container--opened';
 
@@ -76,8 +76,13 @@ const withLogoMenu: SimpleMenuProps = {
 const sut = async (
   customProps: SimpleMenuProps = defaultMenu
 ): Promise<void> => {
+  const { selected, logoutClick, ...rest } = customProps;
   await render(IonSimpleMenuComponent, {
-    componentProperties: customProps,
+    componentInputs: rest,
+    componentOutputs: {
+      selected,
+      logoutClick,
+    },
     imports: [IonAvatarComponent, IonTabComponent],
   });
 };

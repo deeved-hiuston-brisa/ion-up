@@ -1,10 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 
-import { IonButtonComponent } from '../button/button.component';
-import { SimpleMenuProps } from './types';
 import { AvatarType, IonAvatarComponent } from '../avatar';
-import { TabInGroup } from '../tab-group/types';
+import { IonButtonComponent } from '../button/button.component';
 import { IonTabGroupComponent } from '../tab-group';
+import { TabInGroup } from '../tab-group/types';
+import { SimpleMenuProps } from './types';
 
 @Component({
   selector: 'ion-simple-menu',
@@ -12,18 +19,20 @@ import { IonTabGroupComponent } from '../tab-group';
   imports: [IonButtonComponent, IonAvatarComponent, IonTabGroupComponent],
   templateUrl: './simple-menu.component.html',
   styleUrl: './simple-menu.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IonSimpleMenuComponent {
-  @Input() options!: SimpleMenuProps['options'];
-  @Input() profile!: SimpleMenuProps['profile'];
-  @Input() logo?: SimpleMenuProps['logo'];
+  options = input.required<SimpleMenuProps['options']>();
+  profile = input.required<SimpleMenuProps['profile']>();
+  logo = input<SimpleMenuProps['logo']>();
 
-  @Output() selected = new EventEmitter<TabInGroup>();
-  @Output() logoutClick = new EventEmitter<SimpleMenuProps['logoutClick']>();
+  selected = output<TabInGroup>();
+  logoutClick = output();
 
-  open = false;
-  avatarType = AvatarType.photo;
-  initialsType = AvatarType.initials;
+  open = signal(false);
+  avatarType = computed<AvatarType>(() =>
+    this.profile().imageUrl ? 'photo' : 'initials'
+  );
 
   private timeToToAutoClose = 1000;
   private menuTimeout!: ReturnType<typeof setTimeout>;
@@ -34,13 +43,13 @@ export class IonSimpleMenuComponent {
 
   dismissMenu(): void {
     this.menuTimeout = setTimeout(() => {
-      this.open = false;
+      this.open.set(false);
     }, this.timeToToAutoClose);
   }
 
   openMenu(): void {
     clearTimeout(this.menuTimeout);
-    this.open = true;
+    this.open.set(true);
   }
 
   logout(): void {
