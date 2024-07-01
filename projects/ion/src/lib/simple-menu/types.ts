@@ -1,12 +1,12 @@
 import { OutputEmitterRef } from '@angular/core';
 import { TabInGroup } from '../tab-group/types';
 
-interface MenuProfile {
+export interface MenuProfile {
   imageUrl: string;
   name: string;
 }
 
-interface Image {
+export interface Image {
   src: string;
   alt: string;
 }
