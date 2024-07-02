@@ -1,17 +1,19 @@
 import { CommonModule, NgClass } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
   OnInit,
-  Output,
-  ViewChild,
+  computed,
+  input,
+  model,
+  output,
+  viewChild,
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IonIconComponent } from '../../icon';
 import { setTimer } from '../../utils/setTimer';
-import { StatusType, statusColor, statusIcon } from '../../utils/statusTypes';
+import { statusColor, statusIcon } from '../../utils/statusTypes';
 import { IonNotificationProps } from '../types';
 
 @Component({
@@ -20,25 +22,27 @@ import { IonNotificationProps } from '../types';
   imports: [CommonModule, IonIconComponent, NgClass],
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IonNotificationComponent implements OnInit {
-  @Input({ required: true }) title!: IonNotificationProps['title'];
-  @Input({ required: true }) message!: IonNotificationProps['message'];
-  @Input() icon?: IonNotificationProps['icon'];
-  @Input() type: IonNotificationProps['type'] = 'success';
-  @Input() fixed: IonNotificationProps['fixed'] = false;
-  @Input() fadeIn: IonNotificationProps['fadeIn'] = 'fadeIn';
-  @Input() fadeOut: IonNotificationProps['fadeOut'] = 'fadeOut';
-  @ViewChild('notificationRef', { static: false }) notification!: ElementRef;
-  @Output() ionOnClose: IonNotificationProps['ionOnClose'] =
-    new EventEmitter<void>();
+  title = input.required<IonNotificationProps['title']>();
+  message = input.required<IonNotificationProps['message']>();
+  type = input<IonNotificationProps['type']>('success');
+  icon = model<IonNotificationProps['icon']>();
+  fixed = input<IonNotificationProps['fixed']>(false);
+  fadeIn = input<IonNotificationProps['fadeIn']>('fadeIn');
+  fadeOut = input<IonNotificationProps['fadeOut']>('fadeOut');
+
+  notification = viewChild<ElementRef>('notificationRef');
+
+  ionOnClose = output();
+
+  iconColor = computed(() => statusColor[this.type()]);
 
   private timer$!: Subscription;
-  public iconColor!: string;
 
   ngOnInit(): void {
     this.setIcon();
-    this.iconColor = this.getIconColor();
     this.closeAuto();
   }
 
@@ -53,15 +57,15 @@ export class IonNotificationComponent implements OnInit {
   }
 
   public closeNotification(): void {
-    this.notification.nativeElement.classList.add(this.fadeOut);
+    this.notification()!.nativeElement.classList.add(this.fadeOut());
     this.ionOnClose.emit();
     setTimer().subscribe(() => {
-      this.notification.nativeElement.remove();
+      this.notification()!.nativeElement.remove();
     });
   }
 
-  public closeAuto(closeIn: number = this.timeByWords(this.message)): void {
-    if (this.fixed) {
+  public closeAuto(closeIn: number = this.timeByWords(this.message())): void {
+    if (this.fixed()) {
       return;
     }
     this.timer$ = setTimer(closeIn).subscribe(() => {
@@ -70,7 +74,7 @@ export class IonNotificationComponent implements OnInit {
   }
 
   public mouseEnter(): void {
-    if (this.fixed) {
+    if (this.fixed()) {
       return;
     }
     this.timer$.unsubscribe();
@@ -81,13 +85,9 @@ export class IonNotificationComponent implements OnInit {
   }
 
   private setIcon(): void {
-    if (this.icon) {
+    if (this.icon()) {
       return;
     }
-    this.icon = statusIcon[this.type as StatusType];
-  }
-
-  private getIconColor(): string {
-    return statusColor[this.type as StatusType];
+    this.icon.set(statusIcon[this.type()]);
   }
 }

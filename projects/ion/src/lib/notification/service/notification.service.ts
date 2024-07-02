@@ -1,11 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import {
   ApplicationRef,
-  ComponentFactoryResolver,
   ComponentRef,
+  EnvironmentInjector,
   Inject,
   Injectable,
-  Injector,
+  createComponent,
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { IonNotificationConfigOptions } from '..';
@@ -30,9 +30,8 @@ export class IonNotificationService {
 
   constructor(
     @Inject(DOCUMENT) private document: SafeAny,
-    private componentFactoryResolver: ComponentFactoryResolver,
     private appRef: ApplicationRef,
-    private injector: Injector
+    private injector: EnvironmentInjector
   ) {}
 
   public success(
@@ -118,9 +117,9 @@ export class IonNotificationService {
   }
 
   private createNotificationContainer(): void {
-    const containerRef = this.componentFactoryResolver
-      .resolveComponentFactory(IonNotificationContainerComponent)
-      .create(this.injector);
+    const containerRef = createComponent(IonNotificationContainerComponent, {
+      environmentInjector: this.injector,
+    });
 
     this.notificationContainerComponentRef = containerRef;
 
@@ -128,9 +127,9 @@ export class IonNotificationService {
   }
 
   private createNotificationInstance(): ComponentRef<IonNotificationComponent> {
-    return this.componentFactoryResolver
-      .resolveComponentFactory(IonNotificationComponent)
-      .create(this.injector);
+    return createComponent(IonNotificationComponent, {
+      environmentInjector: this.injector,
+    });
   }
 
   private showNotification(
@@ -145,13 +144,7 @@ export class IonNotificationService {
 
     const notification = this.createNotificationInstance();
 
-    this.configNotification(
-      notification.instance,
-      title,
-      message,
-      options,
-      type
-    );
+    this.configNotification(notification, title, message, options, type);
 
     this.instanceNotification(notification);
 
@@ -161,18 +154,21 @@ export class IonNotificationService {
   }
 
   private configNotification(
-    notification: IonNotificationComponent,
+    notification: ComponentRef<IonNotificationComponent>,
     title: string,
     message: string,
     options?: Partial<IonNotificationConfigOptions>,
     type: StatusType = 'success'
   ): void {
-    notification.title = title;
-    notification.message = message;
-    notification.type = type;
+    notification.setInput('title', title);
+    notification.setInput('message', message);
+    notification.setInput('type', type);
 
     if (options) {
-      Object.assign(notification, options);
+      Object.keys(options).forEach(key => {
+        const keyName = key as keyof IonNotificationConfigOptions;
+        notification.setInput(keyName, options[keyName]);
+      });
     }
   }
 

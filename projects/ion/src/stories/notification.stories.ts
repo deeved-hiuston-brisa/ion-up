@@ -7,7 +7,7 @@ const meta: Meta<IonNotificationComponent> = {
   title: 'Ion/Feedback/Notification',
   component: IonNotificationComponent,
   tags: ['autodocs'],
-  render: (args: IonNotificationComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },
@@ -89,7 +89,7 @@ export const Basic: Story = {
   args: {
     title: 'Parabéns',
     message: 'Seu cadastro foi realizado com sucesso!',
-  } as IonNotificationComponent,
+  },
 };
 
 export const Fixed: Story = {
@@ -99,7 +99,7 @@ export const Fixed: Story = {
       'Você precisa fechar essa notificação, ela não desaparece automaticamente.',
     type: 'negative',
     fixed: true,
-  } as IonNotificationComponent,
+  },
 };
 
 export const Info: Story = {
@@ -107,7 +107,7 @@ export const Info: Story = {
     title: 'Informação',
     message: 'Seu cadastro está regular!',
     type: 'info',
-  } as IonNotificationComponent,
+  },
 };
 
 export const Warning: Story = {
@@ -115,7 +115,7 @@ export const Warning: Story = {
     title: 'Cuidado',
     message: 'Seu cadastro será excluído em 5 dias!',
     type: 'warning',
-  } as IonNotificationComponent,
+  },
 };
 
 export const Negative: Story = {
@@ -123,7 +123,7 @@ export const Negative: Story = {
     title: 'Falha',
     message: 'Houve um erro com seu login!',
     type: 'negative',
-  } as IonNotificationComponent,
+  },
 };
 
 export const CustomIcon: Story = {
@@ -131,7 +131,7 @@ export const CustomIcon: Story = {
     title: 'Editado',
     message: 'Um item foi editado no seu inventário',
     icon: 'pencil',
-  } as IonNotificationComponent,
+  },
 };
 
 export const CustomAnimation: Story = {
@@ -140,5 +140,5 @@ export const CustomAnimation: Story = {
     message: 'Um item foi editado no seu inventário',
     fadeIn: 'fadeInUp',
     fadeOut: 'fadeOutDown',
-  } as IonNotificationComponent,
+  },
 };

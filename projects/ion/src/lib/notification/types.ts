@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { OutputEmitterRef } from '@angular/core';
 import { IconType } from '../icon';
 import { fadeInDirection, fadeOutDirection } from '../utils/animationsTypes';
 import { StatusType } from '../utils/statusTypes';
@@ -30,7 +30,7 @@ export interface IonNotificationProps extends IonNotificationConfigOptions {
    * @example
    * <ion-notification type = `success`/>
    */
-  type?: StatusType;
+  type: StatusType;
 }
 
 export interface IonNotificationConfigOptions {
@@ -76,10 +76,10 @@ export interface IonNotificationConfigOptions {
   /**
    * Notification ionOnClose
    * @event IonNotificationComponent#ionOnClose - Event triggered when notification is closed.
-   * @type {EventEmitter<null>}
+   * @type {OutputEmitterRef<null>}
    * @description This event is emitted when the notificaion is closed.
    * @example
    * <ion-notification (ionOnClose) = "yourFunction()"/>
    */
-  ionOnClose: EventEmitter<void>;
+  ionOnClose: OutputEmitterRef<void>;
 }

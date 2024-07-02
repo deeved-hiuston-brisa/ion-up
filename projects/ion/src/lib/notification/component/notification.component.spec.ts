@@ -1,4 +1,3 @@
-import { EventEmitter } from '@angular/core';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { SafeAny } from '../../utils/safe-any';
 import { StatusType, statusColor } from '../../utils/statusTypes';
@@ -19,8 +18,12 @@ const defaultNotification: IonNotificationProps = {
 const sut = async (
   customProps: IonNotificationProps = defaultNotification
 ): Promise<void> => {
+  const { ionOnClose, ...rest } = customProps;
   await render(IonNotificationComponent, {
-    componentProperties: customProps,
+    componentInputs: rest,
+    componentOutputs: {
+      ionOnClose,
+    },
   });
 };
 
@@ -44,6 +47,7 @@ describe('IonNotificationComponent', () => {
     await sut({
       title: 'Editado',
       message: 'cadastro',
+      type: 'success',
       ionOnClose: {
         emit: indexChangeMock,
       } as SafeAny,
@@ -126,11 +130,11 @@ describe('IonNotificationComponent', () => {
 
 describe('Time by words', () => {
   it('should emit event when call closeNotification function', async () => {
-    const onCloseFunction = new EventEmitter<void>();
+    const onCloseFunction = { emit: jest.fn() };
     await sut({
       ...defaultNotification,
       fixed: true,
-      ionOnClose: onCloseFunction,
+      ionOnClose: onCloseFunction as SafeAny,
     });
     jest.spyOn(onCloseFunction, 'emit');
     const closeButton = document.getElementById(`ion-icon-close`);
