@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/angular';
+import userEvent from '@testing-library/user-event';
 import { IonSidebarComponent } from './sidebar.component';
 import { IonSidebarProps } from './types';
-import userEvent from '@testing-library/user-event';
+
+let detectChangesFn: () => void;
 
 const actionMock = jest.fn();
 
@@ -15,32 +17,42 @@ const components = {
 const getByTestId = (key: keyof typeof components): HTMLElement => {
   return screen.getByTestId(components[key]);
 };
+const clickOnElement = async (element: Element) => {
+  await userEvent.click(element);
+  detectChangesFn();
+};
 const logo: IonSidebarProps['logo'] = 'logo.svg';
 const items: IonSidebarProps['items'] = [
   {
     title: 'Item 1',
     icon: 'user',
     action: actionMock,
+    selected: false,
   },
   {
     title: 'Item 2',
     icon: 'pencil',
     action: actionMock,
+    selected: false,
   },
   {
     title: 'Group 1',
     icon: 'star-solid',
     action: actionMock,
+    selected: false,
+
     options: [
       {
         title: 'Item group 1',
         icon: 'box',
         action: actionMock,
+        selected: false,
       },
       {
         title: 'Item group 2',
         icon: 'working',
         action: actionMock,
+        selected: false,
       },
     ],
   },
@@ -48,9 +60,11 @@ const items: IonSidebarProps['items'] = [
 const defaultProps = { logo: '', items: [], closeOnSelect: false };
 
 const sut = async (props: IonSidebarProps = defaultProps) => {
-  return await render(IonSidebarComponent, {
-    componentProperties: props,
+  const result = await render(IonSidebarComponent, {
+    componentInputs: props,
   });
+  detectChangesFn = result.detectChanges;
+  return result;
 };
 
 describe('Sidebar', () => {
@@ -66,13 +80,20 @@ describe('Sidebar', () => {
     });
     it('should show sidebar after clicking on toggle visibility button', async () => {
       await userEvent.click(getByTestId('toggleVisibility').firstElementChild!);
+      detectChangesFn();
       expect(getByTestId('sidebar')).toHaveClass('ion-sidebar--opened');
     });
   });
   describe('Visible', () => {
     beforeEach(async () => {
-      await sut({ ...defaultProps, items, logo, logoAction: actionMock });
-      await userEvent.click(getByTestId('toggleVisibility').firstElementChild!);
+      await sut({
+        ...defaultProps,
+        items,
+        logo,
+        logoAction: actionMock,
+      });
+
+      await clickOnElement(getByTestId('toggleVisibility').firstElementChild!);
     });
 
     afterEach(() => {
@@ -85,7 +106,7 @@ describe('Sidebar', () => {
     it('should render logo on sidebar', () => {
       expect(screen.getByRole('img')).toHaveAttribute('src', logo);
     });
-    it('shoud call sidebar logo action', async () => {
+    it('should call sidebar logo action', async () => {
       await userEvent.click(screen.getByRole('img'));
       expect(actionMock).toHaveBeenCalledTimes(1);
     });
@@ -133,7 +154,7 @@ describe('Sidebar', () => {
       it.each(options!)(
         '$title should be visible after clicking on group',
         async ({ title: itemTitle }) => {
-          await userEvent.click(
+          await clickOnElement(
             screen.getByTestId('sidebar-group__toggle-icon')
           );
           expect(screen.getByText(itemTitle)).toBeVisible();
@@ -156,7 +177,7 @@ describe('Sidebar', () => {
           name: items[1].title,
         });
         groupName = screen.getByText('Group 1');
-        await userEvent.click(screen.getByTestId('sidebar-group__toggle-icon'));
+        await clickOnElement(screen.getByTestId('sidebar-group__toggle-icon'));
         itemGroup2 = screen.getByRole('button', {
           name: items[2].options![1].title,
         });
@@ -165,44 +186,44 @@ describe('Sidebar', () => {
         actionMock.mockClear();
       });
       it('should render an item selected when click on an item', async () => {
-        await userEvent.click(item1);
+        await clickOnElement(item1);
         expect(item1).toHaveClass(selectedItemClass);
       });
       it('should render only one item selected at a time', async () => {
-        await userEvent.click(item1);
-        await userEvent.click(item2);
+        await clickOnElement(item1);
+        await clickOnElement(item2);
         expect(item1).not.toHaveClass(selectedItemClass);
         expect(item2).toHaveClass(selectedItemClass);
       });
       it('should render a group selected when click on an item inside a group', async () => {
-        await userEvent.click(itemGroup2);
+        await clickOnElement(itemGroup2);
         expect(itemGroup2).toHaveClass(selectedItemClass);
         expect(getByTestId('group')).toHaveClass(selectedGroupClass);
       });
       it('should render only group or item selected at a time', async () => {
-        await userEvent.click(item1);
-        await userEvent.click(itemGroup2);
+        await clickOnElement(item1);
+        await clickOnElement(itemGroup2);
         expect(item1).not.toHaveClass(selectedItemClass);
         expect(itemGroup2).toHaveClass(selectedItemClass);
         expect(getByTestId('group')).toHaveClass(selectedGroupClass);
       });
       it('should render item selected and group not selected', async () => {
-        await userEvent.click(itemGroup2);
-        await userEvent.click(item1);
+        await clickOnElement(itemGroup2);
+        await clickOnElement(item1);
         expect(item1).toHaveClass(selectedItemClass);
         expect(itemGroup2).not.toHaveClass(selectedItemClass);
         expect(getByTestId('group')).not.toHaveClass(selectedGroupClass);
       });
       it('should call action function when click on an item', async () => {
-        await userEvent.click(item1);
+        await clickOnElement(item1);
         expect(actionMock).toHaveBeenCalledTimes(1);
       });
       it('should call action function when click on an item inside a group', async () => {
-        await userEvent.click(itemGroup2);
+        await clickOnElement(itemGroup2);
         expect(actionMock).toHaveBeenCalledTimes(1);
       });
       it('should call action function when click on a group title', async () => {
-        await userEvent.click(groupName);
+        await clickOnElement(groupName);
         expect(actionMock).toHaveBeenCalledTimes(1);
       });
     });
@@ -210,8 +231,13 @@ describe('Sidebar', () => {
   describe('Group without action', () => {
     beforeEach(async () => {
       items[2].action = undefined;
-      await sut({ ...defaultProps, items: [...items], logo });
-      await userEvent.click(getByTestId('toggleVisibility').firstElementChild!);
+      await sut({
+        ...defaultProps,
+        items: [...items],
+        logo,
+      });
+
+      await clickOnElement(getByTestId('toggleVisibility').firstElementChild!);
     });
     describe.each(
       items
@@ -233,13 +259,13 @@ describe('Sidebar', () => {
       it.each(options!)(
         '$title should be visible after clicking on group',
         async ({ title: itemTitle }) => {
-          await userEvent.click(screen.getByTestId('sidebar-group__header'));
+          await clickOnElement(screen.getByTestId('sidebar-group__header'));
           expect(screen.getByText(itemTitle)).toBeVisible();
         }
       );
     });
     it('should not call an action when clicking on group title', async () => {
-      await userEvent.click(screen.getByText('Group 1'));
+      await clickOnElement(screen.getByText('Group 1'));
       expect(actionMock).not.toHaveBeenCalled();
     });
   });
@@ -254,7 +280,8 @@ describe('Sidebar', () => {
         logo,
         closeOnSelect: true,
       });
-      await userEvent.click(getByTestId('toggleVisibility').firstElementChild!);
+
+      await clickOnElement(getByTestId('toggleVisibility').firstElementChild!);
       expect(getByTestId('sidebar')).toHaveClass('ion-sidebar--opened');
     });
     it('should close sidebar when option is clicked', async () => {
@@ -262,23 +289,24 @@ describe('Sidebar', () => {
         name: items[0].title,
       });
 
-      await userEvent.click(item1);
+      await clickOnElement(item1);
       expect(item1).toHaveClass(selectedItemClass);
       expect(getByTestId('sidebar')).not.toHaveClass('ion-sidebar--opened');
     });
     it('should close sidebar when options is clicked', async () => {
-      await userEvent.click(screen.getByTestId('sidebar-group__toggle-icon'));
+      await clickOnElement(screen.getByTestId('sidebar-group__toggle-icon'));
 
       itemGroup2 = screen.getByRole('button', {
         name: items[2].options![1].title,
       });
 
-      await userEvent.click(itemGroup2);
+      await clickOnElement(itemGroup2);
       expect(itemGroup2).toHaveClass(selectedItemClass);
       expect(getByTestId('sidebar')).not.toHaveClass('ion-sidebar--opened');
     });
     it('should close sidebar when logo is clicked', async () => {
-      await userEvent.click(screen.getByRole('img'));
+      await clickOnElement(screen.getByRole('img'));
+      detectChangesFn();
       expect(getByTestId('sidebar')).not.toHaveClass('ion-sidebar--opened');
     });
   });

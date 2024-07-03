@@ -6,7 +6,7 @@ const meta: Meta<IonNoDataComponent> = {
   title: 'Ion/Data Display/No Data',
   component: IonNoDataComponent,
   tags: ['autodocs'],
-  render: (args: IonNoDataComponent) => ({
+  render: args => ({
     props: {
       ...args,
     },
