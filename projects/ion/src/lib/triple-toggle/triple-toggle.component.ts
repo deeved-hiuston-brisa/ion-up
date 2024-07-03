@@ -1,11 +1,10 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
+  computed,
+  input,
+  model,
+  output,
 } from '@angular/core';
 import { IonButtonComponent } from '../button';
 import {
@@ -36,71 +35,37 @@ const DEFAULT_RIGHT_OPTION: IonTripleToggleOption = {
   selector: 'ion-triple-toggle',
   templateUrl: './triple-toggle.component.html',
   styleUrls: ['./triple-toggle.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IonTripleToggleComponent implements OnInit, OnChanges {
-  @Input() value: IonTripleToggleProps['value'];
-  @Input() disabled: IonTripleToggleProps['disabled'] = false;
-  @Input() size: IonTripleToggleProps['size'] = 'md';
-  @Input() options!: IonTripleToggleProps['options'];
-  @Input() onlyShowIcon: IonTripleToggleProps['onlyShowIcon'] = false;
-  @Output() ionClick: IonTripleToggleProps['ionClick'] = new EventEmitter();
+export class IonTripleToggleComponent {
+  value = model<IonTripleToggleProps['value']>();
+  disabled = input<IonTripleToggleProps['disabled']>(false);
+  size = input<IonTripleToggleProps['size']>('md');
+  options = input<IonTripleToggleProps['options']>();
+  onlyShowIcon = input<IonTripleToggleProps['onlyShowIcon']>(false);
 
-  public optionsToRender!: TripleToggleOptionsToRender;
+  valueChange = output<IonTripleToggleProps['value']>();
+
+  optionsToRender = computed<TripleToggleOptionsToRender>(() => {
+    const options: TripleToggleOptionsToRender = [
+      this.options()?.length && this.options()![FIRST_INDEX]
+        ? this.options()![FIRST_INDEX]
+        : DEFAULT_LEFT_OPTION,
+      DEFAULT_MIDDLE_OPTION,
+      this.options()?.length && this.options()![SECOND_INDEX]
+        ? this.options()![SECOND_INDEX]
+        : DEFAULT_RIGHT_OPTION,
+    ];
+    options.forEach(option => {
+      option.selected = this.value() === option.value;
+    });
+    return options;
+  });
+
   public middleOptionIndex = 1;
 
   handleClick(option: IonTripleToggleOption): void {
-    this.selectOption(option);
-  }
-
-  ngOnInit(): void {
-    this.buildOptionsToRender();
-    if (this.value !== undefined) {
-      this.changeOptionByValue();
-    }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    const { value } = changes;
-    if (value && !value.firstChange) {
-      this.changeOptionByValue();
-    }
-  }
-
-  private unselectAllOptions(): void {
-    this.optionsToRender.forEach(option => {
-      option.selected = false;
-    });
-  }
-
-  private selectOption(option: IonTripleToggleOption): void {
-    this.value = option.value;
-    this.unselectAllOptions();
-    option.selected = true;
-    this.ionClick.emit(option.value);
-  }
-
-  private changeOptionByValue(): void {
-    if (!this.disabled && this.optionsToRender) {
-      const validatedOption = this.optionsToRender.find(
-        option => option.value === this.value
-      );
-      if (validatedOption) {
-        this.selectOption(validatedOption);
-      }
-    }
-  }
-
-  private buildOptionsToRender(): void {
-    this.optionsToRender = [
-      this.options && this.options[FIRST_INDEX]
-        ? this.options[FIRST_INDEX]
-        : DEFAULT_LEFT_OPTION,
-
-      DEFAULT_MIDDLE_OPTION,
-
-      this.options && this.options[SECOND_INDEX]
-        ? this.options[SECOND_INDEX]
-        : DEFAULT_RIGHT_OPTION,
-    ];
+    this.value.set(option.value);
+    this.valueChange.emit(option.value);
   }
 }

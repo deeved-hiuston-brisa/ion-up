@@ -1,4 +1,3 @@
-import { SimpleChange } from '@angular/core';
 import { fireEvent, render, screen } from '@testing-library/angular';
 import { SafeAny } from '../utils/safe-any';
 import { IonTripleToggleComponent } from './triple-toggle.component';
@@ -16,8 +15,10 @@ const clickEvent = jest.fn();
 const sut = async (
   customProps: Partial<IonTripleToggleProps> = {}
 ): Promise<SafeAny> => {
+  const { valueChange, ...rest } = customProps;
   return await render(IonTripleToggleComponent, {
-    componentProperties: customProps,
+    componentInputs: rest,
+    componentOutputs: { valueChange },
   });
 };
 
@@ -25,7 +26,7 @@ describe('IonTripleToggleComponent', () => {
   describe('component basics', () => {
     beforeEach(async () => {
       await sut({
-        ionClick: {
+        valueChange: {
           emit: clickEvent,
         } as SafeAny,
       });
@@ -70,7 +71,7 @@ describe('IonTripleToggleComponent', () => {
     it.each(options)('should not emit event when disabled', async option => {
       await sut({
         disabled: true,
-        ionClick: {
+        valueChange: {
           emit: clickEvent,
         } as SafeAny,
       });
@@ -83,7 +84,7 @@ describe('IonTripleToggleComponent', () => {
       'should emit one event when click at %s option',
       async option => {
         await sut({
-          ionClick: {
+          valueChange: {
             emit: clickEvent,
           } as SafeAny,
         });
@@ -97,13 +98,7 @@ describe('IonTripleToggleComponent', () => {
       const customProps: Partial<IonTripleToggleProps> = {
         value: true,
       };
-
-      const { fixture } = await sut(customProps);
-      fixture.componentInstance.ngOnChanges({
-        value: new SimpleChange(null, { ...customProps }, false),
-      });
-      fixture.detectChanges();
-
+      await sut(customProps);
       expect(screen.getByTestId(firstOptionId)).toHaveClass(selectedOption);
     });
 

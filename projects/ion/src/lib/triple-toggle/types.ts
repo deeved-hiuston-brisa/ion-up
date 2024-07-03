@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { OutputEmitterRef } from '@angular/core';
 import { Icon, Size } from '../button';
 import { SafeAny } from '../utils/safe-any';
 
@@ -125,10 +125,10 @@ export interface IonTripleToggleProps {
   /**
    * Triple toggle ionClick
    * @event IonTripleToggleComponent#ionClick - Event triggered when some option on triple toggle is clicked.
-   * @type {EventEmitter<SafeAny>}
+   * @type {OutputEmitterRef<SafeAny>}
    * @description This event is emitted when some option on triple toggle is clicked. It will emit option's value.
    * @example
    * <ion-triple-toggle (ionClick) = "yourFunction()"/>
    */
-  ionClick: EventEmitter<SafeAny>;
+  valueChange: OutputEmitterRef<SafeAny>;
 }
