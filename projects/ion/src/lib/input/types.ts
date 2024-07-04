@@ -6,5 +6,5 @@ export interface IonInputProps {
    * @example
    * <input [invalid]="true" ionInput />
    */
-  invalid?: boolean;
+  invalid: boolean;
 }
