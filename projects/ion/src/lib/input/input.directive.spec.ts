@@ -1,7 +1,7 @@
 import { render, RenderResult, screen } from '@testing-library/angular';
 import { IonInputDirective } from './input.directive';
 
-const renderInput = async (
+const sut = async (
   invalid = false,
   disabled = false
 ): Promise<RenderResult<HTMLElement>> => {
@@ -17,17 +17,17 @@ const getInputElement = () => screen.getByPlaceholderText('ion-input');
 
 describe('IonInputDirective', () => {
   it('should render the default input', async () => {
-    await renderInput();
+    await sut();
     expect(getInputElement()).toBeInTheDocument();
   });
 
   it('should render the input with the invalid class', async () => {
-    await renderInput(true);
+    await sut(true);
     expect(getInputElement()).toHaveClass('ion-input--invalid');
   });
 
   it('should render the input with the disabled class', async () => {
-    await renderInput(false, true);
+    await sut(false, true);
     expect(getInputElement()).toBeDisabled();
   });
 });
