@@ -22,11 +22,11 @@
   }
 
   <ion-tab-group
-    [tabs]="options()"
     size="md"
     direction="vertical"
     border="left"
-    (selected)="changeTab($event)">
+    [tabs]="options()"
+    (tabSelected)="changeTab($event)">
   </ion-tab-group>
 
   <div class="ion-menu-container__footer">
