@@ -1,4 +1,3 @@
-// import { action } from '@storybook/addon-actions';
 import { IonInputDirective } from '../lib/input';
 
 import type { Meta, StoryObj } from '@storybook/angular';
