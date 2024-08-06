@@ -21,4 +21,6 @@ export * from './lib/switch';
 export * from './lib/avatar';
 export * from './lib/message';
 export * from './lib/sidebar';
+export * from './lib/input';
+export * from './lib/simple-menu';
 export * from './lib/utils/commonTypes';
