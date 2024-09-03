@@ -1,0 +1,50 @@
+<div class="dropdown-menu" [class.dropdown-menu--loading]="loading()">
+  @if (loading()) {
+    <ion-spinner />
+  } @else {
+    <ul>
+      @for (option of options(); let i = $index; track i) {
+        <li>
+          <button
+            class="dropdown-menu__item"
+            [class.dropdown-menu__item--selected]="option.selected"
+            [class.dropdown-menu__item--disabled]="option.disabled"
+            (mouseenter)="handleHover(option, true)"
+            (mouseleave)="handleHover(option, false)"
+            (click)="selectOption(option)">
+            @if (option.icon) {
+              <ion-icon [type]="option.icon" [size]="20" [color]="'#505566'" />
+            }
+            <span>{{
+              config().propLabel ? option[config().propLabel!] : option.label
+            }}</span>
+            @if (option.selected) {
+              <ion-icon
+                [type]="option.hovered ? 'close' : 'check'"
+                [size]="16"></ion-icon>
+            }
+          </button>
+        </li>
+      } @empty {
+        <ion-no-data
+          [iconType]="config().noDataConfig?.iconType || 'exclamation-rounded'"
+          [label]="config().noDataConfig?.label || 'Não há dados'" />
+      }
+    </ul>
+    @if (
+      config().multiple && config().clearButton && selectedOptions().length
+    ) {
+      <ion-button
+        class="clear-btn"
+        label="Limpar"
+        [icon]="{
+          type: 'trash',
+          rightPosition: true,
+        }"
+        type="secondary"
+        size="sm"
+        (ionOnClick)="clearOptions()"
+        data-testid="button-clear" />
+    }
+  }
+</div>
