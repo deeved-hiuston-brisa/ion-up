@@ -1,4 +1,7 @@
-<div class="dropdown-menu" [class.dropdown-menu--loading]="loading()">
+<div
+  data-testid="ion-dropdown"
+  class="dropdown-menu"
+  [class.dropdown-menu--loading]="loading()">
   @if (loading()) {
     <ion-spinner />
   } @else {
@@ -6,6 +9,7 @@
       @for (option of options(); let i = $index; track i) {
         <li>
           <button
+            [attr.data-testid]="'dropdown-item-' + option.value"
             class="dropdown-menu__item"
             [class.dropdown-menu__item--selected]="option.selected"
             [class.dropdown-menu__item--disabled]="option.disabled"
@@ -27,6 +31,7 @@
         </li>
       } @empty {
         <ion-no-data
+          data-testid="no-data-component"
           [iconType]="config().noDataConfig?.iconType || 'exclamation-rounded'"
           [label]="config().noDataConfig?.label || 'Não há dados'" />
       }
@@ -43,8 +48,7 @@
         }"
         type="secondary"
         size="sm"
-        (ionOnClick)="clearOptions()"
-        data-testid="button-clear" />
+        (ionOnClick)="clearOptions()" />
     }
   }
 </div>

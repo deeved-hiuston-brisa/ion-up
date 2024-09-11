@@ -1,3 +1,4 @@
+import { OutputEmitterRef } from '@angular/core';
 import { IconType } from '../../icon';
 
 export interface IonDropdownOption {
@@ -26,4 +27,5 @@ export interface IonDropdownProps<T extends IonDropdownOption> {
   options: T[];
   config: IonDropdownConfig<T>;
   loading: boolean;
+  optionsChange: OutputEmitterRef<T[]>;
 }

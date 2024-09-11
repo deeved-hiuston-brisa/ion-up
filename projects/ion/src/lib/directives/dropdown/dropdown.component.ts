@@ -3,6 +3,7 @@ import {
   Component,
   computed,
   model,
+  output,
   signal,
 } from '@angular/core';
 
@@ -29,6 +30,7 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
   config = signal<IonDropdownProps<T>['config']>({});
   loading = signal<IonDropdownProps<T>['loading']>(false);
   options = model<IonDropdownProps<T>['options']>([]);
+  optionsChange = output<IonDropdownProps<T>['options']>();
 
   public selectedOptions = computed(() =>
     this.options().filter(option => option.selected)
@@ -54,10 +56,12 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
   public clearOptions(): void {
     this.options.update(oldOptions =>
       oldOptions.map(option => {
-        return {
-          ...option,
-          selected: false,
-        };
+        return option.disabled
+          ? option
+          : {
+              ...option,
+              selected: false,
+            };
       })
     );
   }
@@ -69,10 +73,12 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
 
     if (this.config().multiple) {
       this.handleMultipleOptions(selectedOption);
+      this.optionsChange.emit(this.options());
       return;
     }
 
     this.handleSingleOptions(selectedOption);
+    this.optionsChange.emit(this.options());
   }
 
   private handleMultipleOptions(selectedOption: T): void {
