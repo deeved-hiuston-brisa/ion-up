@@ -15,12 +15,12 @@ export interface Character extends IonDropdownOption {
   template: ` <ion-button
     label="open dropdown"
     ionDropdown
-    [dropdownConfig]="config()"
-    [dropdownLoading]="loading"
-    [(dropdownOptions)]="options" />`,
+    [dropdownConfig]="dropdownConfig()"
+    [dropdownLoading]="dropdownLoading"
+    [(dropdownOptions)]="dropdownOptions" />`,
 })
 export class OpenDropdownComponent {
-  config = input<IonDropdownConfig<Character>>({});
-  loading = false;
-  options: Character[] = [];
+  dropdownConfig = input<IonDropdownConfig<Character>>({});
+  dropdownLoading = false;
+  dropdownOptions: Character[] = [];
 }

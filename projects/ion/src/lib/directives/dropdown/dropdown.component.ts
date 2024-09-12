@@ -27,13 +27,13 @@ import { IonButtonComponent } from '../../button';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IonDropdownComponent<T extends IonDropdownOption> {
-  config = signal<IonDropdownProps<T>['config']>({});
-  loading = signal<IonDropdownProps<T>['loading']>(false);
-  options = model<IonDropdownProps<T>['options']>([]);
-  optionsChange = output<IonDropdownProps<T>['options']>();
+  dropdownConfig = signal<IonDropdownProps<T>['dropdownConfig']>({});
+  dropdownLoading = signal<IonDropdownProps<T>['dropdownLoading']>(false);
+  dropdownOptions = model<IonDropdownProps<T>['dropdownOptions']>([]);
+  dropdownOptionsChange = output<IonDropdownProps<T>['dropdownOptions']>();
 
   public selectedOptions = computed(() =>
-    this.options().filter(option => option.selected)
+    this.dropdownOptions().filter(option => option.selected)
   );
 
   public handleHover(hoveredOption: T, mouseEnter: boolean): void {
@@ -41,7 +41,7 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
       return;
     }
 
-    this.options.update(oldOptions =>
+    this.dropdownOptions.update(oldOptions =>
       oldOptions.map(option => {
         return option.value === hoveredOption.value
           ? {
@@ -54,7 +54,7 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
   }
 
   public clearOptions(): void {
-    this.options.update(oldOptions =>
+    this.dropdownOptions.update(oldOptions =>
       oldOptions.map(option => {
         return option.disabled
           ? option
@@ -71,27 +71,27 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
       return;
     }
 
-    if (this.config().multiple) {
+    if (this.dropdownConfig().multiple) {
       this.handleMultipleOptions(selectedOption);
-      this.optionsChange.emit(this.options());
+      this.dropdownOptionsChange.emit(this.dropdownOptions());
       return;
     }
 
     this.handleSingleOptions(selectedOption);
-    this.optionsChange.emit(this.options());
+    this.dropdownOptionsChange.emit(this.dropdownOptions());
   }
 
   private handleMultipleOptions(selectedOption: T): void {
     if (
       (this.isAtSelectedMaxLength() && !selectedOption.selected) ||
-      (this.config().required &&
+      (this.dropdownConfig().required &&
         selectedOption.selected &&
         this.selectedOptions().length === 1)
     ) {
       return;
     }
 
-    this.options.update(options => {
+    this.dropdownOptions.update(options => {
       return options.map(option =>
         option.value === selectedOption.value
           ? { ...option, selected: !option.selected }
@@ -101,24 +101,26 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
   }
 
   private isAtSelectedMaxLength(): boolean {
-    if (!this.config().maxSelected) {
+    if (!this.dropdownConfig().maxSelected) {
       return false;
     }
 
-    const selectedOptions = this.options().filter(option => option.selected);
+    const selectedOptions = this.dropdownOptions().filter(
+      option => option.selected
+    );
 
-    return selectedOptions.length === this.config().maxSelected;
+    return selectedOptions.length === this.dropdownConfig().maxSelected;
   }
 
   private handleSingleOptions(selectedOption: T): void {
     if (
-      this.config().required &&
+      this.dropdownConfig().required &&
       selectedOption.selected &&
       this.selectedOptions().length === 1
     ) {
       return;
     }
-    this.options.update(oldOptions =>
+    this.dropdownOptions.update(oldOptions =>
       oldOptions.map(option => {
         return option.value === selectedOption.value
           ? {

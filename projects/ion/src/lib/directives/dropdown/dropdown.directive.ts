@@ -22,9 +22,9 @@ import { IonDropdownComponent } from './dropdown.component';
 export class IonDropdownDirective<T extends IonDropdownOption>
   implements OnChanges, OnDestroy
 {
-  dropdownConfig = input.required<IonDropdownProps<T>['config']>({});
-  dropdownLoading = input<IonDropdownProps<T>['loading']>(false);
-  dropdownOptions = model<IonDropdownProps<T>['options']>([]);
+  dropdownConfig = input.required<IonDropdownProps<T>['dropdownConfig']>({});
+  dropdownLoading = input<IonDropdownProps<T>['dropdownLoading']>(false);
+  dropdownOptions = model<IonDropdownProps<T>['dropdownOptions']>([]);
 
   private overlayRef: OverlayRef | null = null;
   private dropdownRef?: ComponentRef<IonDropdownComponent<T>>;
@@ -108,11 +108,10 @@ export class IonDropdownDirective<T extends IonDropdownOption>
 
     this.dropdownRef = this.overlayRef.attach(component);
     if (this.dropdownRef) {
-      this.optionsSubscription = this.dropdownRef.instance.options.subscribe(
-        data => {
+      this.optionsSubscription =
+        this.dropdownRef.instance.dropdownOptions.subscribe(data => {
           this.dropdownOptions.set(data);
-        }
-      );
+        });
     }
     this.updateProperties();
 
@@ -132,8 +131,8 @@ export class IonDropdownDirective<T extends IonDropdownOption>
   private updateProperties(): void {
     if (!this.dropdownRef) return;
 
-    this.dropdownRef.instance.loading.set(this.dropdownLoading());
-    this.dropdownRef.instance.config.set(this.dropdownConfig());
-    this.dropdownRef.instance.options.set(this.dropdownOptions());
+    this.dropdownRef.instance.dropdownLoading.set(this.dropdownLoading());
+    this.dropdownRef.instance.dropdownConfig.set(this.dropdownConfig());
+    this.dropdownRef.instance.dropdownOptions.set(this.dropdownOptions());
   }
 }

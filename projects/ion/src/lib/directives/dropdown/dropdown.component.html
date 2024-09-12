@@ -1,12 +1,12 @@
 <div
   data-testid="ion-dropdown"
   class="dropdown-menu"
-  [class.dropdown-menu--loading]="loading()">
-  @if (loading()) {
+  [class.dropdown-menu--loading]="dropdownLoading()">
+  @if (dropdownLoading()) {
     <ion-spinner />
   } @else {
     <ul>
-      @for (option of options(); let i = $index; track i) {
+      @for (option of dropdownOptions(); let i = $index; track i) {
         <li>
           <button
             [attr.data-testid]="'dropdown-item-' + option.value"
@@ -20,7 +20,9 @@
               <ion-icon [type]="option.icon" [size]="20" [color]="'#505566'" />
             }
             <span>{{
-              config().propLabel ? option[config().propLabel!] : option.label
+              dropdownConfig().propLabel
+                ? option[dropdownConfig().propLabel!]
+                : option.label
             }}</span>
             @if (option.selected) {
               <ion-icon
@@ -32,12 +34,16 @@
       } @empty {
         <ion-no-data
           data-testid="no-data-component"
-          [iconType]="config().noDataConfig?.iconType || 'exclamation-rounded'"
-          [label]="config().noDataConfig?.label || 'Não há dados'" />
+          [iconType]="
+            dropdownConfig().noDataConfig?.iconType || 'exclamation-rounded'
+          "
+          [label]="dropdownConfig().noDataConfig?.label || 'Não há dados'" />
       }
     </ul>
     @if (
-      config().multiple && config().clearButton && selectedOptions().length
+      dropdownConfig().multiple &&
+      dropdownConfig().clearButton &&
+      selectedOptions().length
     ) {
       <ion-button
         class="clear-btn"

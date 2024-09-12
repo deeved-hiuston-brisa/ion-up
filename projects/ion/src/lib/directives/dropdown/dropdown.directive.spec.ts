@@ -24,9 +24,7 @@ describe('IonDropdownDirective', () => {
 
   it('should open the dropdown when clicking the host', async () => {
     await sut();
-    const openBtn = screen.getByTestId('ion-button-open dropdown');
-    fireEvent.click(openBtn);
-
+    fireEvent.click(screen.getByTestId('ion-button-open dropdown'));
     expect(screen.getByTestId('ion-dropdown')).toBeVisible();
   });
 
@@ -41,21 +39,19 @@ describe('IonDropdownDirective', () => {
 
   it('should not close on scroll by default', async () => {
     await sut();
-    const openBtn = screen.getByTestId('ion-button-open dropdown');
-    fireEvent.click(openBtn);
+    fireEvent.click(screen.getByTestId('ion-button-open dropdown'));
     fireEvent.scroll(document);
-
     expect(screen.getByTestId('ion-dropdown')).toBeVisible();
   });
 
   it('should close on scroll when informed', async () => {
     await sut({
-      config: {
+      dropdownConfig: {
         closeOnScroll: true,
       },
     });
-    const openBtn = screen.getByTestId('ion-button-open dropdown');
-    fireEvent.click(openBtn);
+
+    fireEvent.click(screen.getByTestId('ion-button-open dropdown'));
     fireEvent.scroll(document);
 
     expect(screen.queryByTestId('ion-dropdown')).not.toBeInTheDocument();
@@ -63,7 +59,7 @@ describe('IonDropdownDirective', () => {
 
   it('should open when there is a overlay without attachments', async () => {
     await sut({
-      config: {
+      dropdownConfig: {
         closeOnScroll: true,
       },
     });
@@ -71,27 +67,23 @@ describe('IonDropdownDirective', () => {
     fireEvent.click(openBtn);
     fireEvent.scroll(document);
     fireEvent.click(openBtn);
-
     expect(screen.getByTestId('ion-dropdown')).toBeVisible();
   });
 
   it('should close when clicking outside the dropdown', async () => {
     const fixture = await sut();
-    const openBtn = screen.getByTestId('ion-button-open dropdown');
-    fireEvent.click(openBtn);
+    fireEvent.click(screen.getByTestId('ion-button-open dropdown'));
     fireEvent.click(document.querySelector('.cdk-overlay-backdrop')!);
     fixture.detectChanges();
-
     expect(screen.queryByTestId('ion-dropdown')).not.toBeInTheDocument();
   });
 
   it('should update the state of the dropdown', async () => {
     const fixture = await sut();
-    fixture.componentInstance.loading = true;
-    const openBtn = screen.getByTestId('ion-button-open dropdown');
-    fireEvent.click(openBtn);
+    fixture.componentInstance.dropdownLoading = true;
+    fireEvent.click(screen.getByTestId('ion-button-open dropdown'));
     expect(screen.getByTestId('ion-spinner')).toBeVisible();
-    fixture.componentInstance.loading = false;
+    fixture.componentInstance.dropdownLoading = false;
     fixture.detectChanges();
     expect(screen.getByTestId('no-data-component')).toBeVisible();
   });

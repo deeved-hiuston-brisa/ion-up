@@ -41,13 +41,13 @@ const MockOptionsWithIcons = mockOptions.map(option => {
 });
 
 const sut = async (customProps: Partial<IonDropdownProps<MockOption>> = {}) => {
-  const { optionsChange, ...rest } = customProps;
+  const { dropdownOptionsChange: optionsChange, ...rest } = customProps;
   const { fixture } = await render(IonDropdownComponent, {
     componentInputs: {
       ...rest,
     },
     componentOutputs: {
-      optionsChange: {
+      dropdownOptionsChange: {
         emit: optionsChange || jest.fn(),
       } as SafeAny,
     },
@@ -62,8 +62,8 @@ describe('IonDropdownComponent', () => {
   describe('Default props', () => {
     beforeEach(async () => {
       fixture = await sut({
-        options: mockOptions,
-        optionsChange: mockEmission as SafeAny,
+        dropdownOptions: mockOptions,
+        dropdownOptionsChange: mockEmission as SafeAny,
       });
     });
 
@@ -76,15 +76,11 @@ describe('IonDropdownComponent', () => {
     });
 
     it.each(mockOptions)('should render $label label', ({ label }) => {
-      const currentOption = screen.getByText(label);
-
-      expect(currentOption).toBeVisible();
+      expect(screen.getByText(label)).toBeVisible();
     });
 
     it('should select an option', () => {
-      const firstOption = screen.getByTestId(`dropdown-item-1`);
-
-      fireEvent.click(firstOption);
+      fireEvent.click(screen.getByTestId(`dropdown-item-1`));
 
       const selectedOptions = document.getElementsByClassName(
         'dropdown-menu__item--selected'
@@ -94,13 +90,8 @@ describe('IonDropdownComponent', () => {
     });
 
     it('should show a check icon when an option is selected', () => {
-      const firstOption = screen.getByTestId(`dropdown-item-1`);
-
-      fireEvent.click(firstOption);
-
-      const checkIcon = document.getElementById('ion-icon-check');
-
-      expect(checkIcon).toBeVisible();
+      fireEvent.click(screen.getByTestId(`dropdown-item-1`));
+      expect(document.getElementById('ion-icon-check')).toBeVisible();
     });
 
     it('should change the check icon to close when hovering a selected option', () => {
@@ -115,11 +106,8 @@ describe('IonDropdownComponent', () => {
     });
 
     it('should not show an icon when hovering an unselected option', () => {
-      const firstOption = screen.getByTestId(`dropdown-item-1`);
-      fireEvent.mouseEnter(firstOption);
-      const closeIcon = document.getElementById('ion-icon-close');
-
-      expect(closeIcon).toBeFalsy();
+      fireEvent.mouseEnter(screen.getByTestId(`dropdown-item-1`));
+      expect(document.getElementById('ion-icon-close')).toBeFalsy();
     });
 
     it('should unselect an option', () => {
@@ -136,93 +124,74 @@ describe('IonDropdownComponent', () => {
     });
 
     it('should not render options with icons when no icon is provided', () => {
-      const optionIcon = document.getElementById('ion-icon-box');
-
-      expect(optionIcon).toBeFalsy();
+      expect(document.getElementById('ion-icon-box')).toBeFalsy();
     });
 
     it('should emit the options array when option changes', () => {
-      const firstOption = screen.getByTestId(`dropdown-item-1`);
-
-      fireEvent.click(firstOption);
-
+      fireEvent.click(screen.getByTestId(`dropdown-item-1`));
       expect(mockEmission).toHaveBeenCalledWith(mockOptionsWithSelected);
     });
 
     it('should show the loading spinner when loading', () => {
-      fixture.componentInstance.loading.set(true);
+      fixture.componentInstance.dropdownLoading.set(true);
       fixture.detectChanges();
-      const spinnerComponent = screen.getByTestId('ion-spinner');
-
-      expect(spinnerComponent).toBeVisible();
+      expect(screen.getByTestId('ion-spinner')).toBeVisible();
     });
   });
 
   describe('Without data', () => {
     it('should show the no data component when an empty array of options is provided', async () => {
       await sut({
-        options: [],
+        dropdownOptions: [],
       });
 
-      const noDataComponent = screen.getByTestId('no-data-component');
-
-      expect(noDataComponent).toBeVisible();
+      expect(screen.getByTestId('no-data-component')).toBeVisible();
     });
   });
 
   describe('Option with icon', () => {
     it('should render options with icons when informed', async () => {
       await sut({
-        options: MockOptionsWithIcons,
+        dropdownOptions: MockOptionsWithIcons,
       });
 
-      const optionIcon = document.getElementById('ion-icon-box');
-
-      expect(optionIcon).toBeVisible();
+      expect(document.getElementById('ion-icon-box')).toBeVisible();
     });
   });
 
   describe('Disabled option', () => {
     beforeEach(async () => {
       fixture = await sut({
-        options: mockOptionsWithDisabled,
-        optionsChange: mockEmission as SafeAny,
+        dropdownOptions: mockOptionsWithDisabled,
+        dropdownOptionsChange: mockEmission as SafeAny,
       });
     });
 
     it('should disable an option when informed', async () => {
-      const firstOption = screen.getByTestId(`dropdown-item-1`);
-
-      expect(firstOption).toHaveClass('dropdown-menu__item--disabled');
+      expect(screen.getByTestId(`dropdown-item-1`)).toHaveClass(
+        'dropdown-menu__item--disabled'
+      );
     });
 
     it('should not show the close icon when hovering a disabled option', () => {
-      const firstOption = screen.getByTestId(`dropdown-item-1`);
-      fireEvent.mouseEnter(firstOption);
-      const closeIcon = document.getElementById('ion-icon-close');
-
-      expect(closeIcon).toBeFalsy();
+      fireEvent.mouseEnter(screen.getByTestId(`dropdown-item-1`));
+      expect(document.getElementById('ion-icon-close')).toBeFalsy();
     });
 
     it('should not emit when clicking a disabled option', async () => {
-      const firstOption = screen.getByTestId(`dropdown-item-1`);
-
-      fireEvent.click(firstOption);
-
+      fireEvent.click(screen.getByTestId(`dropdown-item-1`));
       expect(mockEmission).not.toHaveBeenCalled();
     });
 
     it('should not unselect a disabled option that is selected', () => {
-      fixture.componentInstance.config.set({
+      fixture.componentInstance.dropdownConfig.set({
         multiple: true,
         clearButton: true,
       });
 
       fixture.detectChanges();
 
-      const clearButton = screen.getByTestId('ion-button-Limpar');
-
-      fireEvent.click(clearButton);
+      fireEvent.click(screen.getByTestId('ion-button-Limpar'));
 
       const selectedOptions = document.getElementsByClassName(
         'dropdown-menu__item--selected'
@@ -237,15 +206,15 @@ describe('IonDropdownComponent', () => {
       'should render propLabel $name as label',
       async ({ name }) => {
         fixture = await sut({
-          options: mockOptionsWithPropLabel,
-          optionsChange: mockEmission as SafeAny,
+          dropdownOptions: mockOptionsWithPropLabel,
+          dropdownOptionsChange: mockEmission as SafeAny,
         });
 
         const config: IonDropdownConfig<MockOption> = {
           propLabel: 'name',
         };
 
-        fixture.componentInstance.config.set(config);
+        fixture.componentInstance.dropdownConfig.set(config);
         fixture.detectChanges();
 
         const currentOption = screen.getByText(name!);
@@ -258,10 +227,10 @@ describe('IonDropdownComponent', () => {
   describe('Required', () => {
     it('should not unselect when there is only one option selected and is required mode', async () => {
       fixture = await sut({
-        options: mockOptions,
+        dropdownOptions: mockOptions,
       });
 
-      fixture.componentInstance.config.set({
+      fixture.componentInstance.dropdownConfig.set({
         required: true,
       });
 
@@ -281,11 +250,11 @@ describe('IonDropdownComponent', () => {
   describe('Multiple selection', () => {
     beforeEach(async () => {
       fixture = await sut({
-        options: mockOptions,
-        optionsChange: mockEmission as SafeAny,
+        dropdownOptions: mockOptions,
+        dropdownOptionsChange: mockEmission as SafeAny,
       });
 
-      fixture.componentInstance.config.set({ multiple: true });
+      fixture.componentInstance.dropdownConfig.set({ multiple: true });
     });
 
     afterEach(() => {
@@ -293,11 +262,8 @@ describe('IonDropdownComponent', () => {
     });
 
     it('should select more than one option', () => {
-      const firstOption = screen.getByTestId(`dropdown-item-1`);
-      const secondOption = screen.getByTestId(`dropdown-item-2`);
-
-      fireEvent.click(firstOption);
-      fireEvent.click(secondOption);
+      fireEvent.click(screen.getByTestId(`dropdown-item-1`));
+      fireEvent.click(screen.getByTestId(`dropdown-item-2`));
 
       const selectedOptions = document.getElementsByClassName(
         'dropdown-menu__item--selected'
@@ -307,28 +273,19 @@ describe('IonDropdownComponent', () => {
     });
 
     it('should emit the options array when option changes', () => {
-      const firstOption = screen.getByTestId(`dropdown-item-1`);
-      const secondOption = screen.getByTestId(`dropdown-item-2`);
-
-      fireEvent.click(firstOption);
-      fireEvent.click(secondOption);
-
+      fireEvent.click(screen.getByTestId(`dropdown-item-1`));
+      fireEvent.click(screen.getByTestId(`dropdown-item-2`));
       expect(mockEmission).toHaveBeenCalledTimes(2);
     });
 
     it('should not show clear button by default', () => {
-      const firstOption = screen.getByTestId(`dropdown-item-1`);
-
-      fireEvent.click(firstOption);
-
-      const clearButton = screen.queryByTestId('clear-button');
-
-      expect(clearButton).not.toBeInTheDocument();
+      fireEvent.click(screen.getByTestId(`dropdown-item-1`));
+      expect(screen.queryByTestId('clear-button')).not.toBeInTheDocument();
     });
 
     describe('With clear button', () => {
       beforeEach(() => {
-        fixture.componentInstance.config.update(prevOptions => {
+        fixture.componentInstance.dropdownConfig.update(prevOptions => {
           return {
             ...prevOptions,
             clearButton: true,
@@ -337,31 +294,20 @@ describe('IonDropdownComponent', () => {
       });
 
       it('should not show clear button when informed and no option is selected', () => {
-        const clearButton = screen.queryByTestId('ion-button-Limpar');
-
-        expect(clearButton).not.toBeInTheDocument();
+        expect(
+          screen.queryByTestId('ion-button-Limpar')
+        ).not.toBeInTheDocument();
       });
 
       it('should show clear button when informed and an option is selected', () => {
-        const firstOption = screen.getByTestId(`dropdown-item-1`);
-
-        fireEvent.click(firstOption);
-
-        const clearButton = screen.getByTestId('ion-button-Limpar');
-
-        expect(clearButton).toBeInTheDocument();
+        fireEvent.click(screen.getByTestId(`dropdown-item-1`));
+        expect(screen.getByTestId('ion-button-Limpar')).toBeInTheDocument();
       });
 
       it('should clear all options when clicked', () => {
-        const firstOption = screen.getByTestId(`dropdown-item-1`);
-        const secondOption = screen.getByTestId(`dropdown-item-2`);
-
-        fireEvent.click(firstOption);
-        fireEvent.click(secondOption);
-
-        const clearButton = screen.getByTestId('ion-button-Limpar');
-
-        fireEvent.click(clearButton);
+        fireEvent.click(screen.getByTestId(`dropdown-item-1`));
+        fireEvent.click(screen.getByTestId(`dropdown-item-2`));
+        fireEvent.click(screen.getByTestId('ion-button-Limpar'));
 
         const selectedOptions = document.getElementsByClassName(
           'dropdown-menu__item--selected'
@@ -373,20 +319,16 @@ describe('IonDropdownComponent', () => {
 
     describe('With Max Selected', () => {
       it('should not select after the max selected is reached', () => {
-        fixture.componentInstance.config.update(prevOptions => {
+        fixture.componentInstance.dropdownConfig.update(prevOptions => {
           return {
             ...prevOptions,
             maxSelected: 2,
           };
         });
 
-        const firstOption = screen.getByTestId(`dropdown-item-1`);
-        const secondOption = screen.getByTestId(`dropdown-item-2`);
-        const thirdOption = screen.getByTestId(`dropdown-item-3`);
-
-        fireEvent.click(firstOption);
-        fireEvent.click(secondOption);
-        fireEvent.click(thirdOption);
+        fireEvent.click(screen.getByTestId(`dropdown-item-1`));
+        fireEvent.click(screen.getByTestId(`dropdown-item-2`));
+        fireEvent.click(screen.getByTestId(`dropdown-item-3`));
 
         const selectedOptions = document.getElementsByClassName(
           'dropdown-menu__item--selected'
@@ -398,7 +340,7 @@ describe('IonDropdownComponent', () => {
 
     describe('Required', () => {
       it('should not unselect when there is only one option selected and is required mode', () => {
-        fixture.componentInstance.config.update(prevOptions => {
+        fixture.componentInstance.dropdownConfig.update(prevOptions => {
           return {
             ...prevOptions,
             required: true,
