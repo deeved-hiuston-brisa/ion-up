@@ -41,16 +41,7 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
       return;
     }
 
-    this.dropdownOptions.update(oldOptions =>
-      oldOptions.map(option => {
-        return option.value === hoveredOption.value
-          ? {
-              ...option,
-              hovered: mouseEnter,
-            }
-          : option;
-      })
-    );
+    hoveredOption.hovered = mouseEnter;
   }
 
   public clearOptions(): void {
