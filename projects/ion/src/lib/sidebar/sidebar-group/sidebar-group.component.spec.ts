@@ -48,14 +48,14 @@ const mockGroup = {
 
 const sut = async (
   props: Partial<SidebarGroup> & {
-    onItemSelected?: OutputEmitterRef<boolean>;
+    selectedChange?: OutputEmitterRef<boolean>;
     groupSelectedChanged?: OutputEmitterRef<void>;
   }
 ) => {
-  const { onItemSelected, groupSelectedChanged, ...rest } = props;
+  const { selectedChange, groupSelectedChanged, ...rest } = props;
   return await render(IonSidebarGroupComponent, {
     componentInputs: { ...rest },
-    componentOutputs: { onItemSelected, groupSelectedChanged },
+    componentOutputs: { selectedChange, groupSelectedChanged },
   });
 };
 

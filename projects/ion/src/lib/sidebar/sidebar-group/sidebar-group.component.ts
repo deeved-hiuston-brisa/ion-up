@@ -27,7 +27,7 @@ export class IonSidebarGroupComponent implements OnChanges {
   items = input<SidebarGroup['items']>([]);
   selected = model<SidebarGroup['selected']>(false);
   haveGroupAction = input<SidebarGroup['haveGroupAction']>(false);
-  onItemSelected = output<boolean>();
+  selectedChange = output<boolean>();
   groupSelectedChanged = output();
 
   public closed = true;
@@ -39,7 +39,7 @@ export class IonSidebarGroupComponent implements OnChanges {
   public itemSelected(itemIndex: number): void {
     this.selected.set(true);
     selectItemByIndex(this.items(), itemIndex);
-    this.onItemSelected.emit(true);
+    this.selectedChange.emit(true);
   }
 
   public groupSelected(): void {

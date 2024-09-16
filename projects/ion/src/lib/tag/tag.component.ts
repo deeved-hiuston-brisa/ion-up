@@ -27,13 +27,8 @@ export class IonTagComponent {
     () => `ion-tag ${this.outline() ? 'outline' : ''} ${this.status()}`
   );
 
-<<<<<<< 116-refactor-update-ion-sidebar-to-use-signals-and-new-angular-feats
-  protected getTagColorAndBackground = computed(() =>
-    this.validateHexColor(this.color()) ? this.color()! : ''
-=======
   protected getTagColorAndBackground = computed<string>(() =>
     this.validateHexColor(this.color()) ? this.color() : ''
->>>>>>> main
   );
 
   private validateHexColor(color?: string): boolean {

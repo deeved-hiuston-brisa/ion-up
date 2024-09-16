@@ -31,7 +31,7 @@
           [selected]="!!item.selected"
           [items]="item.options"
           [haveGroupAction]="!!item.action"
-          (onItemSelected)="itemOnGroupSelected(i)"
+          (selectedChange)="itemOnGroupSelected(i)"
           (groupSelectedChanged)="groupSelected(i)"></ion-sidebar-group>
       } @else {
         <ion-sidebar-item
