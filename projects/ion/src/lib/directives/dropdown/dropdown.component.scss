@@ -30,6 +30,8 @@
   & ul {
     display: flex;
     flex-direction: column;
+    padding-left: 0;
+    margin: 0;
     gap: spacing(0.5);
     max-height: 244px;
     overflow-y: auto;
@@ -69,6 +71,7 @@
 
     &:active {
       @include set-colors($primary-2, $primary-6);
+      @include set-icon-color($primary-6);
     }
 
     &--selected {
@@ -88,6 +91,7 @@
 
     &--disabled {
       color: $neutral-5;
+      @include set-icon-color($neutral-5);
 
       &:hover {
         @include set-colors($neutral-1, $neutral-5);
