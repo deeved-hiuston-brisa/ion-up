@@ -10,7 +10,6 @@ export interface Character extends IonDropdownOption {
 @Component({
   standalone: true,
   selector: 'ion-open-dropdown',
-  styleUrls: ['open-dropdown.component.scss'],
   imports: [IonButtonComponent, IonDropdownDirective],
   template: ` <ion-button
     label="open dropdown"

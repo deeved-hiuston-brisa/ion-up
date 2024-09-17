@@ -46,14 +46,10 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
 
   public clearOptions(): void {
     this.dropdownOptions.update(oldOptions =>
-      oldOptions.map(option => {
-        return option.disabled
-          ? option
-          : {
-              ...option,
-              selected: false,
-            };
-      })
+      oldOptions.map(option => ({
+        ...option,
+        selected: option.disabled ? option.selected : false,
+      }))
     );
   }
 
@@ -64,11 +60,10 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
 
     if (this.dropdownConfig().multiple) {
       this.handleMultipleOptions(selectedOption);
-      this.dropdownOptionsChange.emit(this.dropdownOptions());
-      return;
+    } else {
+      this.handleSingleOptions(selectedOption);
     }
 
-    this.handleSingleOptions(selectedOption);
     this.dropdownOptionsChange.emit(this.dropdownOptions());
   }
 
@@ -112,14 +107,10 @@ export class IonDropdownComponent<T extends IonDropdownOption> {
       return;
     }
     this.dropdownOptions.update(oldOptions =>
-      oldOptions.map(option => {
-        return option.value === selectedOption.value
-          ? {
-              ...option,
-              selected: !option.selected,
-            }
-          : { ...option, selected: false };
-      })
+      oldOptions.map(option => ({
+        ...option,
+        selected: option.value === selectedOption.value && !option.selected,
+      }))
     );
   }
 }
