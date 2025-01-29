@@ -7,7 +7,6 @@ import { IonSidebarProps } from './types';
 import { callItemAction, selectItemByIndex, unselectAllItems } from './utils';
 
 @Component({
-  standalone: true,
   imports: [
     IonButtonComponent,
     IonSidebarItemComponent,

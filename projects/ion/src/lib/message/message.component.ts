@@ -1,9 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+} from '@angular/core';
 
-import { IonIconComponent } from '../icon';
-import { IonMessageProps } from './types';
+import { IconType, IonIconComponent } from '../icon';
+import { IonMessageProps, MessageStatusType } from './types';
 
-const iconTypes = {
+const iconTypes: Record<MessageStatusType, IconType> = {
   positive: 'check-solid',
   negative_alert: 'exclamation-solid',
   negative_error: 'close-solid',
@@ -14,24 +19,18 @@ const iconTypes = {
 
 @Component({
   selector: 'ion-message',
-  standalone: true,
   imports: [IonIconComponent],
   templateUrl: './message.component.html',
   styleUrl: './message.component.scss',
   host: {
-    '[attr.data-type]': 'type',
+    '[attr.data-type]': 'type()',
   },
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IonMessageComponent implements OnInit {
-  @Input() label!: IonMessageProps['label'];
-  @Input() type: IonMessageProps['type'] = 'positive';
-  @Input() iconType?: IonMessageProps['iconType'];
+export class IonMessageComponent {
+  label = input.required<IonMessageProps['label']>();
+  type = input<IonMessageProps['type']>('positive');
+  iconType = input<IonMessageProps['iconType']>();
 
-  setIcon(): void {
-    this.iconType = iconTypes[this.type as keyof typeof iconTypes];
-  }
-
-  ngOnInit(): void {
-    this.setIcon();
-  }
+  icon = computed(() => this.iconType() || iconTypes[this.type()]);
 }

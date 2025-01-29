@@ -13,7 +13,6 @@ import { SidebarGroup } from '../types';
 import { selectItemByIndex, unselectAllItems } from '../utils';
 
 @Component({
-  standalone: true,
   imports: [CommonModule, IonSidebarItemComponent, IonIconComponent],
   selector: 'ion-sidebar-group',
   templateUrl: './sidebar-group.component.html',
