@@ -18,6 +18,7 @@ export * from './lib/link';
 export * from './lib/notification';
 export * from './lib/tab-group';
 export * from './lib/tag';
+export * from './lib/triple-toggle';
 export * from './lib/sidebar';
 export * from './lib/steps';
 export * from './lib/switch';
