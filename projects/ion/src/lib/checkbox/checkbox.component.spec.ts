@@ -43,7 +43,7 @@ describe('IonCheckboxComponent', () => {
   });
   it('should emit a checkedChange event when the checkbox is clicked', async () => {
     const checkedChange = jest.fn();
-    await sut({ checkedChange: checkedChange as SafeAny });
+    await sut({ checkedChange: checkedChange as SafeAny, checked: false });
     fireEvent.click(screen.getByRole('checkbox'));
     expect(checkedChange).toHaveBeenCalledWith(true);
     expect(checkedChange).toHaveBeenCalledTimes(1);
