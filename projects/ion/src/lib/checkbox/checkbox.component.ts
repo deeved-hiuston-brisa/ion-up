@@ -18,7 +18,7 @@ import { IonCheckboxProps } from './types';
 })
 export class IonCheckboxComponent {
   label = input<IonCheckboxProps['label']>();
-  value = input.required<IonCheckboxProps['value']>();
+  value = input<IonCheckboxProps['value']>();
   disabled = input<IonCheckboxProps['disabled']>(false);
   checked = model<IonCheckboxProps['checked']>(false);
   indeterminate = model<IonCheckboxProps['indeterminate']>(false);
