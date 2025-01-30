@@ -9,7 +9,6 @@ import { IonIconComponent } from '../../icon';
 import { SidebarItem } from '../types';
 
 @Component({
-  standalone: true,
   imports: [IonIconComponent],
   selector: 'ion-sidebar-item',
   templateUrl: './sidebar-item.component.html',
