@@ -27,26 +27,32 @@ const mockGroup: Partial<IonSidebarGroupComponent> = {
       title: 'Item 1',
       icon: 'pencil',
       action: actionMock,
+      selected: false,
     },
     {
       title: 'Item 2',
       icon: 'working',
       action: actionMock,
+      selected: false,
     },
   ],
+  selected: false,
+  haveGroupAction: false,
+  closed: true,
 };
 
-const sut = async (
-  props: Partial<IonSidebarGroupComponent> = {}
-): Promise<void> => {
-  await render(IonSidebarGroupComponent, {
+const sut = async (props: Partial<IonSidebarGroupComponent> = {}) => {
+  return await render(IonSidebarGroupComponent, {
     componentProperties: { ...props },
   });
 };
 
+let detectChangesFn: () => void;
+
 describe('SidebarGroup', () => {
   beforeEach(async () => {
-    await sut(mockGroup);
+    const { detectChanges } = await sut(mockGroup);
+    detectChangesFn = detectChanges;
   });
   afterEach(() => {
     actionMock.mockClear();
@@ -111,10 +117,13 @@ describe('SidebarGroup', () => {
     const selectedItemClass = 'ion-sidebar-item--selected';
 
     await userEvent.click(itemOne!);
+    detectChangesFn();
+
     expect(itemOne).toHaveClass(selectedItemClass);
     expect(itemTwo).not.toHaveClass(selectedItemClass);
 
     await userEvent.click(itemTwo!);
+    detectChangesFn();
     expect(itemOne).not.toHaveClass(selectedItemClass);
     expect(itemTwo).toHaveClass(selectedItemClass);
   });

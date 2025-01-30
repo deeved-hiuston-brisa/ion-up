@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/angular';
 import { IonIconComponent } from './icon.component';
-import { Highlight, IonIconProps } from './types';
+import { IonIconProps } from './types';
 
 const sut = async (
-  customProps: IonIconProps = { type: 'trash' }
+  customProps: Partial<IonIconProps> = { type: 'trash' }
 ): Promise<HTMLElement> => {
   await render(IonIconComponent, {
-    componentProperties: customProps,
+    componentInputs: { ...customProps },
   });
   return document.getElementById('ion-icon-' + customProps.type)!;
 };
@@ -53,7 +53,7 @@ describe('IonIconComponent', () => {
         type: 'box',
         color: '#FF0016',
         size: iconSizes.sm,
-        highlight: Highlight.SIMPLE,
+        highlight: 'simple',
       });
 
       const containerWidth = screen.getByTestId('outside-container');
@@ -73,7 +73,7 @@ describe('IonIconComponent', () => {
         type: 'left',
         color: '#FF0016',
         size: iconSizes.sm,
-        highlight: Highlight.DOUBLE,
+        highlight: 'double',
       });
 
       const containerWidth = screen.getByTestId('outside-container');
@@ -91,7 +91,7 @@ describe('IonIconComponent', () => {
         type: 'box',
         color: '#FF0016',
         size: iconSizes.md,
-        highlight: Highlight.DOUBLE,
+        highlight: 'double',
       });
 
       const containerWidth = screen.getByTestId('outside-container');
@@ -109,7 +109,7 @@ describe('IonIconComponent', () => {
         type: 'left',
         color: '#FF0016',
         size: iconSizes.sm,
-        highlight: Highlight.DOUBLE,
+        highlight: 'double',
       });
 
       const containerWidth = screen.getByTestId('inner-container');
@@ -127,7 +127,7 @@ describe('IonIconComponent', () => {
         type: 'box',
         color: '#FF0016',
         size: iconSizes.md,
-        highlight: Highlight.DOUBLE,
+        highlight: 'double',
       });
 
       const containerWidth = screen.getByTestId('inner-container');

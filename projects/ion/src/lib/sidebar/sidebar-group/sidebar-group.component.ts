@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   EventEmitter,
@@ -7,13 +8,11 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { IonIconComponent } from '../../icon';
+import { IonSidebarItemComponent } from '../public-api';
 import { SidebarGroup } from '../types';
 import { selectItemByIndex, unselectAllItems } from '../utils';
-import { CommonModule } from '@angular/common';
-import { IonSidebarItemComponent } from '../public-api';
 
 @Component({
-  standalone: true,
   imports: [CommonModule, IonSidebarItemComponent, IonIconComponent],
   selector: 'ion-sidebar-group',
   templateUrl: './sidebar-group.component.html',
